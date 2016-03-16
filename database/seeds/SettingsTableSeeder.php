@@ -12,8 +12,6 @@ class SettingsTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('settings')->delete();
-
         $settings = new Settings();
         $settings->email       = 'jambik@gmail.com';
         $settings->description = 'Описание сайта';

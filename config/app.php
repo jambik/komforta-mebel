@@ -213,7 +213,7 @@ return [
 
         'Form'      => Collective\Html\FormFacade::class,
         'Html'      => Collective\Html\HtmlFacade::class,
-        'Flash'     => Laracasts\Flash\Flash::class,
+        'Flash'      => Laracasts\Flash\Flash::class,
         'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
         'Image'     => Intervention\Image\Facades\Image::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,

@@ -26,9 +26,6 @@ class UsersTableSeeder extends Seeder
         $admin->description  = ''; // optional
         $admin->save();
 
-
-//        DB::table('users')->delete();
-
         $row1 = array_combine(['id', 'name', 'email'], $this->items[0]) + ['password' => bcrypt('111111')];
         $user1 = User::create($row1);
 
