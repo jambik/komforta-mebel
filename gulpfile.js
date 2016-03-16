@@ -45,7 +45,7 @@ elixir(function(mix) {
     /* Admin files */
     mix.styles([
         '../../../node_modules/bootstrap/dist/css/bootstrap.min.css',
-        '../../../node_modules/bootstrap/dist/css/bootstrap-theme.min.css',
+        //'../../../node_modules/bootstrap/dist/css/bootstrap-theme.min.css',
         '../../../node_modules/font-awesome/css/font-awesome.min.css',
         '../../../node_modules/select2/dist/css/select2.min.css',
         '../../../node_modules/tablesorter/dist/css/theme.bootstrap.min.css',

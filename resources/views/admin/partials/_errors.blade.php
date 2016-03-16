@@ -1,10 +1,10 @@
 @if (count($errors) > 0)
 	<div class="alert alert-danger">
-		<strong>Возникла ошибка при записи</strong><br><br>
-		<ul>
+		<p><strong>Ошибка</strong></p>
+		{{--<ul>
 			@foreach ($errors->all() as $error)
 				<li>{{ $error }}</li>
 			@endforeach
-		</ul>
+		</ul>--}}
 	</div>
 @endif
