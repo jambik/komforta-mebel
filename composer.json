@@ -27,7 +27,8 @@
         "jhaoda/socialite-odnoklassniki": "^1.1",
         "jhaoda/socialite-mailru": "^1.1",
         "google/recaptcha": "^1.1",
-        "zizaco/entrust": "dev-laravel-5"
+        "zizaco/entrust": "dev-laravel-5",
+        "kalnoy/nestedset": "^4.1"
     },
     "autoload": {
         "classmap": [

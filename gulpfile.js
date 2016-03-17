@@ -15,7 +15,7 @@ elixir(function(mix) {
     /* App files */
     mix.styles([
         '../../../node_modules/bootstrap/dist/css/bootstrap.min.css',
-        '../../../node_modules/bootstrap/dist/css/bootstrap-theme.min.css',
+        //'../../../node_modules/bootstrap/dist/css/bootstrap-theme.min.css',
         '../../../node_modules/font-awesome/css/font-awesome.min.css',
         '../../../node_modules/select2/dist/css/select2.min.css',
         '../../../node_modules/tablesorter/dist/css/theme.bootstrap.min.css',
@@ -63,5 +63,8 @@ elixir(function(mix) {
         '../../../bower_components/moment/min/moment-with-locales.min.js',
         '../../../bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js'
     ], 'public/js/admin.bundle.js');
+    mix.copy([
+        'node_modules/jstree/dist'
+    ], 'public/library/jstree');
 });
 

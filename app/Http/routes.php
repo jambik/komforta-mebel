@@ -55,6 +55,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'web'], function()
         Route::get('settings', ['as' => 'admin.settings', 'uses' =>'Admin\SettingsController@index']);
         Route::post('settings', ['as' => 'admin.settings.save', 'uses' =>'Admin\SettingsController@save']);
 
+        Route::resource('categories', 'Admin\CategoriesController');
         Route::resource('pages', 'Admin\PagesController');
         Route::resource('blocks', 'Admin\BlocksController');
         Route::resource('users', 'Admin\UsersController');
