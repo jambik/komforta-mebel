@@ -1,0 +1,12 @@
+#jstree {
+    padding: 10px;
+    border: 1px solid #ddd;
+    min-height: 300px;
+}
+
+#jstree-controls {
+    padding: 10px;
+    margin: 0 0 10px 0;
+    border: 1px solid #ddd;
+    background: #eee;
+}
