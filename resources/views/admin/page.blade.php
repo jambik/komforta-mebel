@@ -3,10 +3,10 @@
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-lg-2 col-md-3 col-sm-3">
+        <div class="col l3 m4 s4">
             @include('admin.partials._menu')
         </div>
-        <div class="col-lg-10 col-md-9 col-sm-9">
+        <div class="col l9 m8 s8">
             @include('admin.partials._status')
             @include('admin.partials._errors')
             @yield('content')

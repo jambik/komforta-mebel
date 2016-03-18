@@ -1,14 +1,11 @@
-<ul class="list-group">
-    <li class="list-group-item"><a href="{{ route('admin.categories.index') }}"><i class="fa fa-file-text-o"></i> Категории</a></li>
-    <li class="list-group-item"><a href="{{ route('admin.pages.index') }}"><i class="fa fa-file-text-o"></i> Страницы</a></li>
-    <li class="list-group-item"><a href="{{ route('admin.blocks.index') }}"><i class="fa fa-file-text-o"></i> Текстовые блоки</a></li>
-    <li class="list-group-item"><a href="{{ route('admin.users.index') }}"><i class="fa fa-users"></i> Пользователи</a></li>
+<ul class="collection">
+    <a class="collection-item" href="{{ route('admin.categories.index') }}"><i class="material-icons left">list</i> Категории</a>
+    <a class="collection-item" href="{{ route('admin.pages.index') }}"><i class="material-icons left">content_copy</i> Страницы</a>
+    <a class="collection-item" href="{{ route('admin.blocks.index') }}"><i class="material-icons left">text_format</i> Текстовые блоки</a>
+    <a class="collection-item" href="{{ route('admin.users.index') }}"><i class="material-icons left">account_box</i>Пользователи</a>
 </ul>
 
-<ul class="list-group">
-    <li class="list-group-item"><a href="{{ route('admin.settings') }}"><i class="fa fa-cog"></i> Настройки</a></li>
-</ul>
-
-<ul class="list-group">
-    <li class="list-group-item"><a href="{{ route('admin.administrators.index') }}"><i class="fa fa-user-secret"></i> Администраторы</a></li>
+<ul class="collection">
+    <a class="collection-item" href="{{ route('admin.settings') }}"><i class="material-icons left">settings</i>Настройки</a>
+    <a class="collection-item" href="{{ route('admin.administrators.index') }}"><i class="material-icons left">verified_user</i>Администраторы</a>
 </ul>

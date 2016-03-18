@@ -16,9 +16,7 @@ class CategoriesController extends Controller
      */
     public function index(Request $request)
     {
-        $items = Category::all();
         $items = Category::withDepth()->get()->toTree();
-//        dd($items);
 
         if($request->isJson() || $request->has('json')) {
             return $items;

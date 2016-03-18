@@ -1,83 +1,63 @@
 @extends('admin.page', ['title' => "Администрирование - Категории"])
 
 @section('content')
-    <h1 class="text-center">Категории</h1>
+    <h4 class="center">Категории</h4>
 
     <div class="row">
-        <div class="col-lg-4">
+        <div class="col l4">
             <div id="jstree-controls">
-                <button class="btn btn-success" id="tree-add"><i class="fa fa-plus"></i> Добавить</button>
+                <button class="btn" id="tree-add"><i class="material-icons left">add_circle</i>Добавить</button>
             </div>
             <div id="jstree">
 
             </div>
         </div>
-        <div class="col-lg-8">
-            <div class="panel panel-default">
-                <div class="panel-heading">Категория</div>
-                <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ route('admin.categories.store') }}">
-                        {!! csrf_field() !!}
+        <div class="col l8">
+            <form class="form-horizontal" role="form" method="POST" action="{{ route('admin.categories.store') }}">
+                {!! csrf_field() !!}
 
-                        <div class="form-group">
-                            <label class="col-md-4 control-label">Родительская категория</label>
-                            <div class="col-md-6">
-                                <input type="hidden" class="form-control" name="parent_id" value="{{ old('parent_id') }}">
-                                <strong>{{ old('parent_id') }}</strong>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-md-4 control-label">Название</label>
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" name="name" value="{{ old('name') }}">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-md-4 control-label">Описание</label>
-                            <div class="col-md-6">
-                                <textarea class="form-control" name="about" style="height: 100px;">{{ old('about') }}</textarea>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-md-4 control-label">Title (META)</label>
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" name="title" value="{{ old('title') }}">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-md-4 control-label">Keywords (META)</label>
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" name="keywords" value="{{ old('keywords') }}">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-md-4 control-label">Description (META)</label>
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" name="description" value="{{ old('description') }}">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    <i class="fa fa-check-square-o"></i> Сохранить
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+                <div class="input-field col s12">
+                    <input type="hidden" name="parent_id" value="{{ old('parent_id') }}">
+                    <input id="parent_name" type="text" value="#" class="validate">
+                    <label for="parent_name">Родительская категория</label>
                 </div>
-            </div>
+
+                <div class="input-field col s12">
+                    <input id="name" name="name" type="text" value="{{ old('name') }}" class="validate">
+                    <label for="name">Название</label>
+                </div>
+
+                <div class="input-field col s12">
+                    <textarea class="materialize-textarea validate" name="about" id="about">{{ old('about') }}</textarea>
+                    <label for="about">Описание</label>
+                </div>
+
+                <div class="input-field col s12">
+                    <input id="title" name="title" type="text" value="{{ old('title') }}" class="validate">
+                    <label for="title">Title (META)</label>
+                </div>
+
+                <div class="input-field col s12">
+                    <input id="keywords" name="keywords" type="text" value="{{ old('keywords') }}" class="validate">
+                    <label for="keywords">Keywords (META)</label>
+                </div>
+
+                <div class="input-field col s12">
+                    <input id="description" name="description" type="text" value="{{ old('description') }}" class="validate">
+                    <label for="description">Description (META)</label>
+                </div>
+
+                <div class="col s12">
+                    <button type="submit" class="btn-large"><i class="material-icons left">check_circle</i> Сохранить</button>
+                </div>
+            </form>
         </div>
     </div>
 @endsection
 
 @section('head_scripts')
     <link rel="stylesheet" href="/library/jstree/themes/default/style.min.css" />
+    <link rel="stylesheet" href="/css/admin/categories.css" />
 @endsection
 
 @section('footer_scripts')

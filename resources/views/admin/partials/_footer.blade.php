@@ -1,3 +1,3 @@
     @yield('footer_scripts')
-    </body>
+</body>
 </html>

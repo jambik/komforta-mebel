@@ -44,8 +44,9 @@ elixir(function(mix) {
 
     /* Admin files */
     mix.styles([
-        '../../../node_modules/bootstrap/dist/css/bootstrap.min.css',
+        //'../../../node_modules/bootstrap/dist/css/bootstrap.min.css',
         //'../../../node_modules/bootstrap/dist/css/bootstrap-theme.min.css',
+        '../../../node_modules/materialize-css/dist/css/materialize.min.css',
         '../../../node_modules/font-awesome/css/font-awesome.min.css',
         '../../../node_modules/select2/dist/css/select2.min.css',
         '../../../node_modules/tablesorter/dist/css/theme.bootstrap.min.css',
@@ -54,7 +55,8 @@ elixir(function(mix) {
     ], 'public/css/admin.bundle.css');
     mix.scripts([
         '../../../node_modules/jquery/dist/jquery.min.js',
-        '../../../node_modules/bootstrap/dist/js/bootstrap.min.js',
+        //'../../../node_modules/bootstrap/dist/js/bootstrap.min.js',
+        '../../../node_modules/materialize-css/dist/js/materialize.min.js',
         '../../../node_modules/select2/dist/js/select2.min.js',
         '../../../node_modules/select2/dist/js/i18n/ru.js',
         '../../../node_modules/noty/js/noty/packaged/jquery.noty.packaged.min.js',
@@ -66,5 +68,8 @@ elixir(function(mix) {
     mix.copy([
         'node_modules/jstree/dist'
     ], 'public/library/jstree');
+    mix.copy([
+        'node_modules/materialize-css/dist/font'
+    ], 'public/font');
 });
 

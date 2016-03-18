@@ -11,6 +11,7 @@
     "jstree": "^3.2.1",
     "laravel-elixir": "^4.0.0",
     "laravel-elixir-vueify": "^1.0.0",
+    "materialize-css": "^0.97.5",
     "noty": "^2.3.6",
     "select2": "^4.0.0",
     "sweetalert": "^1.1.0",
