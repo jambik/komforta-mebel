@@ -4,14 +4,16 @@
     <h4 class="center">Категории</h4>
 
     <div class="row">
-        <div class="col l4">
+        <div class="col l4 m6">
             <div class="card-panel blue-grey lighten-5">
                 <button class="btn waves-effect waves-light" id="node-add" v-on:click="addNode()"><i class="material-icons left">add_circle</i>Добавить</button>
-                <button class="btn red waves-effect waves-light" id="node-delete" v-on:click="deleteNode()" v-show="node"><i class="material-icons left">delete</i>удалить</button>
+                <button class="btn red waves-effect waves-light" id="node-delete" v-on:click="deleteNode()" v-show="node"><i class="material-icons left">remove_circle</i>удалить</button>
             </div>
-            <div id="jstree"></div>
+            <div class="card-panel">
+                <div id="jstree"></div>
+            </div>
         </div>
-        <div class="col l8">
+        <div class="col l8 m6">
             <div class="preloader-wrapper small active" v-show="nodeLoading"><div class="spinner-layer spinner-green-only"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>
 
             <form id="form-categories" role="form" method="POST" action="" v-show="node">

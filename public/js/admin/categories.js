@@ -23,12 +23,18 @@ new Vue({
                     },
                     'data': function (node) {
                         return {'id': node.id};
-                    }
+                    },
                 },
                 'check_callback' : true
             },
-            'plugins' : [ 'dnd' ]
-        }).on('select_node.jstree', function (node, selected, e) {
+            'types' : {
+                'default' : {
+                    'icon' : '/img/category.png'
+                }
+            },
+            'plugins' : [ 'dnd', 'types', 'wholerow' ]
+        }).
+        on('select_node.jstree', function (node, selected, e) {
             if (selected.node.original.id == -1){
                 $(that.nodeFormId).attr('action', that.baseUrl);
                 that.node = selected.node.original;
@@ -48,6 +54,25 @@ new Vue({
                     that.nodeLoading = false;
                 });
             }
+        }).
+        on('move_node.jstree', function (e, node) {
+            var params = {
+                'id': node.node.id,
+                'parent': node.parent != '#' ? node.parent : '',
+                'position': node.position,
+                'old_parent': node.old_parent != '#' ? node.old_parent : '',
+                'old_position': node.old_position
+            };
+
+            $.post(that.baseUrl + '/move', params, function(data) {
+
+            })
+            .fail(function(){
+                sweetAlert("", "Ошибка при запросе к серсеру", 'error');
+            })
+            .always(function(){
+
+            });
         });
 
         $(that.nodeFormId).on('submit', function(e) {

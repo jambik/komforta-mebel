@@ -12,11 +12,12 @@ class CategoriesController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param Request $request
      * @return Response
      */
     public function index(Request $request)
     {
-        $items = Category::withDepth()->get()->toTree();
+        $items = Category::withDepth()->defaultOrder()->get()->toTree();
 
         if($request->ajax()) {
             return $items;
@@ -61,7 +62,8 @@ class CategoriesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
+     * @param Request $request
      * @return Response
      */
     public function show($id, Request $request)
@@ -117,7 +119,8 @@ class CategoriesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
+     * @param Request $request
      * @return Response
      */
     public function destroy($id, Request $request)
@@ -132,6 +135,46 @@ class CategoriesController extends Controller
 
         Flash::success("Запись - {$id} удалена");
 
-        return true;
+        return view('admin.categories.index');
+    }
+
+    /**
+     * Move category.
+     *
+     * @param Request $request
+     * @return Response
+     */
+    public function move(Request $request)
+    {
+        $id = $request->get('id');
+        $parent = $request->get('parent');
+        $oldParent = $request->get('old_parent');
+        $position = $request->get('position');
+        $oldPosition = $request->get('old_position');
+
+        $node = Category::findOrFail($id);
+
+        if ($parent != $oldParent) {
+            $node->parent_id = $parent;
+            $node->save();
+        }
+        else {
+            $diff = abs($position - $oldPosition);
+            if ($position > $oldPosition) {
+                dump($node->down($diff));
+            } else {
+                dump($node->up($diff));
+            }
+        }
+
+        if($request->ajax()){
+            return json_encode([
+                'status' => 'ok'
+            ]);
+        }
+
+        Flash::success("Запись - {$id} перемещена");
+
+        return view('admin.categories.index');
     }
 }

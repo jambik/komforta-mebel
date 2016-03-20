@@ -1,4 +1,18 @@
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
 .preloader-wrapper.x-small {
     width: 22px;
     height: 22px;
+}
+
+.btn-collumn {
+    width: 90px;
 }

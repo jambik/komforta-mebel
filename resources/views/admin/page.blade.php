@@ -1,7 +1,7 @@
 @include('admin.partials._header', ['title' => $title])
 @include('admin.partials._nav')
 
-<div class="container-fluid">
+<main class="container-fluid">
     <div class="row">
         <div class="col l3 m4 s4">
             @include('admin.partials._menu')
@@ -11,12 +11,9 @@
             @include('admin.partials._errors')
             @yield('content')
             <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
         </div>
     </div>
-</div>
+</main>
 
 @include('admin.partials._flash')
 @include('admin.partials._footer')

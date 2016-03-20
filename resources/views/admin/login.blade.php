@@ -1,7 +1,7 @@
 @include('admin.partials._header', ['title' => "Администрирование - Вход"])
 
 <p>&nbsp;</p>
-<div class="container">
+<main class="container">
 	<div class="row">
 		<div class="col s12 m8 l6 offset-m2 offset-l3">
             <div class="row card-panel">
@@ -36,7 +36,7 @@
             </div>
 		</div>
 	</div>
-</div>
+</main>
 
 @include('admin.partials._flash')
 @include('admin.partials._footer')

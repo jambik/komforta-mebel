@@ -1,6 +1,6 @@
-<div class="container-fluid">
+<header class="container-fluid">
     <div class="row">
-        <nav class="teal">
+        <nav class="teal darken-3">
             <div class="nav-wrapper">
                 <div class="col s12">
                     <a href="{{ url('/admin') }}" class="brand-logo">Мебель комфорта</a>
@@ -17,4 +17,4 @@
             </div>
         </nav>
     </div>
-</div>
+</header>
