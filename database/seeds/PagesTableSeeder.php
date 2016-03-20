@@ -7,8 +7,8 @@ class PagesTableSeeder extends Seeder
 {
     protected $items = [
 
-        ['О нас', '<p>Страничка о нас.</p>'],
-        ['Контакты', '<p>Страничка контакты.</p>'],
+        ['О нас', '<p>Страничка о нас.</p>', 'О нас', 'о, нас', 'Страница которая о нас'],
+        ['Контакты', '<p>Страничка контакты.</p>', 'Контакты', 'контакты', 'Страница с контактами'],
     ];
 
     /**
@@ -22,7 +22,7 @@ class PagesTableSeeder extends Seeder
 
         for($i=0, $iMax=count($this->items); $i<$iMax; $i++)
         {
-            $row = array_combine(['title', 'text'], $this->items[$i]);
+            $row = array_combine(['name', 'text', 'title', 'keywords', 'description'], $this->items[$i]);
 
             Page::create($row);
         }

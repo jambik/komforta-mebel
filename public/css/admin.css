@@ -16,3 +16,20 @@ main {
 .btn-collumn {
     width: 90px;
 }
+
+select.browser-default {
+    display: inline-block;
+    width: auto;
+}
+
+.select-wrapper {
+    display: inline-block;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.select-wrapper input.select-dropdown {
+    margin-bottom: 0;
+    width: 100px;
+
+}

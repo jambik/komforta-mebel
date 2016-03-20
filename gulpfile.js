@@ -46,6 +46,7 @@ elixir(function(mix) {
     mix.styles([
         '../../../node_modules/materialize-css/dist/css/materialize.min.css',
         '../../../node_modules/select2/dist/css/select2.min.css',
+        '../../../node_modules/tablesorter/dist/css/theme.dropbox.min.css',
         '../../../node_modules/tablesorter/dist/css/theme.bootstrap.min.css',
         '../../../node_modules/animate.css/animate.min.css',
         '../../../node_modules/sweetalert/dist/sweetalert.css',

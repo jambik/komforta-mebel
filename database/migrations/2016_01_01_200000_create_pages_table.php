@@ -14,8 +14,11 @@ class CreatePagesTable extends Migration
     {
         Schema::create('pages', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('title');
+            $table->string('name');
             $table->mediumText('text');
+            $table->string('title');
+            $table->string('keywords');
+            $table->string('description');
             $table->timestamps();
         });
     }
