@@ -15,7 +15,7 @@ elixir(function(mix) {
     /* App files */
     mix.styles([
         '../../../node_modules/bootstrap/dist/css/bootstrap.min.css',
-        //'../../../node_modules/bootstrap/dist/css/bootstrap-theme.min.css',
+        '../../../node_modules/bootstrap/dist/css/bootstrap-theme.min.css',
         '../../../node_modules/font-awesome/css/font-awesome.min.css',
         '../../../node_modules/select2/dist/css/select2.min.css',
         '../../../node_modules/tablesorter/dist/css/theme.bootstrap.min.css',
@@ -44,22 +44,22 @@ elixir(function(mix) {
 
     /* Admin files */
     mix.styles([
-        //'../../../node_modules/bootstrap/dist/css/bootstrap.min.css',
-        //'../../../node_modules/bootstrap/dist/css/bootstrap-theme.min.css',
         '../../../node_modules/materialize-css/dist/css/materialize.min.css',
-        '../../../node_modules/font-awesome/css/font-awesome.min.css',
         '../../../node_modules/select2/dist/css/select2.min.css',
         '../../../node_modules/tablesorter/dist/css/theme.bootstrap.min.css',
         '../../../node_modules/animate.css/animate.min.css',
+        '../../../node_modules/sweetalert/dist/sweetalert.css',
         '../../../bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css'
     ], 'public/css/admin.bundle.css');
     mix.scripts([
         '../../../node_modules/jquery/dist/jquery.min.js',
-        //'../../../node_modules/bootstrap/dist/js/bootstrap.min.js',
+        '../../../node_modules/vue/dist/vue.min.js',
         '../../../node_modules/materialize-css/dist/js/materialize.min.js',
         '../../../node_modules/select2/dist/js/select2.min.js',
         '../../../node_modules/select2/dist/js/i18n/ru.js',
         '../../../node_modules/noty/js/noty/packaged/jquery.noty.packaged.min.js',
+        '../../../node_modules/jquery.scrollto/jquery.scrollTo.min.js',
+        '../../../node_modules/sweetalert/dist/sweetalert.min.js',
         '../../../node_modules/tablesorter/dist/js/jquery.tablesorter.combined.min.js',
         '../../../node_modules/tablesorter/dist/js/extras/jquery.tablesorter.pager.min.js',
         '../../../bower_components/moment/min/moment-with-locales.min.js',

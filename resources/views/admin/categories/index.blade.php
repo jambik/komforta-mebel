@@ -5,50 +5,56 @@
 
     <div class="row">
         <div class="col l4">
-            <div id="jstree-controls">
-                <button class="btn" id="tree-add"><i class="material-icons left">add_circle</i>Добавить</button>
+            <div class="card-panel blue-grey lighten-5">
+                <button class="btn waves-effect waves-light" id="node-add" v-on:click="addNode()"><i class="material-icons left">add_circle</i>Добавить</button>
+                <button class="btn red waves-effect waves-light" id="node-delete" v-on:click="deleteNode()" v-show="node"><i class="material-icons left">delete</i>удалить</button>
             </div>
-            <div id="jstree">
-
-            </div>
+            <div id="jstree"></div>
         </div>
         <div class="col l8">
-            <form class="form-horizontal" role="form" method="POST" action="{{ route('admin.categories.store') }}">
+            <div class="preloader-wrapper small active" v-show="nodeLoading"><div class="spinner-layer spinner-green-only"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>
+
+            <form id="form-categories" role="form" method="POST" action="" v-show="node">
                 {!! csrf_field() !!}
+                <input type="hidden" name="_method" value="PUT" v-if="node.id > 0">
+                <div class="form-status"></div>
 
                 <div class="input-field col s12">
-                    <input type="hidden" name="parent_id" value="{{ old('parent_id') }}">
-                    <input id="parent_name" type="text" value="#" class="validate">
-                    <label for="parent_name">Родительская категория</label>
+                    <input type="hidden" id="parent_id" name="parent_id" v-model="node.parent_id">
+                    <input id="parent_name" v-model="node.parent_id" disabled="disabled" type="text" class="validate" v-bind:class="{'valid': node.parent_id}">
+                    <label for="parent_name" v-bind:class="{'active': node.parent_id}">Родительская категория</label>
                 </div>
 
                 <div class="input-field col s12">
-                    <input id="name" name="name" type="text" value="{{ old('name') }}" class="validate">
-                    <label for="name">Название</label>
+                    <input id="name" name="name" v-model="node.name" type="text" class="validate" v-bind:class="{'valid': node.name}">
+                    <label for="name" v-bind:class="{'active': node.name}">Название</label>
                 </div>
 
                 <div class="input-field col s12">
-                    <textarea class="materialize-textarea validate" name="about" id="about">{{ old('about') }}</textarea>
-                    <label for="about">Описание</label>
+                    <textarea class="materialize-textarea validate" name="about" id="about" v-bind:class="{'valid': node.about}">@{{ node.about }}</textarea>
+                    <label for="about" v-bind:class="{'active': node.about}">Описание</label>
                 </div>
 
                 <div class="input-field col s12">
-                    <input id="title" name="title" type="text" value="{{ old('title') }}" class="validate">
-                    <label for="title">Title (META)</label>
+                    <input id="title" name="title" v-model="node.title" type="text" class="validate" v-bind:class="{'valid': node.title}">
+                    <label for="title" v-bind:class="{'active': node.title}">Title (META)</label>
                 </div>
 
                 <div class="input-field col s12">
-                    <input id="keywords" name="keywords" type="text" value="{{ old('keywords') }}" class="validate">
-                    <label for="keywords">Keywords (META)</label>
+                    <input id="keywords" name="keywords" v-model="node.keywords" type="text" class="validate" v-bind:class="{'valid': node.keywords}">
+                    <label for="keywords" v-bind:class="{'active': node.keywords}">Keywords (META)</label>
                 </div>
 
                 <div class="input-field col s12">
-                    <input id="description" name="description" type="text" value="{{ old('description') }}" class="validate">
-                    <label for="description">Description (META)</label>
+                    <input id="description" name="description" v-model="node.description" type="text" class="validate" v-bind:class="{'valid': node.description}">
+                    <label for="description" v-bind:class="{'active': node.description}">Description (META)</label>
                 </div>
 
                 <div class="col s12">
-                    <button type="submit" class="btn-large"><i class="material-icons left">check_circle</i> Сохранить</button>
+                    <button type="submit" class="btn-large form-button waves-effect waves-light"><i class="material-icons left">check_circle</i> Сохранить</button>
+                    <div v-show="sendingForm">
+                        <div class="preloader-wrapper small active"><div class="spinner-layer spinner-green-only"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>
+                    </div>
                 </div>
             </form>
         </div>

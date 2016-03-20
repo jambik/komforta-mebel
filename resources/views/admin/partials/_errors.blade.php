@@ -1,10 +1,10 @@
 @if (count($errors) > 0)
-	<div class="alert alert-danger">
-		<p><strong>Ошибка</strong></p>
-		{{--<ul>
-			@foreach ($errors->all() as $error)
-				<li>{{ $error }}</li>
-			@endforeach
-		</ul>--}}
-	</div>
+    <div class="card-panel red darken-4 white-text">
+        <strong>Ошибка</strong>
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
 @endif

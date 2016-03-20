@@ -18,13 +18,11 @@ class CategoriesController extends Controller
     {
         $items = Category::withDepth()->get()->toTree();
 
-        if($request->isJson() || $request->has('json')) {
+        if($request->ajax()) {
             return $items;
         }
 
-        return view('admin.categories.index', compact('item'));
-
-        return $items;
+        return view('admin.categories.index', compact('items'));
     }
 
     /**
@@ -45,13 +43,19 @@ class CategoriesController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, ['title' => 'required']);
+        $this->validate($request, [
+            'name' => 'required'
+        ]);
 
         $item = Category::create($request->all());
 
+        if ($request->ajax()){
+            return $item;
+        }
+
         Flash::success("Запись - {$item->id} сохранена");
 
-        return true;
+        return view('admin.categories.index', compact('item'));
     }
 
     /**
@@ -60,9 +64,15 @@ class CategoriesController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function show($id)
+    public function show($id, Request $request)
     {
-        //
+        $item = Category::findOrFail($id);
+
+        if ($request->ajax()){
+            return $item;
+        }
+
+        return view('admin.categories.index', compact('item'));
     }
 
     /**
@@ -87,15 +97,21 @@ class CategoriesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, ['title' => 'required']);
+        $this->validate($request, [
+            'name' => 'required'
+        ]);
 
         $item = Category::findOrFail($id);
+        $item = $item->update($request->all());
+        $item = Category::findOrFail($id);
 
-        $item->update($request->all());
+        if($request->ajax()) {
+            return $item;
+        }
 
         Flash::success("Запись - {$id} обновлена");
 
-        return true;
+        return view('admin.categories.index', compact('item'));
     }
 
     /**
@@ -104,9 +120,15 @@ class CategoriesController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function destroy($id)
+    public function destroy($id, Request $request)
     {
         Category::destroy($id);
+
+        if ($request->ajax()){
+            return json_encode([
+                'status' => 'ok'
+            ]);
+        }
 
         Flash::success("Запись - {$id} удалена");
 
