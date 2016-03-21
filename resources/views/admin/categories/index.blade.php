@@ -6,8 +6,8 @@
     <div class="row">
         <div class="col l4 m6">
             <div class="card-panel blue-grey lighten-5">
-                <button class="btn waves-effect waves-light" id="node-add" v-on:click="addNode()"><i class="material-icons left">add_circle</i>Добавить</button>
-                <button class="btn red waves-effect waves-light" id="node-delete" v-on:click="deleteNode()" v-show="node"><i class="material-icons left">remove_circle</i>удалить</button>
+                <button class="btn btn-small waves-effect waves-light" id="node-add" v-on:click="addNode()"><i class="material-icons left">add_circle</i>Добавить</button>
+                <button class="btn btn-small red waves-effect waves-light" id="node-delete" v-on:click="deleteNode()" v-show="node"><i class="material-icons left">remove_circle</i>удалить</button>
             </div>
             <div class="card-panel">
                 <div id="jstree"></div>
