@@ -10,7 +10,7 @@
 
 <div class="input-field col s12">
     {!! Form::label('published_at', 'Дата публикации') !!}
-    {!! Form::text('published_at', null, ['class' => 'validate input-datetime'.($errors->has('published_at') ? ' invalid' : '')]) !!}
+    {!! Form::date('published_at', null, ['class' => 'datetime'.($errors->has('published_at') ? ' invalid' : '')]) !!}
 </div>
 
 <div class="input-field file-field col s12">
