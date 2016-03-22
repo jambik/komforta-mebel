@@ -1,22 +1,22 @@
-<div class="form-group">
-    {!! Form::label('alias', 'Alias:') !!}
-    {!! Form::text('alias', null, ['class' => 'form-control']) !!}
+<div class="input-field col s12">
+    {!! Form::label('alias', 'Alias') !!}
+    {!! Form::text('alias', null, ['class' => 'validate'.($errors->has('alias') ? ' invalid' : '')]) !!}
 </div>
 
-<div class="form-group">
-    {!! Form::label('title', 'Название:') !!}
-    {!! Form::text('title', null, ['class' => 'form-control']) !!}
+<div class="input-field col s12">
+    {!! Form::label('title', 'Название') !!}
+    {!! Form::text('title', null, ['class' => 'validate'.($errors->has('title') ? ' invalid' : '')]) !!}
 </div>
 
-<div class="form-group">
-    {!! Form::label('text', 'Текст:') !!}
-    {!! Form::textarea('text', null, ['class' => 'form-control input-html', 'rows' => 3]) !!}
+<div class="input-field col s12">
+    {!! Form::label('text', 'Текст страницы') !!}
+    {!! Form::textarea('text', null, ['class' => 'materialize-textarea validate'.($errors->has('text') ? ' invalid' : '')]) !!}
 </div>
 
-<div class="form-group">
-	{!! Form::submit($submitButtonText, ['class' => 'form-control btn btn-primary']) !!}
+<div class="input-field col s12 center">
+    <button type="submit" class="btn-large waves-effect waves-light"><i class="material-icons left">check_circle</i> {{ $submitButtonText }}</button>
 </div>
 
-<div class="form-group">
-	<a href="{{ route('admin.blocks.index') }}" class="btn btn-block btn-default">Отмена</a>
+<div class="input-field col s12 center">
+    <a href="{{ route('admin.blocks.index') }}" class="btn grey">Отмена</a>
 </div>

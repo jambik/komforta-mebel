@@ -1,4 +1,4 @@
-@extends('admin.page', ['title' => "Администрирование - Настройки - Sellmecar"])
+@extends('admin.page', ['title' => "Администрирование - Настройки"])
 
 @section('content')
 

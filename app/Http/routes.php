@@ -59,6 +59,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'web'], function()
         Route::match(['get', 'post'], 'categories/move', ['as' => 'admin.categories.move', 'uses' =>'Admin\CategoriesController@move']);
         Route::resource('pages', 'Admin\PagesController');
         Route::resource('blocks', 'Admin\BlocksController');
+        Route::resource('news', 'Admin\NewsController');
         Route::resource('users', 'Admin\UsersController');
         Route::resource('administrators', 'Admin\AdministratorsController');
     });

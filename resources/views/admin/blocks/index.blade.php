@@ -1,8 +1,8 @@
-@extends('admin.page', ['title' => "Администрирование - Текстовые блоки - Sellmecar"])
+@extends('admin.page', ['title' => "Текстовые блоки"])
 
 @section('content')
-    <h1 class="text-center">Текстовые блоки</h1>
-    <p><a href="{{ route('admin.blocks.create') }}" class="btn btn-success"><i class="fa fa-plus"></i> Добавить</a></p>
+    <h4 class="center">Текстовые блоки</h4>
+    <p><a href="{{ route('admin.blocks.create') }}" class="btn waves-effect waves-light"><i class="material-icons left">add_circle</i> Добавить</a></p>
 
     <div class="table-responsive">
         <table id="table_items">
@@ -12,25 +12,25 @@
                     <th>Alias</th>
                     <th>Название</th>
                     <th>Текст</th>
-                    <th class="td-edit filter-false" data-sorter="false"><i class="fa fa-edit text-primary"></i></th>
-                    <th class="td-delete filter-false" data-sorter="false"><i class="fa fa-remove text-danger"></i></th>
+                    <th class="filter-false btn-collumn" data-sorter="false"></th>
+                    <th class="filter-false btn-collumn" data-sorter="false"></th>
                 </tr>
             </thead>
             <tfoot>
                 <tr>
                     <th colspan="6" class="pager form-inline">
-                        <button type="button" class="btn first"><i class="icon-step-backward glyphicon glyphicon-step-backward"></i></button>
-                        <button type="button" class="btn prev"><i class="icon-arrow-left glyphicon glyphicon-backward"></i></button>
+                        <button type="button" class="btn btn-small waves-effect waves-light first"><i class="material-icons">first_page</i></button>
+                        <button type="button" class="btn btn-small waves-effect waves-light prev"><i class="material-icons">navigate_before</i></button>
                         <span class="pagedisplay"></span> <!-- this can be any element, including an input -->
-                        <button type="button" class="btn next"><i class="icon-arrow-right glyphicon glyphicon-forward"></i></button>
-                        <button type="button" class="btn last"><i class="icon-step-forward glyphicon glyphicon-step-forward"></i></button>
-                        <select class="pagesize form-control" title="Размер страницы">
+                        <button type="button" class="btn btn-small waves-effect waves-light next"><i class="material-icons">navigate_next</i></button>
+                        <button type="button" class="btn btn-small waves-effect waves-light last"><i class="material-icons">last_page</i></button>
+                        <select class="pagesize" title="Размер страницы">
                             <option selected="selected" value="10">10</option>
-                            <option value="20">20</option>
-                            <option value="30">30</option>
-                            <option value="40">40</option>
+                            <option value="25">25</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
                         </select>
-                        <select class="gotoPage form-control" title="Номер страницы"></select>
+                        <select class="gotoPage" title="Номер страницы"></select>
                     </th>
                 </tr>
             </tfoot>
@@ -41,12 +41,8 @@
                         <td>{{ $item->alias }}</td>
                         <td>{{ $item->title }}</td>
                         <td>{{ str_limit(strip_tags($item->text), 300) }}</td>
-                        <td><a href="{{ route('admin.blocks.edit', $item->id) }}" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a></td>
-                        <td>
-                            {!! Form::open(['url' => route('admin.blocks.destroy', $item->id), 'method' => 'DELETE']) !!}
-                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Вы действительно хотите удалить запись #{{ $item->id }}');"><i class="fa fa-remove"></i></button>
-                            {!! Form::close() !!}
-                        </td>
+                        <td><a href="{{ route('admin.blocks.edit', $item->id) }}" class="btn btn-small waves-effect waves-light"><i class="material-icons">edit</i></a></td>
+                        <td><button onclick="confirmDelete(this, '{{ $item->id }}')" class="btn btn-small waves-effect waves-light red darken-2"><i class="material-icons">delete</i></button></td>
                     </tr>
                 @endforeach
             </tbody>

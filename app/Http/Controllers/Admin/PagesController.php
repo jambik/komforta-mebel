@@ -39,7 +39,9 @@ class PagesController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, ['title' => 'required']);
+        $this->validate($request, [
+            'name' => 'required'
+        ]);
 
         $item = Page::create($request->all());
 
@@ -81,7 +83,9 @@ class PagesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, ['title' => 'required']);
+        $this->validate($request, [
+            'title' => 'required'
+        ]);
 
         $item = Page::findOrFail($id);
 

@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Block;
+use App\News;
+use Carbon\Carbon;
 use Flash;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class BlocksController extends Controller
+class NewsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +17,9 @@ class BlocksController extends Controller
      */
     public function index()
     {
-        $items = Block::all();
+        $items = News::orderBy('published_at', 'desc')->get();
 
-        return view('admin.blocks.index', compact('items'));
+        return view('admin.news.index', compact('items'));
     }
 
     /**
@@ -28,7 +29,7 @@ class BlocksController extends Controller
      */
     public function create()
     {
-        return view('admin.blocks.create');
+        return view('admin.news.create');
     }
 
     /**
@@ -40,14 +41,19 @@ class BlocksController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'alias' => 'required|unique:blocks,alias',
+            'title' => 'required'
         ]);
 
-        $item = Block::create($request->all());
+        $input = $request->all();
+        $input['published_at'] = $input['published_at'] ?: Carbon::now();
+
+        $item = News::create($input);
+
+        $item->saveImage($item, $request);
 
         Flash::success("Запись - {$item->id} сохранена");
 
-        return redirect(route('admin.blocks.index'));
+        return redirect(route('admin.news.index'));
     }
 
     /**
@@ -69,9 +75,9 @@ class BlocksController extends Controller
      */
     public function edit($id)
     {
-        $item = Block::findOrFail($id);
+        $item = News::findOrFail($id);
 
-        return view('admin.blocks.edit', compact('item'));
+        return view('admin.news.edit', compact('item'));
     }
 
     /**
@@ -84,16 +90,18 @@ class BlocksController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'alias' => 'required|unique:blocks,alias,'.$id
+            'title' => 'required'
         ]);
 
-        $item = Block::findOrFail($id);
+        $item = News::findOrFail($id);
 
         $item->update($request->all());
 
+        $item->saveImage($item, $request);
+
         Flash::success("Запись - {$id} обновлена");
 
-        return redirect(route('admin.blocks.index'));
+        return redirect(route('admin.news.index'));
     }
 
     /**
@@ -104,10 +112,10 @@ class BlocksController extends Controller
      */
     public function destroy($id)
     {
-        Block::destroy($id);
+        News::destroy($id);
 
         Flash::success("Запись - {$id} удалена");
 
-        return redirect(route('admin.blocks.index'));
+        return redirect(route('admin.news.index'));
     }
 }

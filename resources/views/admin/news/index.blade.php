@@ -1,25 +1,24 @@
-@extends('admin.page', ['title' => "Страницы"])
+@extends('admin.page', ['title' => "Новости"])
 
 @section('content')
-    <h4 class="center">Страницы</h4>
-    <p><a href="{{ route('admin.pages.create') }}" class="btn waves-effect waves-light"><i class="material-icons left">add_circle</i> Добавить</a></p>
+    <h4 class="center">Новости</h4>
+    <p><a href="{{ route('admin.news.create') }}" class="btn waves-effect waves-light"><i class="material-icons left">add_circle</i> Добавить</a></p>
 
-    <table id="table_items">
+    <table id="table_items" data-sortlist="[[4,1]]">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Название</th>
-                <th>Title</th>
-                <th>Текст</th>
-                <th>Keywords</th>
-                <th>Description</th>
+                <th>Фото</th>
+                <th>Заголовок</th>
+                <th>Текст новости</th>
+                <th>Дата публикации</th>
                 <th class="filter-false btn-collumn" data-sorter="false"></th>
                 <th class="filter-false btn-collumn" data-sorter="false"></th>
             </tr>
         </thead>
         <tfoot>
             <tr>
-                <th colspan="8" class="pager form-inline">
+                <th colspan="7" class="pager form-inline">
                     <button type="button" class="btn btn-small waves-effect waves-light first"><i class="material-icons">first_page</i></button>
                     <button type="button" class="btn btn-small waves-effect waves-light prev"><i class="material-icons">navigate_before</i></button>
                     <span class="pagedisplay"></span> <!-- this can be any element, including an input -->
@@ -39,12 +38,11 @@
             @foreach($items as $item)
                 <tr>
                     <td>{{ $item->id }}</td>
-                    <td>{{ $item->name }}</td>
+                    <td>@if ($item->image)<img src='/images/small/{{ $item->img_url.$item->image }}' alt='' />@endif</td>
                     <td>{{ $item->title }}</td>
                     <td>{{ str_limit(strip_tags($item->text), 300) }}</td>
-                    <td>{{ $item->keywords }}</td>
-                    <td>{{ $item->description }}</td>
-                    <td><a href="{{ route('admin.pages.edit', $item->id) }}" class="btn btn-small waves-effect waves-light"><i class="material-icons">edit</i></a></td>
+                    <td>{{ $item->published_at }}</td>
+                    <td><a href="{{ route('admin.news.edit', $item->id) }}" class="btn btn-small waves-effect waves-light"><i class="material-icons">edit</i></a></td>
                     <td><button onclick="confirmDelete(this, '{{ $item->id }}')" class="btn btn-small waves-effect waves-light red darken-2"><i class="material-icons">delete</i></button></td>
                 </tr>
             @endforeach

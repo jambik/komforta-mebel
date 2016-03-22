@@ -1,17 +1,32 @@
-<div class="form-group">
-    {!! Form::label('title', 'Название:') !!}
-    {!! Form::text('title', null, ['class' => 'form-control']) !!}
+<div class="input-field col s12">
+    {!! Form::label('name', 'Название') !!}
+    {!! Form::text('name', null, ['class' => 'validate'.($errors->has('name') ? ' invalid' : '')]) !!}
 </div>
 
-<div class="form-group">
-    {!! Form::label('text', 'Текст страницы:') !!}
-    {!! Form::textarea('text', null, ['class' => 'form-control input-html', 'rows' => 3]) !!}
+<div class="input-field col s12">
+    {!! Form::label('text', 'Текст страницы') !!}
+    {!! Form::textarea('text', null, ['class' => 'materialize-textarea validate'.($errors->has('text') ? ' invalid' : '')]) !!}
 </div>
 
-<div class="form-group">
-	{!! Form::submit($submitButtonText, ['class' => 'form-control btn btn-primary']) !!}
+<div class="input-field col s12">
+    {!! Form::label('title', 'Title (META)') !!}
+    {!! Form::text('title', null, ['class' => 'validate'.($errors->has('title') ? ' invalid' : '')]) !!}
 </div>
 
-<div class="form-group">
-	<a href="{{ route('admin.pages.index') }}" class="btn btn-block btn-default">Отмена</a>
+<div class="input-field col s12">
+    {!! Form::label('keywords', 'Keywords (META)') !!}
+    {!! Form::text('keywords', null, ['class' => 'validate'.($errors->has('keywords') ? ' invalid' : '')]) !!}
+</div>
+
+<div class="input-field col s12">
+    {!! Form::label('description', 'Description (META)') !!}
+    {!! Form::text('description', null, ['class' => 'validate'.($errors->has('description') ? ' invalid' : '')]) !!}
+</div>
+
+<div class="input-field col s12 center">
+    <button type="submit" class="btn-large waves-effect waves-light"><i class="material-icons left">check_circle</i> {{ $submitButtonText }}</button>
+</div>
+
+<div class="input-field col s12 center">
+	<a href="{{ route('admin.pages.index') }}" class="btn grey">Отмена</a>
 </div>

@@ -138,13 +138,13 @@ new Vue({
                     that.deletingNode = true;
                     $.post(that.baseUrl + '/' + selectedNode, { '_method': 'DELETE' }, function(data){
                         $(that.treeId).jstree().delete_node(selectedNode);
+                        sweetAlert.close();
                     })
                     .fail(function(){
                         sweetAlert("", "Ошибка при запросе к серсеру", 'error');
                     })
                     .always(function(){
                         that.deletingNode = false;
-                        sweetAlert.close();
                     });
                 }
             });

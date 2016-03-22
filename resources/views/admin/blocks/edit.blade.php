@@ -1,12 +1,14 @@
-@extends('admin.page', ['title' => "Администрирование - Редактирование текстового блока - Sellmecar"])
+@extends('admin.page', ['title' => "Текстовые блоки"])
 
 @section('content')
-	<h1 class="text-center">Редактировать</h1>
+	<h4 class="center">Редактировать</h4>
 	<div class="row">
-		<div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2">
-			{!! Form::model($item, ['url' => route('admin.blocks.update', $item->id), 'method' => 'PUT', 'files' => true]) !!}
-				@include('admin.blocks.form', ['submitButtonText' => 'Обновить'])
-			{!! Form::close() !!}
+        <div class="col l6 offset-l3 m8 offset-m2">
+			<div class="row">
+                {!! Form::model($item, ['url' => route('admin.blocks.update', $item->id), 'method' => 'PUT', 'files' => true]) !!}
+                    @include('admin.blocks.form', ['submitButtonText' => 'Сохранить'])
+                {!! Form::close() !!}
+            </div>
 		</div>
 	</div>
 @endsection
