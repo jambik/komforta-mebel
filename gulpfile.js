@@ -30,7 +30,7 @@ elixir(function(mix) {
         '../../../node_modules/materialize-css/dist/css/materialize.min.css',
         '../../../node_modules/animate.css/animate.min.css',
         '../../../node_modules/sweetalert/dist/sweetalert.css',
-        '../../../node_modules/rome/dist/rome.min.css',
+        '../../../node_modules/jquery-datetimepicker/jquery.datetimepicker.css'
     ], 'public/css/admin.bundle.css');
     mix.scripts([
         '../../../node_modules/jquery/dist/jquery.min.js',
@@ -41,9 +41,7 @@ elixir(function(mix) {
         '../../../node_modules/sweetalert/dist/sweetalert.min.js',
         '../../../node_modules/tablesorter/dist/js/jquery.tablesorter.combined.min.js',
         '../../../node_modules/tablesorter/dist/js/extras/jquery.tablesorter.pager.min.js',
-        '../../../node_modules/moment/min/moment.min.js',
-        '../../../node_modules/moment/locale/ru.js',
-        '../../../node_modules/rome/dist/rome.min.js',
+        '../../../node_modules/jquery-datetimepicker/build/jquery.datetimepicker.full.min.js'
     ], 'public/js/admin.bundle.js');
     mix.copy([
         'node_modules/jstree/dist'
@@ -52,4 +50,3 @@ elixir(function(mix) {
         'node_modules/materialize-css/dist/font'
     ], 'public/font');
 });
-

@@ -41,24 +41,23 @@ $(document).ready(function () {
 
     }
 
-    moment.locale('ru');
-
     // Применять плагин datetime к полям типа дата
     if ($('.input-datetime').length) {
 
-        /*$('.input-datetime').pickadate({
-            selectMonths: true, // Creates a dropdown to control month
-            selectYears: 15 // Creates a dropdown of 15 years to control year
-        });*/
-
-        rome($('.input-datetime').get(0));
-        $('.input-datetime').on('mouseup', function(){
-            $(this).focus();
+        $.datetimepicker.setLocale('ru');
+        $('.input-datetime').datetimepicker({
+            format: 'Y-m-d H:i:s',
+            dayOfWeekStart: 1
         });
 
     }
 
+    // Применять плагин flora editor к html полям
+    if ($('.input-html').length) {
 
+
+
+    }
 
     // Применяем стили material ко всем элементам select
     if ($('select').length) {

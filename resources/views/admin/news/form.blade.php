@@ -5,12 +5,12 @@
 
 <div class="input-field col s12">
     {!! Form::label('text', 'Текст новости') !!}
-    {!! Form::textarea('text', null, ['class' => 'materialize-textarea validate'.($errors->has('text') ? ' invalid' : '')]) !!}
+    {!! Form::textarea('text', null, ['class' => 'validate input-html materialize-textarea'.($errors->has('text') ? ' invalid' : '')]) !!}
 </div>
 
 <div class="input-field col s12">
     {!! Form::label('published_at', 'Дата публикации') !!}
-    {!! Form::text('published_at', null, ['class' => 'input-datetime'.($errors->has('published_at') ? ' invalid' : '')]) !!}
+    {!! Form::text('published_at', null, ['class' => 'validate input-datetime'.($errors->has('published_at') ? ' invalid' : '')]) !!}
 </div>
 
 <div class="input-field file-field col s12">

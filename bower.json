@@ -14,7 +14,6 @@
     "tests"
   ],
   "dependencies": {
-    "eonasdan-bootstrap-datetimepicker": "~4.17.37",
     "scrollup": "~2.4.1"
   }
 }
