@@ -2,7 +2,7 @@
 
 @section('content')
     <h4 class="center">Категории</h4>
-
+    <input type="date" class="datepicker">
     <div class="row">
         <div class="col l4 m6">
             <div class="card-panel blue-grey lighten-5">

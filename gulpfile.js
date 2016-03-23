@@ -14,30 +14,13 @@ var elixir = require('laravel-elixir');
 elixir(function(mix) {
     /* App files */
     mix.styles([
-        '../../../node_modules/bootstrap/dist/css/bootstrap.min.css',
-        '../../../node_modules/bootstrap/dist/css/bootstrap-theme.min.css',
-        '../../../node_modules/font-awesome/css/font-awesome.min.css',
-        '../../../node_modules/select2/dist/css/select2.min.css',
-        '../../../node_modules/tablesorter/dist/css/theme.bootstrap.min.css',
-        '../../../node_modules/animate.css/animate.min.css',
-        '../../../node_modules/sweetalert/dist/sweetalert.css',
-        '../../../bower_components/moment/min/moment-with-locales.min.js',
-        '../../../bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css'
+        '../../../node_modules/bootstrap/dist/css/bootstrap.min.css'
     ], 'public/css/app.bundle.css');
     mix.scripts([
         '../../../node_modules/jquery/dist/jquery.min.js',
-        '../../../node_modules/bootstrap/dist/js/bootstrap.min.js',
-        '../../../node_modules/select2/dist/js/select2.min.js',
-        '../../../node_modules/select2/dist/js/i18n/ru.js',
-        '../../../node_modules/noty/js/noty/packaged/jquery.noty.packaged.min.js',
-        '../../../node_modules/tablesorter/dist/js/jquery.tablesorter.combined.min.js',
-        '../../../node_modules/sweetalert/dist/sweetalert.min.js',
-        '../../../bower_components/moment/min/moment-with-locales.min.js',
-        '../../../bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js',
-        '../../../bower_components/scrollup/dist/jquery.scrollUp.min.js'
+        '../../../node_modules/bootstrap/dist/js/bootstrap.min.js'
     ], 'public/js/app.bundle.js');
     mix.copy([
-        'node_modules/font-awesome/fonts',
         'node_modules/bootstrap/fonts'
     ], 'public/fonts');
 
@@ -45,26 +28,22 @@ elixir(function(mix) {
     /* Admin files */
     mix.styles([
         '../../../node_modules/materialize-css/dist/css/materialize.min.css',
-        '../../../node_modules/select2/dist/css/select2.min.css',
-        '../../../node_modules/tablesorter/dist/css/theme.dropbox.min.css',
-        '../../../node_modules/tablesorter/dist/css/theme.bootstrap.min.css',
         '../../../node_modules/animate.css/animate.min.css',
         '../../../node_modules/sweetalert/dist/sweetalert.css',
-        '../../../bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css'
+        '../../../node_modules/rome/dist/rome.min.css',
     ], 'public/css/admin.bundle.css');
     mix.scripts([
         '../../../node_modules/jquery/dist/jquery.min.js',
         '../../../node_modules/vue/dist/vue.min.js',
         '../../../node_modules/materialize-css/dist/js/materialize.min.js',
-        '../../../node_modules/select2/dist/js/select2.min.js',
-        '../../../node_modules/select2/dist/js/i18n/ru.js',
         '../../../node_modules/noty/js/noty/packaged/jquery.noty.packaged.min.js',
         '../../../node_modules/jquery.scrollto/jquery.scrollTo.min.js',
         '../../../node_modules/sweetalert/dist/sweetalert.min.js',
         '../../../node_modules/tablesorter/dist/js/jquery.tablesorter.combined.min.js',
         '../../../node_modules/tablesorter/dist/js/extras/jquery.tablesorter.pager.min.js',
-        '../../../bower_components/moment/min/moment-with-locales.min.js',
-        '../../../bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js'
+        '../../../node_modules/moment/min/moment.min.js',
+        '../../../node_modules/moment/locale/ru.js',
+        '../../../node_modules/rome/dist/rome.min.js',
     ], 'public/js/admin.bundle.js');
     mix.copy([
         'node_modules/jstree/dist'
