@@ -57,7 +57,7 @@ elixir(function(mix) {
     /* CKEDITOR Files */
     mix.copy([
         'node_modules/ckeditor/ckeditor.js', 'node_modules/ckeditor/contents.css', 'node_modules/ckeditor/styles.js'
-    ], 'public/library/ckeditor');
+    ], 'public/library/ckeditor/lang');
     mix.copy([
         'node_modules/ckeditor/lang/en.js', 'node_modules/ckeditor/lang/ru.js'
     ], 'public/library/ckeditor/lang');

@@ -45,7 +45,7 @@ $(document).ready(function () {
     if ($('.input-datetime').length) {
 
         $.datetimepicker.setLocale('ru');
-        $('.input-datetime').datetimepicker({
+        $('.input-datetime input').datetimepicker({
             format: 'Y-m-d H:i:s',
             dayOfWeekStart: 1
         });
@@ -55,7 +55,9 @@ $(document).ready(function () {
     // Применять плагин flora editor к html полям
     if ($('.input-html').length) {
 
-
+        $('.input-html textarea').each(function(){
+            CKEDITOR.replace( this );
+        });
 
     }
 

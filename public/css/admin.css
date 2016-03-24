@@ -22,18 +22,13 @@ main {
     padding-right: 1rem;
 }
 
-select.browser-default {
-    display: inline-block;
-    width: auto;
-}
-
-.select-wrapper {
+.tablesorter-material .select-wrapper {
     display: inline-block;
     margin-left: 10px;
     margin-right: 10px;
 }
 
-.select-wrapper input.select-dropdown {
+.tablesorter-material .select-wrapper input.select-dropdown {
     margin-bottom: 0;
     width: 100px;
 
@@ -43,22 +38,41 @@ select.browser-default {
     background: #eee;
 }
 
-.tablesorter-filter-row td {
-    padding-bottom: 5px;
-    padding-top: 5px;
-}
-
-.tablesorter-filter-row input {
-    height: 2rem;
-    margin-bottom: 0;
-    background-color: #eee;
-}
-
 .img-responsive {
     max-width: 100%;
     height: auto;
     vertical-align: middle;
 }
+
+.input-html {
+    margin-top: 25px;
+    margin-bottom: 20px;
+}
+
+.input-html label, .input-html label.active {
+    font-size: 1rem;
+    transform: none;
+    margin-top: -35px;
+}
+
+
+
+
+
+/* CKEDITOR config */
+input.cke_dialog_ui_input_text, input.cke_dialog_ui_input_password, textarea.cke_dialog_ui_input_textarea {
+    height: inherit;
+    font-size: inherit;
+    margin: auto;
+}
+
+select.cke_dialog_ui_input_select {
+    display: inherit;
+}
+
+
+
+
 
 
 
@@ -131,6 +145,7 @@ select.browser-default {
     margin: 0;
     padding: 4px 6px;
     color: #333;
+    /*height: 2rem;*/
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
@@ -152,7 +167,7 @@ select.browser-default {
     background-color: #efefef;
     line-height: normal;
     text-align: center;
-    padding: 8px 6px;
+    padding: 5px 6px;
     vertical-align: middle;
     -webkit-transition: line-height .1s ease;
     -moz-transition: line-height .1s ease;
@@ -161,7 +176,6 @@ select.browser-default {
 }
 
 .tablesorter-material .tablesorter-filter-row.hideme td {
-    /*padding: 2px;*/
     margin: 0;
     line-height: 0
 }
