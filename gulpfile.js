@@ -43,10 +43,28 @@ elixir(function(mix) {
         '../../../node_modules/tablesorter/dist/js/extras/jquery.tablesorter.pager.min.js',
         '../../../node_modules/jquery-datetimepicker/build/jquery.datetimepicker.full.min.js'
     ], 'public/js/admin.bundle.js');
+
+    /* Jstree Files */
     mix.copy([
         'node_modules/jstree/dist'
     ], 'public/library/jstree');
+
+    /* Materialize-css Files */
     mix.copy([
         'node_modules/materialize-css/dist/font'
     ], 'public/font');
+
+    /* CKEDITOR Files */
+    mix.copy([
+        'node_modules/ckeditor/ckeditor.js', 'node_modules/ckeditor/contents.css', 'node_modules/ckeditor/styles.js'
+    ], 'public/library/ckeditor');
+    mix.copy([
+        'node_modules/ckeditor/lang/en.js', 'node_modules/ckeditor/lang/ru.js'
+    ], 'public/library/ckeditor/lang');
+    mix.copy([
+        'node_modules/ckeditor/plugins'
+    ], 'public/library/ckeditor/plugins');
+    mix.copy([
+        'node_modules/ckeditor/skins/moono'
+    ], 'public/library/ckeditor/skins/moono');
 });
