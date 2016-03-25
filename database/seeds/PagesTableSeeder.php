@@ -18,8 +18,6 @@ class PagesTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('pages')->delete();
-
         for($i=0, $iMax=count($this->items); $i<$iMax; $i++)
         {
             $row = array_combine(['name', 'text', 'title', 'keywords', 'description'], $this->items[$i]);

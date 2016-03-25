@@ -19,8 +19,6 @@ class BlocksTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('blocks')->delete();
-
         for($i=0, $iMax=count($this->items); $i<$iMax; $i++)
         {
             $row = array_combine(['id', 'alias', 'title', 'text'], $this->items[$i]);

@@ -29,3 +29,18 @@ $factory->define(App\Page::class, function (Faker\Generator $faker) {
         'description' => $faker->sentence(),
     ];
 });
+
+$factory->define(App\Product::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->word,
+        'price' => $faker->randomFloat(),
+        'brief' => $faker->sentence(),
+        'text' => $faker->paragraph(3),
+        'available' => $faker->boolean(),
+        'title' => $faker->sentence(2),
+        'keywords' => implode(', ', $faker->words(4)),
+        'description' => $faker->sentence(),
+        'category_id' => 4,
+        'image' => $faker->image(storage_path('images').DIRECTORY_SEPARATOR.'products', 640, 480, null, false, false),
+    ];
+});
