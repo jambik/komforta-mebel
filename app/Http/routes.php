@@ -11,9 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 /*
 |--------------------------------------------------------------------------
@@ -26,14 +23,35 @@ Route::get('/', function () {
 |
 */
 
-Route::group(['middleware' => ['web']], function () {
-    //
-});
 
 Route::group(['middleware' => 'web'], function () {
     Route::auth();
+    Route::get('/', ['as' => 'index', 'uses' => 'IndexController@index']);
 
-    Route::get('/home', 'HomeController@index');
+    /* Social routes ---------------------------------------------------------------------------------------------------- */
+    Route::get('auth/github', 'Auth\Social\GitHubAuthController@redirectToProvider');
+    Route::get('auth/github/callback', 'Auth\Social\GitHubAuthController@handleProviderCallback');
+
+    Route::get('auth/twitter', 'Auth\Social\TwitterAuthController@redirectToProvider');
+    Route::get('auth/twitter/callback', 'Auth\Social\TwitterAuthController@handleProviderCallback');
+
+    Route::get('auth/facebook', 'Auth\Social\FacebookAuthController@redirectToProvider');
+    Route::get('auth/facebook/callback', 'Auth\Social\FacebookAuthController@handleProviderCallback');
+
+    Route::get('auth/vkontakte', 'Auth\Social\VkontakteAuthController@redirectToProvider');
+    Route::get('auth/vkontakte/callback', 'Auth\Social\VkontakteAuthController@handleProviderCallback');
+
+    Route::get('auth/yandex', 'Auth\Social\YandexAuthController@redirectToProvider');
+    Route::get('auth/yandex/callback', 'Auth\Social\YandexAuthController@handleProviderCallback');
+
+    Route::get('auth/odnoklassniki', 'Auth\Social\OdnoklassnikiAuthController@redirectToProvider');
+    Route::get('auth/odnoklassniki/callback', 'Auth\Social\OdnoklassnikiAuthController@handleProviderCallback');
+
+    Route::get('auth/mailru', 'Auth\Social\MailRuAuthController@redirectToProvider');
+    Route::get('auth/mailru/callback', 'Auth\Social\MailRuAuthController@handleProviderCallback');
+
+    Route::get('auth/google', 'Auth\Social\GoogleAuthController@redirectToProvider');
+    Route::get('auth/google/callback', 'Auth\Social\GoogleAuthController@handleProviderCallback');
 });
 
 

@@ -14,7 +14,8 @@ var elixir = require('laravel-elixir');
 elixir(function(mix) {
     /* App files */
     mix.styles([
-        '../../../node_modules/bootstrap/dist/css/bootstrap.min.css'
+        '../../../bower_components/bootswatch/cosmo/bootstrap.min.css',
+        '../../../node_modules/font-awesome/css/font-awesome.min.css'
     ], 'public/css/app.bundle.css');
     mix.scripts([
         '../../../node_modules/jquery/dist/jquery.min.js',
@@ -57,7 +58,7 @@ elixir(function(mix) {
     /* CKEDITOR Files */
     mix.copy([
         'node_modules/ckeditor/ckeditor.js', 'node_modules/ckeditor/contents.css', 'node_modules/ckeditor/styles.js'
-    ], 'public/library/ckeditor/lang');
+    ], 'public/library/ckeditor');
     mix.copy([
         'node_modules/ckeditor/lang/en.js', 'node_modules/ckeditor/lang/ru.js'
     ], 'public/library/ckeditor/lang');

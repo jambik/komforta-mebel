@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Category;
 use App\Product;
 use Flash;
 use Illuminate\Http\Request;
@@ -14,11 +15,15 @@ class ProductsController extends Controller
      *
      * @return Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $items = Product::all();
+        $category = $request->has('category') && $request->has('category') ? $request->get('category') : null;
 
-        return view('admin.products.index', compact('items'));
+        $items = $category ? Product::whereCategoryId($category)->get() : Product::all();
+
+        $categories = Category::withDepth()->defaultOrder()->get()->toFlatTree();
+
+        return view('admin.products.index', compact('items', 'categories'));
     }
 
     /**
@@ -28,7 +33,7 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        return view('admin.pages.create');
+        return view('admin.products.create');
     }
 
     /**
@@ -43,11 +48,13 @@ class ProductsController extends Controller
             'name' => 'required'
         ]);
 
-        $item = Page::create($request->all());
+        $item = Product::create($request->all());
+
+        $item->saveImage($item, $request);
 
         Flash::success("Запись - {$item->id} сохранена");
 
-        return redirect(route('admin.pages.index'));
+        return redirect(route('admin.products.index'));
     }
 
     /**
@@ -69,9 +76,9 @@ class ProductsController extends Controller
      */
     public function edit($id)
     {
-        $item = Page::findOrFail($id);
+        $item = Product::findOrFail($id);
 
-        return view('admin.pages.edit', compact('item'));
+        return view('admin.products.edit', compact('item'));
     }
 
     /**
@@ -84,16 +91,22 @@ class ProductsController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'title' => 'required'
+            'name' => 'required'
         ]);
 
-        $item = Page::findOrFail($id);
+        $input = $request->all();
 
-        $item->update($request->all());
+        foreach (['available'] as $value) $input[$value] = $request->has($value) ? true : false;
+
+        $item = Product::findOrFail($id);
+
+        $item->update($input);
+
+        $item->saveImage($item, $request);
 
         Flash::success("Запись - {$id} обновлена");
 
-        return redirect(route('admin.pages.index'));
+        return redirect(route('admin.products.index'));
     }
 
     /**
@@ -104,10 +117,10 @@ class ProductsController extends Controller
      */
     public function destroy($id)
     {
-        Page::destroy($id);
+        Product::destroy($id);
 
         Flash::success("Запись - {$id} удалена");
 
-        return redirect(route('admin.pages.index'));
+        return redirect(route('admin.products.index'));
     }
 }

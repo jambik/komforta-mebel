@@ -7,6 +7,7 @@
             </div>
         </div>
     </footer>
-    @yield('footer_scripts')
+</div>
+@yield('footer_scripts')
 </body>
 </html>

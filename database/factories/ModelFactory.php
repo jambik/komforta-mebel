@@ -33,14 +33,14 @@ $factory->define(App\Page::class, function (Faker\Generator $faker) {
 $factory->define(App\Product::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->word,
-        'price' => $faker->randomFloat(),
+        'price' => $faker->randomFloat(2, 99, 100000),
         'brief' => $faker->sentence(),
         'text' => $faker->paragraph(3),
         'available' => $faker->boolean(),
         'title' => $faker->sentence(2),
         'keywords' => implode(', ', $faker->words(4)),
         'description' => $faker->sentence(),
-        'category_id' => 4,
+        'category_id' => $faker->randomElement([4,5,6,7,9,10,11,12,13,14,15]),
         'image' => $faker->image(storage_path('images').DIRECTORY_SEPARATOR.'products', 640, 480, null, false, false),
     ];
 });

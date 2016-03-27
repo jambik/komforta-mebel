@@ -1,4 +1,4 @@
-body {
+#app {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
@@ -44,6 +44,14 @@ main {
     vertical-align: middle;
 }
 
+.input-checkbox {
+    margin-bottom: 30px;
+}
+
+.col.input-checkbox label {
+    left: 0;
+}
+
 .input-html {
     margin-top: 25px;
     margin-bottom: 20px;
@@ -55,7 +63,13 @@ main {
     margin-top: -35px;
 }
 
+.collection a.depth-1 {
+    padding: 10px 10px 10px 40px;
+}
 
+.collection a.depth-2 {
+    padding: 10px 10px 10px 60px;
+}
 
 
 

@@ -155,6 +155,7 @@ return [
         Laravel\Socialite\SocialiteServiceProvider::class,
         SocialiteProviders\Manager\ServiceProvider::class,
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
+        Barryvdh\Debugbar\ServiceProvider::class,
         Clockwork\Support\Laravel\ClockworkServiceProvider::class,
 
         /*
@@ -218,6 +219,7 @@ return [
         'Image'     => Intervention\Image\Facades\Image::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         'Clockwork' => Clockwork\Support\Laravel\Facade::class,
+        'Debugbar'  => Barryvdh\Debugbar\Facade::class,
 
     ],
 

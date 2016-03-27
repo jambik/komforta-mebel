@@ -62,9 +62,9 @@ $(document).ready(function () {
     }
 
     // Применяем стили material ко всем элементам select
-    if ($('select').length) {
+    if ($('#app select').length) {
 
-        $('select').material_select();
+        $('#app select').material_select();
 
     }
 

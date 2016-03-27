@@ -13,4 +13,10 @@ class Product extends Model
 
     protected $fillable = ['name', 'category_id', 'price', 'brief', 'text', 'available', 'title', 'keywords', 'description', 'image'];
 
+    protected $casts = [
+        'price' => 'float',
+        'available' => 'boolean',
+        'category_id' => 'int',
+    ];
+
 }
