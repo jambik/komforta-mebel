@@ -2,27 +2,29 @@
 
 namespace App;
 
+use App\Traits\ImagableTrait;
 use Illuminate\Database\Eloquent\Model;
 use Kalnoy\Nestedset\NodeTrait;
 
 class Category extends Model
 {
-    use NodeTrait;
+    use NodeTrait, ImagableTrait;
 
     protected $table = 'categories';
 
     protected $fillable = [
         'name',
+        'about',
         'title',
         'keywords',
         'description',
-        'about',
+        'image',
         'parent_id',
         '_lft',
         '_rgt'
     ];
 
-    protected $appends = ['text'];
+    protected $appends = ['text', 'imgUrl'];
 
     public function getTextAttribute()
     {

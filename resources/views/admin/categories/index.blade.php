@@ -51,7 +51,19 @@
                     <label for="description" v-bind:class="{'active': node.description}">Description (META)</label>
                 </div>
 
-                <div class="col s12">
+                <div class="input-field file-field col s12">
+                    <div class="btn">
+                        <span>Фото</span>
+                        <input type="file" name="image" id="image">
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text" placeholder="Выберите файл">
+                    </div>
+                </div>
+
+                <img v-if="node.image" v-bind:src="'/images/small/' + node.imgUrl + node.image">
+
+                <div class="col s12 center">
                     <button type="submit" class="btn-large form-button waves-effect waves-light"><i class="material-icons left">check_circle</i> Сохранить</button>
                     <div v-show="sendingForm">
                         <div class="preloader-wrapper small active"><div class="spinner-layer spinner-green-only"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>

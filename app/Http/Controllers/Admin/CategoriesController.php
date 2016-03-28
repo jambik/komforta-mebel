@@ -50,6 +50,8 @@ class CategoriesController extends Controller
 
         $item = Category::create($request->all());
 
+        $item->saveImage($item, $request);
+
         if ($request->ajax()){
             return $item;
         }
@@ -104,7 +106,10 @@ class CategoriesController extends Controller
         ]);
 
         $item = Category::findOrFail($id);
-        $item = $item->update($request->all());
+
+        $item->update($request->all());
+        $item->saveImage($item, $request);
+
         $item = Category::findOrFail($id);
 
         if($request->ajax()) {

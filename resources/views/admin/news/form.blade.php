@@ -16,7 +16,6 @@
 <div class="input-field file-field col s12">
     <div class="btn">
         <span>Фото</span>
-        <input type="file" name="image">
         {!! Form::file('image') !!}
     </div>
     <div class="file-path-wrapper">

@@ -133,8 +133,7 @@ new Vue({
                 if (selectedNode == -1){
                     $(that.treeId).jstree().delete_node(-1);
                     sweetAlert.close();
-                }
-                else{
+                } else {
                     that.deletingNode = true;
                     $.post(that.baseUrl + '/' + selectedNode, { '_method': 'DELETE' }, function(data){
                         $(that.treeId).jstree().delete_node(selectedNode);
@@ -155,6 +154,7 @@ new Vue({
 
             that.node = false;
             that.nodeLoading = true;
+            $(that.nodeFormId + ' #image').val('');
             var newNode = $(that.treeId).jstree().get_node(-1);
             if (newNode){
                 $(that.treeId).jstree().delete_node(-1);
@@ -171,6 +171,31 @@ new Vue({
             }
             else{
                 $("#jstree").jstree().set_text(data.id, data.name);
+            }
+
+            if ($(that.nodeFormId + ' #image').val())
+            {
+                var formData = new FormData();
+                formData.append('image', $(that.nodeFormId + ' #image')[0].files[0]);
+                formData.append('name', data.name);
+                formData.append('_method', 'PUT');
+
+                $.ajax({
+                    url: that.baseUrl + '/' + data.id,
+                    type: 'POST',
+                    data: formData,
+                    cache: false,
+                    dataType: 'json',
+                    processData: false,
+                    contentType: false,
+                    success: function(data){
+                        that.node = data;
+                        $(that.nodeFormId + ' #image').val('');
+                    },
+                    error: function(jqXHR, textStatus, errorThrown){
+                        sweetAlert("", "Ошибка при запросе к серсеру", 'error');
+                    }
+                });
             }
         },
 

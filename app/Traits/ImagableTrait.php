@@ -2,6 +2,7 @@
 
 namespace App\Traits;
 
+use File;
 use Illuminate\Http\Request;
 
 trait ImagableTrait
@@ -22,7 +23,7 @@ trait ImagableTrait
      * @param         $item
      * @param Request $request
      *
-     * @return bool
+     * @return null | string
      */
     public function saveImage($item, Request $request)
     {
@@ -34,9 +35,16 @@ trait ImagableTrait
             $file = $request->file('image')->move($this->imagePath(), $imageName.".".$imageExtension);
             $item->image = $file->getFilename();
             $item->save();
+
+            return $item->image;
         }
 
-        return true;
+        return null;
+    }
+
+    public function deleteImage()
+    {
+        File::delete($this->imagePath().DIRECTORY_SEPARATOR.$this->image);
     }
 
     /**
@@ -57,5 +65,14 @@ trait ImagableTrait
     public function imageUrl()
     {
         return $this->getTable().'/';
+    }
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function ($model) {
+            $model->deleteImage();
+        });
     }
 }
