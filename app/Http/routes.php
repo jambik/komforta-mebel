@@ -75,8 +75,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'web'], function()
 
         Route::resource('categories', 'Admin\CategoriesController');
         Route::match(['get', 'post'], 'categories/move', ['as' => 'admin.categories.move', 'uses' =>'Admin\CategoriesController@move']);
+        Route::delete('categories/{id}/image', ['as' => 'admin.categories.image_delete', 'uses' =>'Admin\CategoriesController@imageDelete'])->where('id', '[0-9]+');
         Route::resource('products', 'Admin\ProductsController');
         Route::post('products/{id}/photo', ['as' => 'admin.products.photo', 'uses' =>'Admin\ProductsController@photo'])->where('id', '[0-9]+');
+        Route::delete('products/{id}/photo/{photoId}', ['as' => 'admin.products.photo.delete', 'uses' =>'Admin\ProductsController@photoDelete'])->where(['id' => '[0-9]+', 'photoId' => '[0-9]+']);
         Route::resource('photos', 'Admin\PhotosController');
         Route::resource('pages', 'Admin\PagesController');
         Route::resource('blocks', 'Admin\BlocksController');

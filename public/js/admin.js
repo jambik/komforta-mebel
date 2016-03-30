@@ -68,12 +68,7 @@ $(document).ready(function () {
 
     }
 
-    /*$('#photos-dropzone').dropzone({
-        url: "/admin/products/" + '1' + '/photo',
-        paramName: "photo", // The name that will be used to transfer the file
-        maxFilesize: 5 // MB
-    });*/
-
+    // Настройка плагина Dropzone.js
     Dropzone.options.photosDropzone = {
         paramName: "photo", // The name that will be used to transfer the file
         maxFilesize: 5 // MB

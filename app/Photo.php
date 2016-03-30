@@ -17,10 +17,6 @@ class Photo extends Model
         'order',
     ];
 
-    protected $casts = [
-        'order' => 'integer',
-    ];
-
     public function photoable()
     {
         return $this->morphTo();

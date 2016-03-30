@@ -44,7 +44,21 @@ trait ImagableTrait
 
     public function deleteImage()
     {
-        File::delete($this->imagePath().DIRECTORY_SEPARATOR.$this->image);
+        $this->deleteImageFile();
+        $this->deleteImageField();
+
+        return true;
+    }
+
+    public function deleteImageFile()
+    {
+        return File::delete($this->imagePath().DIRECTORY_SEPARATOR.$this->image);
+    }
+
+    public function deleteImageField()
+    {
+        $this->image = '';
+        return $this->save();
     }
 
     /**
@@ -67,15 +81,4 @@ trait ImagableTrait
         return $this->getTable().'/';
     }
 
-    /**
-     *
-     */
-    public static function boot()
-    {
-        parent::boot();
-
-        static::deleting(function ($model) {
-            $model->deleteImage();
-        });
-    }
 }

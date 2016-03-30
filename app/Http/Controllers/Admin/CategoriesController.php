@@ -144,6 +144,31 @@ class CategoriesController extends Controller
     }
 
     /**
+     * Delete image
+     *
+     * @param  int $id
+     * @param Request $request
+     * @return Response
+     */
+    public function imageDelete($id, Request $request)
+    {
+        $category = Category::findOrFail($id);
+
+        $category->deleteImage();
+
+        if ($request->ajax()){
+            return json_encode([
+                'status' => 'ok',
+                'message' => 'Картинка удалена',
+            ]);
+        }
+
+        Flash::success("Картинка удалена");
+
+        return view('admin.categories.index');
+    }
+
+    /**
      * Move category.
      *
      * @param Request $request

@@ -42,7 +42,7 @@
                                     <td><img src='/images/small/{{ $item->img_url.$photo->image }}'></td>
                                     <td>{{ $photo->name }}</td>
                                     <td>{{ $photo->order }}</td>
-                                    <td><button onclick="confirmDelete(this, '{{ $photo->id }}', '{{ route('admin.photos.destroy', $photo->id) }}')" class="btn btn-small waves-effect waves-light red darken-2"><i class="material-icons">delete</i></button></td>
+                                    <td><button onclick="confirmDelete(this, '{{ $photo->id }}', '{{ route('admin.products.photo.delete', [$item->id, $photo->id]) }}')" class="btn btn-small waves-effect waves-light red darken-2"><i class="material-icons">delete</i></button></td>
                                 </tr>
                             @endforeach
                         </tbody>

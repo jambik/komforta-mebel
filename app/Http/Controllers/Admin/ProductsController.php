@@ -117,7 +117,11 @@ class ProductsController extends Controller
      */
     public function destroy($id)
     {
-        Product::destroy($id);
+        $item = Product::findOrFail($id);
+
+        $item->deleteImageFile();
+        $item->deletePhotos();
+        $item->delete();
 
         Flash::success("Запись - {$id} удалена");
 
@@ -137,14 +141,39 @@ class ProductsController extends Controller
 
         if($request->ajax()) {
             return json_encode([
-                'status'     => 'ok',
-                'photo'  => $photoName,
-                'photo_url' => $item->img_url,
+                'status'  => 'ok',
+                'image'   => $photoName,
+                'img_url' => $item->img_url,
+                'message' => 'Фотография загружена',
             ]);
         }
 
-        Flash::success("Запись - {$id} обновлена");
+        Flash::success("Фотография загружена");
 
         return redirect(route('admin.products.index'));
     }
+
+    /**
+     * @param $id
+     * @param $photoId
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|string
+     */
+    public function photoDelete($id, $photoId, Request $request)
+    {
+        $item = Product::findOrFail($id);
+        $item->deletePhoto($photoId);
+
+        if($request->ajax()) {
+            return json_encode([
+                'status'  => 'ok',
+                'message' => 'Фотография удалена',
+            ]);
+        }
+
+        Flash::success("Фотография загружена");
+
+        return redirect(route('admin.products.index'));
+    }
+
 }

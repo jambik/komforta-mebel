@@ -61,13 +61,18 @@
                     </div>
                 </div>
 
-                <img v-if="node.image" class="responsive-img circle z-depth-3" :src="'/images/small/' + node.imgUrl + node.image">
+                <div v-if="node.image" style="display: inline-block;" class="center">
+                    <div  v-show="! deletingImage">
+                        <div><img class="responsive-img circle z-depth-3" :src="'/images/small/' + node.imgUrl + node.image" style="vertical-align: middle;"></div>
+                        <div>&nbsp;</div>
+                        <div><button class="btn btn-small red waves-effect waves-light" v-on:click="deleteImage($event)"><i class="material-icons">delete</i></button></div>
+                    </div>
+                    <div class="preloader-wrapper small active" v-show="deletingImage"><div class="spinner-layer spinner-red-only"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>
+                </div>
 
                 <div class="col s12 center">
                     <button type="submit" class="btn-large form-button waves-effect waves-light"><i class="material-icons left">check_circle</i> Сохранить</button>
-                    <div v-show="sendingForm">
-                        <div class="preloader-wrapper small active"><div class="spinner-layer spinner-green-only"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>
-                    </div>
+                    <div class="preloader-wrapper small active" v-show="sendingForm"><div class="spinner-layer spinner-green-only"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>
                 </div>
             </form>
         </div>
