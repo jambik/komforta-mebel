@@ -24,7 +24,9 @@
 </div>
 
 @if (isset($item) && $item->image)
-    <img src="/images/medium/{{ $item->img_url.$item->image }}" alt="" />
+    <div class="col s12">
+        <img src="/images/medium/{{ $item->img_url.$item->image }}" alt="" />
+    </div>
 @endif
 
 <div class="input-field col s12 center">

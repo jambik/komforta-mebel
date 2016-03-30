@@ -155,6 +155,7 @@ new Vue({
             that.node = false;
             that.nodeLoading = true;
             $(that.nodeFormId + ' #image').val('');
+            $(that.nodeFormId + ' #image-path').val('');
             var newNode = $(that.treeId).jstree().get_node(-1);
             if (newNode){
                 $(that.treeId).jstree().delete_node(-1);
@@ -191,6 +192,7 @@ new Vue({
                     success: function(data){
                         that.node = data;
                         $(that.nodeFormId + ' #image').val('');
+                        $(that.nodeFormId + ' #image-path').val('');
                     },
                     error: function(jqXHR, textStatus, errorThrown){
                         sweetAlert("", "Ошибка при запросе к серсеру", 'error');

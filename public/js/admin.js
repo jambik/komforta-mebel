@@ -68,6 +68,17 @@ $(document).ready(function () {
 
     }
 
+    /*$('#photos-dropzone').dropzone({
+        url: "/admin/products/" + '1' + '/photo',
+        paramName: "photo", // The name that will be used to transfer the file
+        maxFilesize: 5 // MB
+    });*/
+
+    Dropzone.options.photosDropzone = {
+        paramName: "photo", // The name that will be used to transfer the file
+        maxFilesize: 5 // MB
+    };
+
 });
 
 // Функция подтверждения удаления элемента
@@ -89,7 +100,7 @@ function confirmDelete(element, id, url)
         }
         $.post(url, { '_method': 'DELETE' }, function(data){
             sweetAlert.close();
-            var row = $(element).closest('#table_items tr');
+            var row = $(element).closest('table tr');
             if (row.length) {
                 row.remove();
                 $("#table_items").trigger("update");

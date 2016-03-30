@@ -50,8 +50,13 @@
 </div>
 
 @if (isset($item) && $item->image)
-    <img src="/images/medium/{{ $item->img_url.$item->image }}" alt="" />
+    <div class="col s12">
+        <img src="/images/medium/{{ $item->img_url.$item->image }}" alt="" />
+    </div>
 @endif
+
+{{--<form id="my-awesome-dropzone" action="/target" class="dropzone"></form>--}}
+
 
 <div class="input-field col s12 center">
     <button type="submit" class="btn-large waves-effect waves-light"><i class="material-icons left">check_circle</i> {{ $submitButtonText }}</button>

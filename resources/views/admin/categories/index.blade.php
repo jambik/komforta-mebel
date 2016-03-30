@@ -57,11 +57,11 @@
                         <input type="file" name="image" id="image">
                     </div>
                     <div class="file-path-wrapper">
-                        <input class="file-path validate" type="text" placeholder="Выберите файл">
+                        <input class="file-path validate" id="image-path" type="text" placeholder="Выберите файл">
                     </div>
                 </div>
 
-                <img v-if="node.image" v-bind:src="'/images/small/' + node.imgUrl + node.image">
+                <img v-if="node.image" class="responsive-img circle z-depth-3" :src="'/images/small/' + node.imgUrl + node.image">
 
                 <div class="col s12 center">
                     <button type="submit" class="btn-large form-button waves-effect waves-light"><i class="material-icons left">check_circle</i> Сохранить</button>

@@ -123,4 +123,28 @@ class ProductsController extends Controller
 
         return redirect(route('admin.products.index'));
     }
+
+    /**
+     * @param  int  $id
+     * @param  Request $request
+     * @return Response
+     */
+    public function photo($id, Request $request)
+    {
+        $item = Product::findOrFail($id);
+
+        $photoName = $item->savePhoto($request);
+
+        if($request->ajax()) {
+            return json_encode([
+                'status'     => 'ok',
+                'photo'  => $photoName,
+                'photo_url' => $item->img_url,
+            ]);
+        }
+
+        Flash::success("Запись - {$id} обновлена");
+
+        return redirect(route('admin.products.index'));
+    }
 }

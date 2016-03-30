@@ -31,7 +31,8 @@ elixir(function(mix) {
         '../../../node_modules/materialize-css/dist/css/materialize.min.css',
         '../../../node_modules/animate.css/animate.min.css',
         '../../../node_modules/sweetalert/dist/sweetalert.css',
-        '../../../node_modules/jquery-datetimepicker/jquery.datetimepicker.css'
+        '../../../node_modules/jquery-datetimepicker/jquery.datetimepicker.css',
+        '../../../bower_components/dropzone/dist/min/dropzone.min.css'
     ], 'public/css/admin.bundle.css');
     mix.scripts([
         '../../../node_modules/jquery/dist/jquery.min.js',
@@ -42,7 +43,8 @@ elixir(function(mix) {
         '../../../node_modules/sweetalert/dist/sweetalert.min.js',
         '../../../node_modules/tablesorter/dist/js/jquery.tablesorter.combined.min.js',
         '../../../node_modules/tablesorter/dist/js/extras/jquery.tablesorter.pager.min.js',
-        '../../../node_modules/jquery-datetimepicker/build/jquery.datetimepicker.full.min.js'
+        '../../../node_modules/jquery-datetimepicker/build/jquery.datetimepicker.full.min.js',
+        '../../../bower_components/dropzone/dist/min/dropzone.min.js'
     ], 'public/js/admin.bundle.js');
 
     /* Jstree Files */

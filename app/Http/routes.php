@@ -76,6 +76,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'web'], function()
         Route::resource('categories', 'Admin\CategoriesController');
         Route::match(['get', 'post'], 'categories/move', ['as' => 'admin.categories.move', 'uses' =>'Admin\CategoriesController@move']);
         Route::resource('products', 'Admin\ProductsController');
+        Route::post('products/{id}/photo', ['as' => 'admin.products.photo', 'uses' =>'Admin\ProductsController@photo'])->where('id', '[0-9]+');
+        Route::resource('photos', 'Admin\PhotosController');
         Route::resource('pages', 'Admin\PagesController');
         Route::resource('blocks', 'Admin\BlocksController');
         Route::resource('news', 'Admin\NewsController');

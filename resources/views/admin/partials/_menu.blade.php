@@ -1,6 +1,7 @@
 <ul class="collection">
     <a class="collection-item" href="{{ route('admin.categories.index') }}"><i class="material-icons left">list</i> Категории</a>
     <a class="collection-item" href="{{ route('admin.products.index') }}"><i class="material-icons left">store</i>Продукты</a>
+    <a class="collection-item" href="{{ route('admin.photos.index') }}"><i class="material-icons left">photo</i>Фотографии</a>
     <div class="divider"></div>
     <a class="collection-item" href="{{ route('admin.pages.index') }}"><i class="material-icons left">content_copy</i> Страницы</a>
     <a class="collection-item" href="{{ route('admin.blocks.index') }}"><i class="material-icons left">text_format</i> Текстовые блоки</a>

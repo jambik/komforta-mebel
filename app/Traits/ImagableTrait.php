@@ -67,6 +67,9 @@ trait ImagableTrait
         return $this->getTable().'/';
     }
 
+    /**
+     *
+     */
     public static function boot()
     {
         parent::boot();
