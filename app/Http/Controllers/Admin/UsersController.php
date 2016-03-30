@@ -46,20 +46,16 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        $emailRule = $request->input('email') ? 'required|email|max:255|unique:users' : '';
-        $passwordRule = $request->input('password') ? 'required|min:6' : '';
-
         $this->validate($request, [
             'name' => 'required',
-            'email' => $emailRule,
-            'password' => $passwordRule
+            'email' => 'required|email|max:255|unique:users',
+            'password' => 'required|min:6'
         ]);
 
-        $item = User::create($request->all());
-        $item->password = $passwordRule ? bcrypt($request->input('password')) : "";
-        $item->save();
+        $item = User::create($request->except('password') + ['password' => bcrypt($request->input('password'))]);
 
         Flash::success("Запись - {$item->id} сохранена");
+
         return redirect(route('admin.users.index'));
     }
 
@@ -98,21 +94,20 @@ class UsersController extends Controller
      */
     public function update($id, Request $request)
     {
-        $emailRule = $request->input('email') ? 'required|email|max:255|unique:users,email,' . $id : '';
         $passwordRule = $request->input('password') ? 'required|min:6' : '';
 
         $this->validate($request, [
             'name' => 'required',
-            'email' => $emailRule,
+            'email' => 'required|email|max:255|unique:users,email,' . $id,
             'password' => $passwordRule
         ]);
 
         $item = User::findOrFail($id);
 
-        $item->update($request->except('password') +
-            ($passwordRule ? ['password' => bcrypt($request->input('password'))] : []));
+        $item->update($request->except('password') + ($passwordRule ? ['password' => bcrypt($request->input('password'))] : []));
 
         Flash::success("Запись - {$id} обновлена");
+
         return redirect(route('admin.users.index'));
     }
 
@@ -127,6 +122,7 @@ class UsersController extends Controller
         User::destroy($id);
 
         Flash::success("Запись - {$id} удалена");
+
         return redirect(route('admin.users.index'));
     }
 

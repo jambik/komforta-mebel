@@ -72,15 +72,30 @@ main {
 }
 
 
-/* Dropzone.js styles */
+/* categories */
+#jstree {
+    min-height: 400px;
+}
 
+.category-image {
+    display: inline-block;
+}
+
+
+
+/* -------------------------------------------------------------------------- */
+/* Dropzone.js                                                                */
+/* -------------------------------------------------------------------------- */
 .dropzone {
     border: 2px dashed #80cbc4;
     border-radius: 5px;
 }
 
 
-/* CKEDITOR styles */
+
+/* -------------------------------------------------------------------------- */
+/* CKEditor                                                                   */
+/* -------------------------------------------------------------------------- */
 input.cke_dialog_ui_input_text, input.cke_dialog_ui_input_password, textarea.cke_dialog_ui_input_textarea {
     height: inherit;
     font-size: inherit;
@@ -93,11 +108,9 @@ select.cke_dialog_ui_input_select {
 
 
 
-
-
-
-
-/* Tablesorter Plugin Clases */
+/* -------------------------------------------------------------------------- */
+/* tablesorter                                                                */
+/* -------------------------------------------------------------------------- */
 .tablesorter-material {
     width: 100%
 }

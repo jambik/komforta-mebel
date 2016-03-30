@@ -11,8 +11,9 @@
                     <ul id="user-dropdown" class="dropdown-content">
                         <li><a href="{{ route('admin.logout') }}"><i class="material-icons left">exit_to_app</i> Выход</a></li>
                     </ul>
-                    <ul id="settings-dropdown" class="dropdown-content" style="min-width: 200px;">
+                    <ul id="settings-dropdown" class="dropdown-content" style="min-width: 250px;">
                         <li><a href="/" target="_blank"><i class="material-icons left">open_in_new</i> Открыть сайт</a></li>
+                        <li><a href="{{ route('admin.settings') }}"><i class="material-icons left">settings</i> Настройки сайта</a></li>
                     </ul>
                 </div>
             </div>

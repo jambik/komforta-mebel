@@ -112,7 +112,10 @@ class NewsController extends Controller
      */
     public function destroy($id)
     {
-        News::destroy($id);
+        $item = News::findOrFail($id);
+
+        $item->deleteImageFile();
+        $item->delete();
 
         Flash::success("Запись - {$id} удалена");
 

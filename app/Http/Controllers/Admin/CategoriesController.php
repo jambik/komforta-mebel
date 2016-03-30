@@ -130,7 +130,10 @@ class CategoriesController extends Controller
      */
     public function destroy($id, Request $request)
     {
-        Category::destroy($id);
+        $item = Category::findOrFail($id);
+
+        $item->deleteImageFile();
+        $item->delete();
 
         if ($request->ajax()){
             return json_encode([

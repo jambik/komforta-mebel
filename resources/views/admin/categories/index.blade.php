@@ -61,7 +61,7 @@
                     </div>
                 </div>
 
-                <div v-if="node.image" style="display: inline-block;" class="center">
+                <div v-if="node.image" class="center category-image">
                     <div  v-show="! deletingImage">
                         <div><img class="responsive-img circle z-depth-3" :src="'/images/small/' + node.imgUrl + node.image" style="vertical-align: middle;"></div>
                         <div>&nbsp;</div>
