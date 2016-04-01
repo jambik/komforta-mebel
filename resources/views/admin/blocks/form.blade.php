@@ -18,5 +18,5 @@
 </div>
 
 <div class="input-field col s12 center">
-    <a href="{{ route('admin.blocks.index') }}" class="btn grey">Отмена</a>
+    <a href="{{ route('admin.blocks.index') }}" class="btn grey waves-effect waves-light">Отмена</a>
 </div>
