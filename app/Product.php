@@ -4,16 +4,17 @@ namespace App;
 
 use App\Traits\ImagableTrait;
 use App\Traits\PhotoableTrait;
+use Cviebrock\EloquentSluggable\SluggableInterface;
+use Cviebrock\EloquentSluggable\SluggableTrait;
 use Illuminate\Database\Eloquent\Model;
 
-class Product extends Model
+class Product extends Model implements SluggableInterface
 {
-
-    use ImagableTrait, PhotoableTrait;
+    use ImagableTrait, PhotoableTrait, SluggableTrait;
 
     protected $table = 'products';
 
-    protected $fillable = ['name', 'category_id', 'price', 'brief', 'text', 'available', 'title', 'keywords', 'description', 'image'];
+    protected $fillable = ['name', 'slug', 'category_id', 'price', 'brief', 'text', 'available', 'title', 'keywords', 'description', 'image'];
 
     protected $casts = [
         'price' => 'float',
@@ -23,4 +24,8 @@ class Product extends Model
 
     protected $appends = ['img_url'];
 
+    protected $sluggable = [
+        'build_from' => 'name',
+        'save_to'    => 'slug',
+    ];
 }

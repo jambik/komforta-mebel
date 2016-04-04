@@ -48,7 +48,11 @@ class ProductsController extends Controller
             'name' => 'required'
         ]);
 
-        $item = Product::create($request->all());
+        $input = $request->all();
+
+        foreach (['available'] as $value) $input[$value] = $request->has($value) ? true : false;
+
+        $item = Product::create($input);
 
         $item->saveImage($item, $request);
 
@@ -91,14 +95,15 @@ class ProductsController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'name' => 'required'
+            'name' => 'required',
+            'slug' => 'required|alpha_dash|unique:products,slug,'.$id,
         ]);
+
+        $item = Product::findOrFail($id);
 
         $input = $request->all();
 
         foreach (['available'] as $value) $input[$value] = $request->has($value) ? true : false;
-
-        $item = Product::findOrFail($id);
 
         $item->update($input);
 
@@ -157,7 +162,7 @@ class ProductsController extends Controller
      * @param $id
      * @param $photoId
      * @param Request $request
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|string
+     * @return Response
      */
     public function photoDelete($id, $photoId, Request $request)
     {

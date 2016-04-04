@@ -154,6 +154,8 @@ return [
         Intervention\Image\ImageServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
         SocialiteProviders\Manager\ServiceProvider::class,
+        Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class,
+        Cviebrock\EloquentSluggable\SluggableServiceProvider::class,
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
         Clockwork\Support\Laravel\ClockworkServiceProvider::class,
@@ -218,6 +220,7 @@ return [
         'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
         'Image'     => Intervention\Image\Facades\Image::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+        'Cart'      => Gloudemans\Shoppingcart\Facades\Cart::class,
         'Clockwork' => Clockwork\Support\Laravel\Facade::class,
         'Debugbar'  => Barryvdh\Debugbar\Facade::class,
 

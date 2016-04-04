@@ -1,15 +1,14 @@
-@extends('admin.page', ['title' => "Страницы"])
+@extends('admin.page', ['title' => "Статьи"])
 
 @section('content')
     <h4 class="center">Страницы</h4>
-    <p><a href="{{ route('admin.pages.create') }}" class="btn waves-effect waves-light"><i class="material-icons left">add_circle</i> Добавить</a></p>
+    <p><a href="{{ route('admin.articles.create') }}" class="btn waves-effect waves-light"><i class="material-icons left">add_circle</i> Добавить</a></p>
 
     <table id="table_items">
         <thead>
             <tr>
                 <th>Id</th>
                 <th>Название</th>
-                <th>Title</th>
                 <th>Alias</th>
                 <th>Текст</th>
                 <th class="filter-false btn-collumn" data-sorter="false"></th>
@@ -18,7 +17,7 @@
         </thead>
         <tfoot>
             <tr>
-                <th colspan="7" class="pager form-inline">
+                <th colspan="6" class="pager form-inline">
                     <button type="button" class="btn btn-small waves-effect waves-light first"><i class="material-icons">first_page</i></button>
                     <button type="button" class="btn btn-small waves-effect waves-light prev"><i class="material-icons">navigate_before</i></button>
                     <span class="pagedisplay"></span> <!-- this can be any element, including an input -->
@@ -39,10 +38,9 @@
                 <tr>
                     <td>{{ $item->id }}</td>
                     <td>{{ $item->name }}</td>
-                    <td>{{ $item->title }}</td>
                     <td>{{ $item->slug }}</td>
                     <td>{{ str_limit(strip_tags($item->text), 300) }}</td>
-                    <td><a href="{{ route('admin.pages.edit', $item->id) }}" class="btn btn-small waves-effect waves-light"><i class="material-icons">edit</i></a></td>
+                    <td><a href="{{ route('admin.articles.edit', $item->id) }}" class="btn btn-small waves-effect waves-light"><i class="material-icons">edit</i></a></td>
                     <td><button onclick="confirmDelete(this, '{{ $item->id }}')" class="btn btn-small waves-effect waves-light red darken-2"><i class="material-icons">delete</i></button></td>
                 </tr>
             @endforeach

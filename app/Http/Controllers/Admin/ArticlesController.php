@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Page;
+use App\Article;
 use Flash;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class PagesController extends Controller
+class ArticlesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +16,9 @@ class PagesController extends Controller
      */
     public function index()
     {
-        $items = Page::all();
+        $items = Article::all();
 
-        return view('admin.pages.index', compact('items'));
+        return view('admin.articles.index', compact('items'));
     }
 
     /**
@@ -28,7 +28,7 @@ class PagesController extends Controller
      */
     public function create()
     {
-        return view('admin.pages.create');
+        return view('admin.articles.create');
     }
 
     /**
@@ -43,11 +43,11 @@ class PagesController extends Controller
             'name' => 'required',
         ]);
 
-        $item = Page::create($request->all());
+        $item = Article::create($request->all());
 
         Flash::success("Запись - {$item->id} сохранена");
 
-        return redirect(route('admin.pages.index'));
+        return redirect(route('admin.articles.index'));
     }
 
     /**
@@ -69,9 +69,9 @@ class PagesController extends Controller
      */
     public function edit($id)
     {
-        $item = Page::findOrFail($id);
+        $item = Article::findOrFail($id);
 
-        return view('admin.pages.edit', compact('item'));
+        return view('admin.articles.edit', compact('item'));
     }
 
     /**
@@ -85,16 +85,16 @@ class PagesController extends Controller
     {
         $this->validate($request, [
             'name' => 'required',
-            'slug' => 'required|alpha_dash|unique:products,slug,'.$id,
+            'slug' => 'required|alpha_dash|unique:articles,slug,'.$id,
         ]);
 
-        $item = Page::findOrFail($id);
+        $item = Article::findOrFail($id);
 
         $item->update($request->all());
 
         Flash::success("Запись - {$id} обновлена");
 
-        return redirect(route('admin.pages.index'));
+        return redirect(route('admin.articles.index'));
     }
 
     /**
@@ -105,10 +105,10 @@ class PagesController extends Controller
      */
     public function destroy($id)
     {
-        Page::destroy($id);
+        Article::destroy($id);
 
         Flash::success("Запись - {$id} удалена");
 
-        return redirect(route('admin.pages.index'));
+        return redirect(route('admin.articles.index'));
     }
 }

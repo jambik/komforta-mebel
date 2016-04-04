@@ -12,7 +12,7 @@
 @endif
 
 <div class="input-field col s12">
-    {!! Form::label('text', 'Текст страницы') !!}
+    {!! Form::label('text', 'Текст статьи') !!}
     {!! Form::textarea('text', null, ['class' => 'materialize-textarea validate'.($errors->has('text') ? ' invalid' : '')]) !!}
 </div>
 
@@ -36,5 +36,5 @@
 </div>
 
 <div class="input-field col s12 center">
-	<a href="{{ route('admin.pages.index') }}" class="btn grey waves-effect waves-light">Отмена</a>
+	<a href="{{ route('admin.articles.index') }}" class="btn grey waves-effect waves-light">Отмена</a>
 </div>

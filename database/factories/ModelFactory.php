@@ -31,8 +31,12 @@ $factory->define(App\Page::class, function (Faker\Generator $faker) {
 });
 
 $factory->define(App\Product::class, function (Faker\Generator $faker) {
+    $name = $faker->word;
+    $slug = str_slug($name);
+
     return [
-        'name' => $faker->word,
+        'name' => $name,
+        'slug' => $slug,
         'price' => $faker->randomFloat(2, 99, 100000),
         'brief' => $faker->sentence(),
         'text' => $faker->paragraph(3),

@@ -3,6 +3,14 @@
     {!! Form::text('name', null, ['class' => 'validate'.($errors->has('name') ? ' invalid' : '')]) !!}
 </div>
 
+@if (isset($item))
+    <div class="input-field col s12">
+        {!! Form::label('slug', 'Alias') !!}
+        {!! Form::text('slug', null, ['class' => 'validate'.($errors->has('slug') ? ' invalid' : '')]) !!}
+        <small>alias для красивого отображения url</small>
+    </div>
+@endif
+
 <div class="input-field col s12">
     {!! Form::label('price', 'Цена') !!}
     {!! Form::text('price', null, ['class' => 'validate'.($errors->has('price') ? ' invalid' : '')]) !!}
@@ -55,15 +63,12 @@
     </div>
 @endif
 
-{{--<form id="my-awesome-dropzone" action="/target" class="dropzone"></form>--}}
-
-
 <div class="input-field col s12 center">
     <button type="submit" class="btn-large waves-effect waves-light"><i class="material-icons left">check_circle</i> {{ $submitButtonText }}</button>
 </div>
 
 <div class="input-field col s12 center">
-    <a href="{{ route('admin.news.index') }}" class="btn grey waves-effect waves-light">Отмена</a>
+    <a href="{{ route('admin.products.index') }}" class="btn grey waves-effect waves-light">Отмена</a>
 </div>
 
 @section('head_scripts')

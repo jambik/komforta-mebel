@@ -11,7 +11,7 @@
 <div class="input-field col s12">
     {!! Form::label('password', 'Пароль') !!}
     {!! Form::text('password', null, ['class' => 'validate'.($errors->has('password') ? ' invalid' : '')]) !!}
-    @if (isset($item)) <small>Если оставить пароль пустым, то он не изменится</small> @endif
+    @if (isset($item))<small>Если оставить пароль пустым, то он не изменится</small>@endif
 </div>
 
 <div class="input-field col s12 center">
