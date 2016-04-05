@@ -22,7 +22,7 @@
             <div class="g-recaptcha" data-sitekey="{{ env('GOOGLE_RECAPTCHA_KEY') }}"></div>
         </div>
         <div class="form-group">
-            <button type="submit" class="btn btn-success btn-block">Отправить сообщение</button>
+            <button type="submit" class="btn btn-success btn-block">Отправить сообщение 2</button>
         </div>
     </form>
 @endsection
