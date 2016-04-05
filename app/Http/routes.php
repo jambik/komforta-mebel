@@ -70,6 +70,10 @@ Route::group(['middleware' => 'web'], function ()
     ## Index
     Route::get('/', ['as' => 'index', 'uses' => 'IndexController@index']);
 
+    # Feedback
+    Route::get('feedback', ['as' => 'feedback', 'uses' => 'FeedbackController@index']);
+    Route::post('feedback', ['as' => 'feedback.send', 'uses' => 'FeedbackController@send']);
+
     ## Pages
     Route::get('/page/{slug}', ['as' => 'page.show', 'uses' => 'PagesController@show']);
 

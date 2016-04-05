@@ -94,8 +94,6 @@
         </div>
     </div>
 
-    @yield('content')
-
     <p>&nbsp;</p>
     <div class="text-center text-xl">Немного о нас</div>
     <p>&nbsp;</p>
