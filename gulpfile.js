@@ -54,8 +54,8 @@ elixir(function(mix) {
 
     /* Materialize-css Files */
     mix.copy([
-        'node_modules/materialize-css/dist/font'
-    ], 'public/font');
+        'node_modules/materialize-css/dist/fonts'
+    ], 'public/fonts');
 
     /* CKEDITOR Files */
     mix.copy([
