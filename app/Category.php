@@ -34,8 +34,19 @@ class Category extends Model implements SluggableInterface
         'save_to'    => 'slug',
     ];
 
+    /**
+     * Get the text attribute.
+     */
     public function getTextAttribute()
     {
         return $this->name;
+    }
+
+    /**
+     * Get all products of category.
+     */
+    public function comments()
+    {
+        return $this->hasMany('App\Product');
     }
 }

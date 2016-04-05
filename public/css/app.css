@@ -63,21 +63,24 @@ nav a:hover, nav a.active { color: #fff; background: #ff7920; }
 .caption-block div { transform: skewX(-45deg); }
 .caption-block a { display: inline-block; float: right; color: #ff0; }
 
-.product-tile { border: 1px solid #fe7920; margin: 0 0 30px 0; }
-.product-tile .img { border-bottom: 2px solid #fe7920; margin: 0 0 15px 0; }
-.product-tile .img img { width: 100%; }
-.product-tile .name { margin: 0 0 10px 0; text-align: center; font-size: 20px; text-transform: uppercase; }
-.product-tile .price { margin: 0 0 15px 0; text-align: center; font-size: 14px; }
-.product-tile .price span { color: #c36000; display: block; font-weight: 700; }
-.product-tile .btn-round { text-align: center; margin: 0 0 10px 0; }
-.product-tile .btn-round a { display: inline-block; color: #000; font-size: 12px; padding: 5px 10px; border-radius: 8px; border: 1px solid #ccc; background: #eee linear-gradient(#fff, #eee); }
-.product-tile a.more { display: block; margin: 0 0 10px 0; text-align: center; color: #000; text-decoration: underline; font-size: 12px; }
+.products-tiles {  }
+.products-tiles .product { border: 1px solid #fe7920; margin: 0 0 30px 0; }
+.products-tiles .img { border-bottom: 2px solid #fe7920; margin: 0 0 15px 0; }
+.products-tiles .img img { width: 100%; }
+.products-tiles .name { margin: 0 0 10px 0; text-align: center; font-size: 20px; text-transform: uppercase; }
+.products-tiles .price { margin: 0 0 15px 0; text-align: center; font-size: 14px; }
+.products-tiles .price span { color: #c36000; display: block; font-weight: 700; }
+.products-tiles .btn-round { text-align: center; margin: 0 0 10px 0; }
+.products-tiles .btn-round a { display: inline-block; color: #000; font-size: 12px; padding: 5px 10px; border-radius: 8px; border: 1px solid #ccc; background: #eee linear-gradient(#fff, #eee); }
+.products-tiles a.more { display: block; margin: 0 0 10px 0; text-align: center; color: #000; text-decoration: underline; font-size: 12px; }
 
 .categories-list { }
 .categories-list .category { border-bottom: 1px solid #ddd; padding-bottom: 15px; }
 .categories-list .category:last-child { border-bottom: none; }
 .categories-list img { max-width: 120px; }
 .categories-list .name { font-size: 150%; }
+
+.categories-list-line { margin: 0 0 20px 0; }
 
 .news-list { }
 .news-list .media { border-bottom: 1px solid #ddd; padding-bottom: 15px; }

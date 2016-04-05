@@ -67,6 +67,6 @@ class FeedbackController extends Controller
             $message->subject('Обратная связь');
         });
 
-        return view('feedback');
+        return redirect('feedback')->with('status', 'Сообщение отправлено');
     }
 }

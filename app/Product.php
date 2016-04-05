@@ -28,4 +28,12 @@ class Product extends Model implements SluggableInterface
         'build_from' => 'name',
         'save_to'    => 'slug',
     ];
+
+    /**
+     * Get product category.
+     */
+    public function category()
+    {
+        return $this->belongsTo('App\Category');
+    }
 }

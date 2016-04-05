@@ -104,7 +104,9 @@ Route::group(['middleware' => 'web'], function ()
     Route::get('auth/google/callback', 'Auth\Social\GoogleAuthController@handleProviderCallback');
 
     ## Catalog - index page
-    Route::get('/catalog', 'CatalogController@index');
+    Route::get('/catalog', ['as' => 'catalog', 'uses' => 'CatalogController@index']);
+    ## Catalog - category page
+    Route::get('/catalog/{category}', ['as' => 'catalog.category', 'uses' => 'CatalogController@category']);
     ## Catalog - product page
-    Route::get('/{product}', 'CatalogController@product');
+    Route::get('/product/{product}', ['as' => 'catalog.product', 'uses' => 'CatalogController@product']);
 });
