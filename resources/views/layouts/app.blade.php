@@ -93,7 +93,7 @@
             </div>
             <div class="col-lg-3">
                 <div class="block block-calculate">
-                    <div>Онлайн расчет</div>
+                    <div><a href="{{ route('calculation') }}">Онлайн расчет</a></div>
                     <p>Удобно и быстро</p>
                 </div>
             </div>

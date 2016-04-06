@@ -63,7 +63,7 @@
 
                 <div v-if="node.image" class="center category-image">
                     <div  v-show="! deletingImage">
-                        <div><img class="responsive-img circle z-depth-3" :src="'/images/small/' + node.imgUrl + node.image" style="vertical-align: middle;"></div>
+                        <div><img class="responsive-img circle z-depth-3" :src="'/images/small/' + node.img_url + node.image"></div>
                         <div>&nbsp;</div>
                         <div><button class="btn btn-small red waves-effect waves-light" v-on:click="deleteImage($event)"><i class="material-icons">delete</i></button></div>
                     </div>
@@ -81,7 +81,6 @@
 
 @section('head_scripts')
     <link rel="stylesheet" href="/library/jstree/themes/default/style.min.css" />
-    <link rel="stylesheet" href="/css/admin/categories.css" />
 @endsection
 
 @section('footer_scripts')

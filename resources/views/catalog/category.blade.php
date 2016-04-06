@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', $category->title ?: $category->name)
+
 @section('content')
     <ol class="breadcrumb">
         <li><a href="{{ route('catalog') }}">Каталог</a></li>

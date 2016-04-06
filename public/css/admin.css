@@ -88,6 +88,10 @@ main {
     display: inline-block;
 }
 
+.category-image img {
+    vertical-align: middle;
+}
+
 
 
 /* -------------------------------------------------------------------------- */

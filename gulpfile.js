@@ -15,11 +15,13 @@ elixir(function(mix) {
     /* App files */
     mix.styles([
         '../../../bower_components/bootswatch/cosmo/bootstrap.min.css',
+        '../../../bower_components/magnific-popup/dist/magnific-popup.css',
         '../../../node_modules/font-awesome/css/font-awesome.min.css'
     ], 'public/css/app.bundle.css');
     mix.scripts([
         '../../../node_modules/jquery/dist/jquery.min.js',
-        '../../../node_modules/bootstrap/dist/js/bootstrap.min.js'
+        '../../../node_modules/bootstrap/dist/js/bootstrap.min.js',
+        '../../../bower_components/magnific-popup/dist/jquery.magnific-popup.min.js'
     ], 'public/js/app.bundle.js');
     mix.copy([
         'node_modules/bootstrap/fonts'

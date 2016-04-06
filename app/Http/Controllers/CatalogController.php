@@ -31,7 +31,7 @@ class CatalogController extends Controller
         $descendants = $category->descendants()->get();
         $children = $descendants->whereLoose('parent_id', $category->id);
 
-        $products = Product::whereIn('category_id', [$category->id] + $descendants->pluck('id')->toArray())->get();
+        $products = Product::whereIn('category_id', $descendants->pluck('id')->push($category->id)->toArray())->get();
 
 //        dump($children->toArray());
 //        dump($descendants->toArray());
@@ -53,12 +53,17 @@ class CatalogController extends Controller
         $product = Product::findBySlugOrFail($slug);
         $category = $product->category;
 
+        $sameProductsCount = 3;
+        $sameProducts      = Product::all();
+        $sameProducts      = $sameProducts->random($sameProducts->count() < $sameProductsCount ? $sameProducts->count() : $sameProductsCount);
+
+//        dump($sameProducts->toArray());
 //        dump($children->toArray());
 //        dump($descendants->toArray());
 //        dump($descendants->pluck('id'));
 //        dump($products->toArray());
 //        dump($category->ancestors()->get()->toArray());
 
-        return view('catalog.product', compact('category', 'product'));
+        return view('catalog.product', compact('category', 'product', 'sameProducts'));
     }
 }

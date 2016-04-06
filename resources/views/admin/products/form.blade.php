@@ -16,6 +16,14 @@
     {!! Form::text('price', null, ['class' => 'validate'.($errors->has('price') ? ' invalid' : '')]) !!}
 </div>
 
+<div class="input-field col s12">
+    <select name="material" id="material">
+        <option value="0">- Выберите материал -</option>
+        @foreach (trans('vars.materials') as $key => $val)<option value="{{ $key }}"{{ $item->material == $key ? 'selected' : '' }}>{{ $val }}</option>@endforeach
+    </select>
+    {!! Form::label('material', 'Материал') !!}
+</div>
+
 <div class="input-field col s12 input-checkbox">
     {!! Form::checkbox('available', 1, null, ['id' => 'available', 'class' => $errors->has('available') ? ' invalid' : '']) !!}
     {!! Form::label('available', 'Доступность') !!}

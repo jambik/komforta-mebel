@@ -85,6 +85,17 @@ Route::group(['middleware' => 'web'], function ()
     Route::get('/articles', ['as' => 'articles', 'uses' => 'ArticlesController@index']);
     Route::get('/articles/{slug}', ['as' => 'articles.show', 'uses' => 'ArticlesController@show']);
 
+    ## Catalog - index page
+    Route::get('/catalog', ['as' => 'catalog', 'uses' => 'CatalogController@index']);
+    ## Catalog - category page
+    Route::get('/catalog/{category}', ['as' => 'catalog.category', 'uses' => 'CatalogController@category']);
+    ## Catalog - product page
+    Route::get('/product/{product}', ['as' => 'catalog.product', 'uses' => 'CatalogController@product']);
+
+    ## Calculation request page
+    Route::get('/calculation', ['as' => 'calculation', 'uses' => 'CalculationController@calculate']);
+    Route::post('/calculation', ['as' => 'calculation.send', 'uses' => 'CalculationController@send']);
+
     ## Social routes
     Route::get('auth/github', 'Auth\Social\GitHubAuthController@redirectToProvider');
     Route::get('auth/github/callback', 'Auth\Social\GitHubAuthController@handleProviderCallback');
@@ -102,11 +113,4 @@ Route::group(['middleware' => 'web'], function ()
     Route::get('auth/mailru/callback', 'Auth\Social\MailRuAuthController@handleProviderCallback');
     Route::get('auth/google', 'Auth\Social\GoogleAuthController@redirectToProvider');
     Route::get('auth/google/callback', 'Auth\Social\GoogleAuthController@handleProviderCallback');
-
-    ## Catalog - index page
-    Route::get('/catalog', ['as' => 'catalog', 'uses' => 'CatalogController@index']);
-    ## Catalog - category page
-    Route::get('/catalog/{category}', ['as' => 'catalog.category', 'uses' => 'CatalogController@category']);
-    ## Catalog - product page
-    Route::get('/product/{product}', ['as' => 'catalog.product', 'uses' => 'CatalogController@product']);
 });

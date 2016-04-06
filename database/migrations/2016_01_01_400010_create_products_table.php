@@ -17,6 +17,7 @@ class CreateProductsTable extends Migration
             $table->string('name');
             $table->string('slug')->unique();
             $table->decimal('price')->default(0);
+            $table->tinyInteger('material')->default(0);
             $table->text('brief')->default('');
             $table->mediumText('text')->default('');
             $table->boolean('available')->default(true);

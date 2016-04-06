@@ -16,6 +16,7 @@
   "dependencies": {
     "scrollup": "~2.4.1",
     "bootswatch": "^3.3.6+1",
-    "dropzone": "^4.3.0"
+    "dropzone": "^4.3.0",
+    "magnific-popup": "^1.1.0"
   }
 }

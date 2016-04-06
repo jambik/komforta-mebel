@@ -38,6 +38,7 @@ $factory->define(App\Product::class, function (Faker\Generator $faker) {
         'name' => $name,
         'slug' => $slug,
         'price' => $faker->randomFloat(2, 99, 100000),
+        'material' => $faker->numberBetween(1, 7),
         'brief' => $faker->sentence(),
         'text' => $faker->paragraph(3),
         'available' => $faker->boolean(),
