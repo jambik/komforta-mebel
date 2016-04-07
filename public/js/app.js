@@ -14,4 +14,13 @@ $(document).ready(function() {
         tLoading: 'Загрузка...'
     });
 
+    if ($('input[name=furniture_type]:checked').length){
+        $('#furnitureTypeImage').html('<img src="/img/'+$('input[name=furniture_type]:checked').data('img')+'">');
+    }
+
 });
+
+function changeFurnitureType(element)
+{
+    $('#furnitureTypeImage').html('<img src="/img/'+$(element).data('img')+'">');
+}

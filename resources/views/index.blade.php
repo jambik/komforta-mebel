@@ -1,6 +1,10 @@
-@extends('layouts.app_index')
+@extends('layouts.app')
 
 @section('title', 'Мебель комфорта')
+
+@section('slider')
+    @include('partials._slider')
+@endsection
 
 @section('content')
     {!! $page->text !!}

@@ -12,17 +12,17 @@
         <div class="caption-block caption-block-orange"><div>Ваши данные</div></div>
         <div class="row">
             <div class="col-lg-4">
-                <div class="form-group">
+                <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                     <input type="text" class="form-control" name="name" placeholder="Ваше Имя *" value="{{ old('name') }}">
                 </div>
             </div>
             <div class="col-lg-4">
-                <div class="form-group">
-                    <input type="text" class="form-control" name="phone" placeholder="Телефон *" value="{{ old('phone') }}">
+                <div class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
+                    <input type="text" class="form-control" name="phone" placeholder="Телефон" value="{{ old('phone') }}">
                 </div>
             </div>
             <div class="col-lg-4">
-                <div class="form-group">
+                <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                     <input type="text" class="form-control" name="email" placeholder="Email" value="{{ old('email') }}">
                 </div>
             </div>
@@ -31,11 +31,11 @@
 
         <div class="row">
             <div class="caption-block-grey">Материалы для фасада:</div>
-            @foreach (trans('vars.materials') as $key => $val)
+            @foreach (trans('vars.material') as $key => $val)
                 <div class="col-lg-4">
                     <div class="checkbox">
                         <label>
-                            <input type="checkbox" name="material[{{ $key }}]" id="material_{{ $key }}"> {{ $val }}
+                            <input type="checkbox" name="material[]" value="{{ $key }}" id="material_{{ $key }}"{{ (is_array( old('material')) && in_array($key, old('material'))) ? ' checked' : '' }}> {{ $val }}
                         </label>
                     </div>
                 </div>
@@ -46,16 +46,16 @@
         <div class="row">
             <div class="caption-block-grey">Вид гарнитуры:</div>
             <div class="col-lg-6">
-                @foreach (trans('vars.furniture_types') as $key => $val)
+                @foreach (trans('vars.furniture_type') as $key => $val)
                     <div class="checkbox">
                         <label>
-                            <input type="radio" data-img="{{ $val['img'] }}" name="furniture_type" id="furniture_type_{{ $key }}" value="{{ $key }}"{{ old('furniture_type') == $key ? ' checked' : '' }}> {{ $val['name'] }}
+                            <input type="radio" onchange="changeFurnitureType(this)" data-img="{{ $val['img'] }}" name="furniture_type" id="furniture_type_{{ $key }}" value="{{ $key }}"{{ old('furniture_type') == $key ? ' checked' : '' }}> {{ $val['name'] }}
                         </label>
                     </div>
                 @endforeach
             </div>
-            <div class="col-lg-6">
-                <img src="{{ asset('img/furniture-type-p.png') }}">
+            <div class="col-lg-6" id="furnitureTypeImage">
+
             </div>
         </div>
         <p>&nbsp;</p>
@@ -76,7 +76,7 @@
                 <div class="col-lg-4">
                     <div class="checkbox">
                         <label>
-                            <input type="checkbox" name="equipment[{{ $key }}]" id="equipment_{{ $key }}"> {{ $val }}
+                            <input type="checkbox" name="equipment[]" value="{{ $key }}" id="equipment_{{ $key }}"{{ (is_array( old('equipment')) && in_array($key, old('equipment'))) ? ' checked' : '' }}> {{ $val }}
                         </label>
                     </div>
                 </div>

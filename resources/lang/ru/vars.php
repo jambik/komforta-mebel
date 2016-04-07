@@ -2,7 +2,7 @@
 
 return [
 
-    'materials' => [
+    'material' => [
         1 => 'Натуральное дерево',
         2 => 'Пластик',
         3 => 'МДФ пленка',
@@ -12,7 +12,7 @@ return [
         7 => 'Натуральный шпон',
     ],
 
-    'furniture_types' => [
+    'furniture_type' => [
         1 => ['name' => 'П-образный', 'img' => 'furniture-type-p.png'],
         2 => ['name' => 'Г-образный слева', 'img' => 'furniture-type-left.png'],
         3 => ['name' => 'Г-образный справа', 'img' => 'furniture-type-right.png'],

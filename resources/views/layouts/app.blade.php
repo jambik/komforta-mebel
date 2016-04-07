@@ -82,6 +82,8 @@
     </div>
 </nav>
 
+@yield('slider')
+
 <section id="blocks">
     <div class="container">
         <div class="row">
@@ -121,24 +123,13 @@
                 <div class="categories">
                     <div class="categories-top"></div>
                     <div class="categories-middle">
-                        <ul>
-                            <li><a href="#">Шкафы-купе</a></li>
-                            <li><a href="#">Кухни</a></li>
-                            <li><a href="#">Гостинные</a></li>
-                            <li><a href="#">Детские</a></li>
-                            <li><a href="#">Мойки</a></li>
-                            <li><a href="#">Техника</a></li>
-                            <li><a href="#">Травертин</a></li>
-                            <li><a href="#">Оникс</a></li>
-                        </ul>
+                        @include('partials._categories')
                     </div>
                     <div class="categories-bottom"></div>
                 </div>
             </div>
             <div class="col-lg-9">
-
                 @yield('content')
-
             </div>
         </div>
     </div>
