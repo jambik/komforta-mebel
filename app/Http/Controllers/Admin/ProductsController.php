@@ -7,12 +7,14 @@ use App\Product;
 use Flash;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Purl\Url;
 
 class ProductsController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
+     * @param Request $request
      * @return Response
      */
     public function index(Request $request)
@@ -31,9 +33,21 @@ class ProductsController extends Controller
      *
      * @return Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('admin.products.create');
+        $categories = Category::withDepth()->get()->toFlatTree();
+        foreach ($categories as $category) {
+            $prefix = str_repeat('&nbsp;', $category->depth * 8);
+            $category->name = $prefix . $category->name;
+        }
+        $categories = $categories->lists('name', 'id');
+
+        $previousUrl = $request->session()->previousUrl();
+        parse_str(parse_url($previousUrl, PHP_URL_QUERY), $queryParams);
+
+        $categoryId = isset($queryParams['category']) ? $queryParams['category'] : false;
+
+        return view('admin.products.create', compact('categories', 'categoryId'));
     }
 
     /**
@@ -82,7 +96,24 @@ class ProductsController extends Controller
     {
         $item = Product::findOrFail($id);
 
-        return view('admin.products.edit', compact('item'));
+        /*$categories = Category::withDepth()->get()->toTree();
+        $traverse = function ($categories) use (&$traverse) {
+            foreach ($categories as $category) {
+                $prefix = str_repeat(' ', $category->depth * 5);
+                $category->name = $prefix . $category->name;
+                $traverse($category->children);
+            }
+        };
+        $traverse($categories);*/
+
+        $categories = Category::withDepth()->get()->toFlatTree();
+        foreach ($categories as $category) {
+            $prefix = str_repeat('&nbsp;', $category->depth * 8);
+            $category->name = $prefix . $category->name;
+        }
+        $categories = $categories->lists('name', 'id');
+
+        return view('admin.products.edit', compact('item', 'categories'));
     }
 
     /**

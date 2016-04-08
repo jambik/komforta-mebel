@@ -17,9 +17,14 @@
 </div>
 
 <div class="input-field col s12">
+    {!! Form::select('category_id', $categories, isset($categoryId) ? $categoryId : null, ['class' => 'validate'.($errors->has('category_id') ? ' invalid' : '')]) !!}
+    {!! Form::label('category_id', 'Категория') !!}
+</div>
+
+<div class="input-field col s12">
     <select name="material" id="material">
         <option value="0">- Выберите материал -</option>
-        @foreach (trans('vars.materials') as $key => $val)<option value="{{ $key }}"{{ $item->material == $key ? 'selected' : '' }}>{{ $val }}</option>@endforeach
+        @foreach (trans('vars.material') as $key => $val)<option value="{{ $key }}"{{ isset($item) && $item->material == $key ? ' selected' : '' }}>{{ $val }}</option>@endforeach
     </select>
     {!! Form::label('material', 'Материал') !!}
 </div>
