@@ -92,6 +92,11 @@ main {
     vertical-align: middle;
 }
 
+/* products */
+.products .collection span.badge {
+    min-width: auto;
+    border-radius: 4px;
+}
 
 
 /* -------------------------------------------------------------------------- */

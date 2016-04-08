@@ -49,4 +49,27 @@ class Category extends Model implements SluggableInterface
     {
         return $this->hasMany('App\Product');
     }
+
+    /**
+     * Добавляем пробелы в начале названий категорий, чтобы была видна вложенность
+     *
+     * @param $categories
+     */
+    public static function addSpaces($categories)
+    {
+        /*$categories = Category::withDepth()->get()->toTree();
+        $traverse = function ($categories) use (&$traverse) {
+            foreach ($categories as $category) {
+                $prefix = str_repeat(' ', $category->depth * 5);
+                $category->name = $prefix . $category->name;
+                $traverse($category->children);
+            }
+        };
+        $traverse($categories);*/
+
+        foreach ($categories as $category) {
+            $prefix = str_repeat('&nbsp;', $category->depth * 8);
+            $category->name = $prefix . $category->name;
+        }
+    }
 }

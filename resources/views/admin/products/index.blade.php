@@ -3,12 +3,12 @@
 @section('content')
     <h4 class="center">Продукты</h4>
 
-    <div class="row">
+    <div class="row products">
         <div class="col s3">
             <div class="collection">
                 <a href="{{ route('admin.products.index') }}" class="collection-item blue-grey lighten-2 white-text"><strong>Категории</strong></a>
                 @foreach($categories as $category)
-                    <a href="{{ route('admin.products.index').'?category='.$category->id }}" class="collection-item depth-{{ $category->depth }}{{ request('category') == $category->id ? ' active' : '' }}">{{ $category->name }}</a>
+                    <a href="{{ route('admin.products.index').'?category='.$category->id }}" class="collection-item depth-{{ $category->depth }}{{ request('category') == $category->id ? ' active' : '' }}">{{ $category->name }}{!! $category->products_count ? '<span class="badge teal white-text">' . $category->products_count . '</span>' : '' !!}</a>
                 @endforeach
             </div>
         </div>
@@ -23,7 +23,6 @@
                         <th>Название</th>
                         <th>Alias</th>
                         <th>Цена</th>
-                        {{--<th>Описание</th>--}}
                         <th>Доступность</th>
                         <th class="filter-false btn-collumn" data-sorter="false"></th>
                         <th class="filter-false btn-collumn" data-sorter="false"></th>
@@ -55,7 +54,6 @@
                             <td>{{ $item->name }}</td>
                             <td>{{ $item->slug }}</td>
                             <td>{{ $item->price }}</td>
-{{--                            <td>{{ str_limit($item->brief, 150, '...') }}</td>--}}
                             <td>{{ $item->available ? 'есть' : 'нет' }}</td>
                             <td><a href="{{ route('admin.products.edit', $item->id) }}" class="btn btn-small waves-effect waves-light"><i class="material-icons">edit</i></a></td>
                             <td><button onclick="confirmDelete(this, '{{ $item->id }}')" class="btn btn-small waves-effect waves-light red darken-2"><i class="material-icons">delete</i></button></td>

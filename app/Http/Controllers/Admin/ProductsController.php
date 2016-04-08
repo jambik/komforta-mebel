@@ -7,7 +7,6 @@ use App\Product;
 use Flash;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Purl\Url;
 
 class ProductsController extends Controller
 {
@@ -23,7 +22,14 @@ class ProductsController extends Controller
 
         $items = $category ? Product::whereCategoryId($category)->get() : Product::all();
 
-        $categories = Category::withDepth()->defaultOrder()->get()->toFlatTree();
+        $categories = Category::select("categories.*")
+                              ->selectRaw('COUNT(products.id) as products_count')
+                              ->withDepth()
+                              ->leftJoin('products', 'categories.id', '=', 'products.category_id')
+                              ->groupBy('categories.id')
+                              ->defaultOrder()
+                              ->get()
+                              ->toFlatTree();
 
         return view('admin.products.index', compact('items', 'categories'));
     }
@@ -31,21 +37,18 @@ class ProductsController extends Controller
     /**
      * Show the form for creating a new resource.
      *
+     * @param Request $request
      * @return Response
      */
     public function create(Request $request)
     {
         $categories = Category::withDepth()->get()->toFlatTree();
-        foreach ($categories as $category) {
-            $prefix = str_repeat('&nbsp;', $category->depth * 8);
-            $category->name = $prefix . $category->name;
-        }
+
+        Category::addSpaces($categories);
+
         $categories = $categories->lists('name', 'id');
 
-        $previousUrl = $request->session()->previousUrl();
-        parse_str(parse_url($previousUrl, PHP_URL_QUERY), $queryParams);
-
-        $categoryId = isset($queryParams['category']) ? $queryParams['category'] : false;
+        $categoryId = $this->hasParamInPreviousUrl('category', $request);
 
         return view('admin.products.create', compact('categories', 'categoryId'));
     }
@@ -96,21 +99,10 @@ class ProductsController extends Controller
     {
         $item = Product::findOrFail($id);
 
-        /*$categories = Category::withDepth()->get()->toTree();
-        $traverse = function ($categories) use (&$traverse) {
-            foreach ($categories as $category) {
-                $prefix = str_repeat(' ', $category->depth * 5);
-                $category->name = $prefix . $category->name;
-                $traverse($category->children);
-            }
-        };
-        $traverse($categories);*/
-
         $categories = Category::withDepth()->get()->toFlatTree();
-        foreach ($categories as $category) {
-            $prefix = str_repeat('&nbsp;', $category->depth * 8);
-            $category->name = $prefix . $category->name;
-        }
+
+        Category::addSpaces($categories);
+
         $categories = $categories->lists('name', 'id');
 
         return view('admin.products.edit', compact('item', 'categories'));
@@ -210,6 +202,21 @@ class ProductsController extends Controller
         Flash::success("Фотография загружена");
 
         return redirect(route('admin.products.index'));
+    }
+
+    /**
+     * Получаем параметр category из previous url, для того чтобы при создании выбиралась нужная каегория
+     *
+     * @param $param
+     * @param Request $request
+     * @return string|bool
+     */
+    public function hasParamInPreviousUrl($param, Request $request)
+    {
+        $previousUrl = $request->session()->previousUrl();
+        parse_str(parse_url($previousUrl, PHP_URL_QUERY), $queryParams);
+
+        return isset($queryParams[$param]) ? $queryParams[$param] : false;
     }
 
 }
