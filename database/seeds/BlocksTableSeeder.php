@@ -7,8 +7,8 @@ class BlocksTableSeeder extends Seeder
 {
     protected $items = [
 
-        [0, 'description', 'Описание сайта в шапке', '<p>Описание сайта в шапке.</p>'],
-        [1, 'footer', 'Текст снизу', '<p>Текст снизу.</p>'],
+        ['description', 'Описание сайта в шапке', '<p>Описание сайта в шапке.</p>'],
+        ['footer', 'Текст снизу', '<p>Текст снизу.</p>'],
 
     ];
 
@@ -21,7 +21,7 @@ class BlocksTableSeeder extends Seeder
     {
         for($i=0, $iMax=count($this->items); $i<$iMax; $i++)
         {
-            $row = array_combine(['id', 'alias', 'title', 'text'], $this->items[$i]);
+            $row = array_combine(['alias', 'title', 'text'], $this->items[$i]);
 
             Block::create($row);
         }
