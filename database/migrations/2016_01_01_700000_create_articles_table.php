@@ -20,6 +20,7 @@ class CreateArticlesTable extends Migration
             $table->string('title');
             $table->string('keywords');
             $table->string('description');
+            $table->integer('position');
             $table->timestamps();
         });
     }

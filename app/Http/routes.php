@@ -1,17 +1,6 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| This route group applies the "web" middleware group to every route
-| it contains. The "web" middleware group is defined in your HTTP
-| kernel and includes session state, CSRF protection, and more.
-|
-*/
-
-/* Admin routes ----------------------------------------------------------------------------------------------------- */
+/* ------------------------------------------- Admin routes --------------------------------------------------------- */
 Route::group(['prefix' => 'admin', 'middleware' => 'web'], function()
 {
     ## Admin login/logout
@@ -59,9 +48,13 @@ Route::group(['prefix' => 'admin', 'middleware' => 'web'], function()
 
         ## Administrators
         Route::resource('administrators', 'Admin\AdministratorsController');
+
+        ## Sortable routes
+        Route::post('sort', ['as' => 'sort', 'uses' => '\Rutorika\Sortable\SortableController@sort']);
     });
 });
 
+/* --------------------------------------------- App routes --------------------------------------------------------- */
 Route::group(['middleware' => 'web'], function ()
 {
     ## Authentication / Registration / Password Reset

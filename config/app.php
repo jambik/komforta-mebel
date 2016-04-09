@@ -156,6 +156,7 @@ return [
         SocialiteProviders\Manager\ServiceProvider::class,
         Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class,
         Cviebrock\EloquentSluggable\SluggableServiceProvider::class,
+        Rutorika\Sortable\SortableServiceProvider::class,
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
         Clockwork\Support\Laravel\ClockworkServiceProvider::class,

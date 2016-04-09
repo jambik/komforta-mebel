@@ -30,6 +30,16 @@ $factory->define(App\Page::class, function (Faker\Generator $faker) {
     ];
 });
 
+$factory->define(App\Article::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->word,
+        'text' => $faker->paragraph(3),
+        'title' => $faker->sentence(2),
+        'keywords' => implode(', ', $faker->words(4)),
+        'description' => $faker->sentence(),
+    ];
+});
+
 $factory->define(App\Product::class, function (Faker\Generator $faker) {
     $name = $faker->word;
     $slug = str_slug($name);

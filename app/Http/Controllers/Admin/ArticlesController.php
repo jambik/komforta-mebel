@@ -16,7 +16,7 @@ class ArticlesController extends Controller
      */
     public function index()
     {
-        $items = Article::all();
+        $items = Article::sorted()->get();
 
         return view('admin.articles.index', compact('items'));
     }
