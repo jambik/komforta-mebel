@@ -11,7 +11,7 @@
     </div>
 @endif
 
-<div class="input-field col s12">
+<div class="input-field col s12 input-html">
     {!! Form::label('text', 'Текст статьи') !!}
     {!! Form::textarea('text', null, ['class' => 'materialize-textarea validate'.($errors->has('text') ? ' invalid' : '')]) !!}
 </div>
@@ -38,3 +38,7 @@
 <div class="input-field col s12 center">
 	<a href="{{ route('admin.articles.index') }}" class="btn grey waves-effect waves-light">Отмена</a>
 </div>
+
+@section('head_scripts')
+    <script src="/library/ckeditor/ckeditor.js"></script>
+@endsection

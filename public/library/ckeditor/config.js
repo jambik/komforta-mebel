@@ -16,7 +16,7 @@ CKEDITOR.editorConfig = function( config ) {
         { name: 'insert' },
         { name: 'forms' },
         { name: 'tools' },
-        { name: 'document',	   groups: [ 'mode', 'document', 'doctools' ] },
+        { name: 'document',	   groups: [ 'mode', 'document', 'doctools', 'CreateDiv' ] },
         { name: 'others' },
         '/',
         { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
@@ -35,6 +35,9 @@ CKEDITOR.editorConfig = function( config ) {
 
     // Simplify the dialog windows.
     //config.removeDialogTabs = 'image:advanced;link:advanced';
+
+    config.bodyClass = 'container';
+    config.contentsCss = ['/css/app.bundle.css', '/css/app.css'];
 
     config.filebrowserBrowseUrl      = '/library/ckfinder/ckfinder.html';
     config.filebrowserImageBrowseUrl = '/library/ckfinder/ckfinder.html?type=Images';

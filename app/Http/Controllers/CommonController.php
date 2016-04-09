@@ -9,14 +9,14 @@ use Mail;
 use ReCaptcha\ReCaptcha;
 use Validator;
 
-class FeedbackController extends Controller
+class CommonController extends Controller
 {
     /**
      * Show the feedback page.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function feedback()
     {
         return view('feedback');
     }
@@ -27,7 +27,7 @@ class FeedbackController extends Controller
      * @param Request $request
      * @return Response
      */
-    public function send(Request $request)
+    public function feedbackSend(Request $request)
     {
         $rules = [
             'name' => 'required',
@@ -68,5 +68,48 @@ class FeedbackController extends Controller
         });
 
         return redirect('feedback')->with('status', 'Сообщение отправлено');
+    }
+
+    /**
+     * Send request design form.
+     *
+     * @param Request $request
+     * @return Response
+     */
+    public function requestDesign(Request $request)
+    {
+        $rules = [
+            'name' => 'required',
+            'email' => 'required_if:phone,""',
+            'phone' => 'required_if:email,""',
+        ];
+
+        $messages = [
+            'name.required' => 'Введите Ваше имя. Мы же должны как-то к Вам обращаться :)',
+            'email.required_if' => 'А где же ваш email для обратной связи?',
+            'phone.required_if' => 'Укажите пожалуйста Ваш телефончик для обратной связи',
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        if ($validator->fails())
+        {
+            $this->throwValidationException($request, $validator);
+        }
+
+        Mail::queue('emails.request_design', ['input' => $request->all()], function ($message) {
+            $message->from(env('MAIL_ADDRESS'), env('MAIL_NAME'));
+            $message->to(env('MAIL_ADDRESS'));
+            $message->subject('Заявка на дизайн/замер');
+        });
+
+        if ($request->ajax()){
+            return json_encode([
+                'status' => 'ok',
+                'message' => 'Заявка на дизайн/замер успешно отправлена',
+            ]);
+        }
+
+        return redirect('feedback')->with('status', 'Заявка на дизайн/замер успешно отправлена');
     }
 }

@@ -15,12 +15,17 @@ elixir(function(mix) {
     /* App files */
     mix.styles([
         '../../../bower_components/bootswatch/cosmo/bootstrap.min.css',
+        '../../../node_modules/sweetalert/dist/sweetalert.css',
         '../../../bower_components/magnific-popup/dist/magnific-popup.css',
-        '../../../node_modules/font-awesome/css/font-awesome.min.css'
+        '../../../node_modules/font-awesome/css/font-awesome.min.css',
+        '../../../node_modules/animate.css/animate.min.css'
     ], 'public/css/app.bundle.css');
     mix.scripts([
         '../../../node_modules/jquery/dist/jquery.min.js',
         '../../../node_modules/bootstrap/dist/js/bootstrap.min.js',
+        '../../../node_modules/sweetalert/dist/sweetalert.min.js',
+        '../../../node_modules/jquery.scrollto/jquery.scrollTo.min.js',
+        '../../../node_modules/noty/js/noty/packaged/jquery.noty.packaged.min.js',
         '../../../bower_components/magnific-popup/dist/jquery.magnific-popup.min.js'
     ], 'public/js/app.bundle.js');
     mix.copy([

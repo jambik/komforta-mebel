@@ -64,8 +64,11 @@ Route::group(['middleware' => 'web'], function ()
     Route::get('/', ['as' => 'index', 'uses' => 'IndexController@index']);
 
     # Feedback
-    Route::get('feedback', ['as' => 'feedback', 'uses' => 'FeedbackController@index']);
-    Route::post('feedback', ['as' => 'feedback.send', 'uses' => 'FeedbackController@send']);
+    Route::get('feedback', ['as' => 'feedback', 'uses' => 'CommonController@feedback']);
+    Route::post('feedback', ['as' => 'feedback.send', 'uses' => 'CommonController@feedbackSend']);
+
+    ## Design request page
+    Route::post('/request_design', ['as' => 'request.design', 'uses' => 'CommonController@requestDesign']);
 
     ## Pages
     Route::get('/page/{slug}', ['as' => 'page.show', 'uses' => 'PagesController@show']);

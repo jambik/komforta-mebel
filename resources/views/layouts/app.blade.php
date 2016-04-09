@@ -29,8 +29,8 @@
 
 <header>
     <div class="container">
-        <div class="row">
-            <div class="col-lg-4 logo">
+        <div class="row logo-row">
+            <div class="col-lg-4 col-md-4 col-sm-6 logo">
                 <div class="logo-img">
                     <a href="/"><img src="{{ asset('img/logo.png') }}" class="img-responsive"></a>
                 </div>
@@ -39,7 +39,7 @@
                     <div class="slogan">У нас свое производство</div>
                 </div>
             </div>
-            <div class="col-lg-3 phones">
+            <div class="col-lg-3 col-md-3 col-sm-6 phones">
                 <div class="phone">
                     Телефон: <span>+7 (495) 123-45-67</span>
                 </div>
@@ -47,14 +47,14 @@
                     <img src="{{ asset('img/phone.png') }}">
                 </div>
             </div>
-            <div class="col-lg-5 contacts text-right">
+            <div class="col-lg-5 col-md-5 col-sm-6 contacts text-right">
                 <div class="address">г.Москва, Алтуфьевское шоссе 33</div>
                 <div class="email">E-mail: info@mebel-kf.ru</div>
                 <div class="row search">
-                    <form action="#search" method="GET" class="col-lg-6">
+                    <form action="#search" method="GET" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                         <input type="text" class="form-control input-sm" name="search" placeholder="поиск по сайту">
                     </form>
-                    <div class="col-lg-6">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                         <select class="form-control input-sm">
                             <option>Выбрать шкаф купе</option>
                         </select>
@@ -87,25 +87,25 @@
 <section id="blocks">
     <div class="container">
         <div class="row">
-            <div class="col-lg-3">
+            <div class="col-lg-3 col-md-3 col-sm-6">
                 <div class="block block-callback">
                     <div>Обратный звонок</div>
                     <p>Мы Вам перезвоним</p>
                 </div>
             </div>
-            <div class="col-lg-3">
+            <div class="col-lg-3 col-md-3 col-sm-6">
                 <div class="block block-calculate">
                     <div><a href="{{ route('calculation') }}">Онлайн расчет</a></div>
                     <p>Удобно и быстро</p>
                 </div>
             </div>
-            <div class="col-lg-3">
+            <div class="col-lg-3 col-md-3 col-sm-6">
                 <div class="block block-measure">
                     <div>Замер и Дизайн</div>
                     <p>Выезд бесплатно</p>
                 </div>
             </div>
-            <div class="col-lg-3">
+            <div class="col-lg-3 col-md-3 col-sm-6">
                 <div class="block block-delivery">
                     <div>Доставка</div>
                     <p>Ознакомиться с условиями</p>
@@ -118,7 +118,7 @@
 <section id="main">
     <div class="container">
         <div class="row">
-            <div class="col-lg-3">
+            <div class="col-lg-3 col-md-4">
                 <div class="caption-1">Каталог</div>
                 <div class="categories">
                     <div class="categories-top"></div>
@@ -128,7 +128,7 @@
                     <div class="categories-bottom"></div>
                 </div>
             </div>
-            <div class="col-lg-9">
+            <div class="col-lg-9 col-md-8">
                 @yield('content')
             </div>
         </div>
@@ -155,6 +155,7 @@
     </div>
 </footer>
 
+@include('partials._request_design')
 @include('partials._flash')
 @yield('footer_scripts')
 </body>
