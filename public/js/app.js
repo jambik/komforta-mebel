@@ -6,6 +6,12 @@ $(document).ready(function() {
         })
     }
 
+    if ($('#form_callback').length) {
+        $('#form_callback').on('submit', function(e){
+            ajaxFormSubmit(e, callbackSuccess);
+        })
+    }
+
     if ($('.popup-gallery').length){
         $('.popup-gallery').magnificPopup({
             type: 'image',
@@ -22,8 +28,23 @@ $(document).ready(function() {
         });
     }
 
+    if ($('.popup-product').length){
+        $('.popup-product').magnificPopup({
+            type: 'image',
+            zoom: {
+                enabled: true
+            },
+            tLoading: 'Загрузка...'
+        });
+    }
+
+    // Проверяем не установлен ли Вид гарнитуры, если да то отображем нужную картинку, если нет то выбираем первую
     if ($('input[name=furniture_type]:checked').length){
         $('#furnitureTypeImage').html('<img src="/img/'+$('input[name=furniture_type]:checked').data('img')+'">');
+    }
+    else if ($('input[name=furniture_type]').length){
+        $('input[name=furniture_type]')[0].checked = true;
+        changeFurnitureType($('input[name=furniture_type]')[0]);
     }
 
 });
@@ -93,6 +114,12 @@ function ajaxFormSubmit(e, successFunction)
 function requestDesignSuccess(data)
 {
     $('#requestDesignModal').modal('hide');
+    showNoty(data.message, 'success');
+}
+
+function callbackSuccess(data)
+{
+    $('#callbackModal').modal('hide');
     showNoty(data.message, 'success');
 }
 

@@ -112,4 +112,43 @@ class CommonController extends Controller
 
         return redirect('feedback')->with('status', 'Заявка на дизайн/замер успешно отправлена');
     }
+
+    /**
+     * Send callback form.
+     *
+     * @param Request $request
+     * @return Response
+     */
+    public function callback(Request $request)
+    {
+        $rules = [
+            'phone' => 'required',
+        ];
+
+        $messages = [
+            'phone.required' => 'Укажите пожалуйста Ваш телефончик для обратной связи',
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        if ($validator->fails())
+        {
+            $this->throwValidationException($request, $validator);
+        }
+
+        Mail::queue('emails.callback', ['input' => $request->all()], function ($message) {
+            $message->from(env('MAIL_ADDRESS'), env('MAIL_NAME'));
+            $message->to(env('MAIL_ADDRESS'));
+            $message->subject('Обратный звонок');
+        });
+
+        if ($request->ajax()){
+            return json_encode([
+                'status' => 'ok',
+                'message' => 'Заявка на обратный звонок отправлена',
+            ]);
+        }
+
+        return redirect('feedback')->with('status', 'Заявка на обратный звонок отправлена');
+    }
 }

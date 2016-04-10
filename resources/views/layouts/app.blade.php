@@ -72,10 +72,10 @@
                 <li><a href="/">Главная</a></li>
                 <li><a href="{{ url('/page/o-kompanii') }}">О компании</a></li>
                 <li><a href="{{ url('/page/kak-sdelat-zakaz') }}">Как сделать заказ</a></li>
-                <li><a href="{{ url('/catalog') }}">Каталог</a></li>
-                <li><a href="{{ url('/articles') }}">Статьи</a></li>
+                <li><a href="{{ route('catalog') }}">Каталог</a></li>
+                <li><a href="{{ route('articles') }}">Статьи</a></li>
                 <li><a href="{{ url('/page/proizvodstvo') }}">Производство</a></li>
-                <li><a href="{{ url('/page/nashe-portfolio') }}">Наше портфолио</a></li>
+                <li><a href="{{ route('galleries') }}">Наше портфолио</a></li>
                 <li><a href="{{ url('/page/nashi-kontakty') }}">Наши контакты</a></li>
             </ul>
         </div>
@@ -89,7 +89,7 @@
         <div class="row">
             <div class="col-lg-3 col-md-3 col-sm-6">
                 <div class="block block-callback">
-                    <div>Обратный звонок</div>
+                    <div><a href="#" onclick="return false" data-toggle="modal" data-target="#callbackModal">Обратный звонок</a></div>
                     <p>Мы Вам перезвоним</p>
                 </div>
             </div>
@@ -101,7 +101,7 @@
             </div>
             <div class="col-lg-3 col-md-3 col-sm-6">
                 <div class="block block-measure">
-                    <div>Замер и Дизайн</div>
+                    <div><a href="{{ url('/page/zamer-i-dizayn') }}">Замер и Дизайн</a></div>
                     <p>Выезд бесплатно</p>
                 </div>
             </div>
@@ -145,10 +145,10 @@
                 <li><a href="/">Главная</a></li>
                 <li><a href="{{ url('/page/o-kompanii') }}">О компании</a></li>
                 <li><a href="{{ url('/page/kak-sdelat-zakaz') }}">Как сделать заказ</a></li>
-                <li><a href="{{ url('/catalog') }}">Каталог</a></li>
-                <li><a href="{{ url('/articles') }}">Статьи</a></li>
+                <li><a href="{{ route('catalog') }}">Каталог</a></li>
+                <li><a href="{{ route('articles') }}">Статьи</a></li>
                 <li><a href="{{ url('/page/proizvodstvo') }}">Производство</a></li>
-                <li><a href="{{ url('/page/nashe-portfolio') }}">Наше портфолио</a></li>
+                <li><a href="{{ route('galleries') }}">Наше портфолио</a></li>
                 <li><a href="{{ url('/page/nashi-kontakty') }}">Наши контакты</a></li>
             </ul>
         </div>
@@ -156,6 +156,7 @@
 </footer>
 
 @include('partials._request_design')
+@include('partials._callback')
 @include('partials._flash')
 @yield('footer_scripts')
 </body>

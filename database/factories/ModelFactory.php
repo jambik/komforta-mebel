@@ -41,12 +41,8 @@ $factory->define(App\Article::class, function (Faker\Generator $faker) {
 });
 
 $factory->define(App\Product::class, function (Faker\Generator $faker) {
-    $name = $faker->word;
-    $slug = str_slug($name);
-
     return [
-        'name' => $name,
-        'slug' => $slug,
+        'name' => $faker->company,
         'price' => $faker->randomFloat(2, 99, 100000),
         'material' => $faker->numberBetween(1, 7),
         'brief' => $faker->sentence(),
@@ -55,7 +51,7 @@ $factory->define(App\Product::class, function (Faker\Generator $faker) {
         'title' => $faker->sentence(2),
         'keywords' => implode(', ', $faker->words(4)),
         'description' => $faker->sentence(),
-        'category_id' => $faker->randomElement([4,5,6,7,9,10,11,12,13,14,15]),
+        'category_id' => $faker->numberBetween(1, 8),
         'image' => $faker->image(storage_path('images').DIRECTORY_SEPARATOR.'products', 640, 480, null, false, false),
     ];
 });

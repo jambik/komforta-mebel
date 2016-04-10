@@ -67,30 +67,37 @@ Route::group(['middleware' => 'web'], function ()
     Route::get('feedback', ['as' => 'feedback', 'uses' => 'CommonController@feedback']);
     Route::post('feedback', ['as' => 'feedback.send', 'uses' => 'CommonController@feedbackSend']);
 
-    ## Design request page
-    Route::post('/request_design', ['as' => 'request.design', 'uses' => 'CommonController@requestDesign']);
+    ## Design request
+    Route::post('request_design', ['as' => 'request.design', 'uses' => 'CommonController@requestDesign']);
+
+    ## Callback
+    Route::post('callback', ['as' => 'callback', 'uses' => 'CommonController@callback']);
 
     ## Pages
-    Route::get('/page/{slug}', ['as' => 'page.show', 'uses' => 'PagesController@show']);
+    Route::get('page/{slug}', ['as' => 'page.show', 'uses' => 'PagesController@show']);
 
     ## News
-    Route::get('/news', ['as' => 'news', 'uses' => 'NewsController@index']);
-    Route::get('/news/{id}', ['as' => 'news.show', 'uses' => 'NewsController@show']);
+    Route::get('news', ['as' => 'news', 'uses' => 'NewsController@index']);
+    Route::get('news/{id}', ['as' => 'news.show', 'uses' => 'NewsController@show']);
 
     ## Articles
-    Route::get('/articles', ['as' => 'articles', 'uses' => 'ArticlesController@index']);
-    Route::get('/articles/{slug}', ['as' => 'articles.show', 'uses' => 'ArticlesController@show']);
+    Route::get('articles', ['as' => 'articles', 'uses' => 'ArticlesController@index']);
+    Route::get('articles/{slug}', ['as' => 'articles.show', 'uses' => 'ArticlesController@show']);
+
+    ## Photo gallery
+    Route::get('galleries', ['as' => 'galleries', 'uses' => 'GalleriesController@index']);
+    Route::get('galleries/{slug}', ['as' => 'galleries.show', 'uses' => 'GalleriesController@show']);
 
     ## Catalog - index page
-    Route::get('/catalog', ['as' => 'catalog', 'uses' => 'CatalogController@index']);
+    Route::get('catalog', ['as' => 'catalog', 'uses' => 'CatalogController@index']);
     ## Catalog - category page
-    Route::get('/catalog/{category}', ['as' => 'catalog.category', 'uses' => 'CatalogController@category']);
+    Route::get('catalog/{category}', ['as' => 'catalog.category', 'uses' => 'CatalogController@category']);
     ## Catalog - product page
-    Route::get('/product/{product}', ['as' => 'catalog.product', 'uses' => 'CatalogController@product']);
+    Route::get('product/{product}', ['as' => 'catalog.product', 'uses' => 'CatalogController@product']);
 
     ## Calculation request page
-    Route::get('/calculation', ['as' => 'calculation', 'uses' => 'CalculationController@calculate']);
-    Route::post('/calculation', ['as' => 'calculation.send', 'uses' => 'CalculationController@send']);
+    Route::get('calculation', ['as' => 'calculation', 'uses' => 'CalculationController@calculate']);
+    Route::post('calculation', ['as' => 'calculation.send', 'uses' => 'CalculationController@send']);
 
     ## Social routes
     Route::get('auth/github', 'Auth\Social\GitHubAuthController@redirectToProvider');

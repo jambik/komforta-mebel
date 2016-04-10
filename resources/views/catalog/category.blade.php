@@ -23,5 +23,7 @@
         <div class="row products-tiles">
             @each('catalog.product_tile', $products, 'product')
         </div>
+    @else
+        <div>В этой категории нет товаров</div>
     @endif
 @endsection
