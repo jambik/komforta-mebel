@@ -1,4 +1,4 @@
-<div class="col-lg-4">
+<div class="col-lg-4 col-md-6 col-sm-6">
     <div class="product-tile">
         <div class="img">
             @if ($product->image)
