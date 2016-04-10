@@ -1,16 +1,19 @@
 <div class="input-field col s12">
-    {!! Form::label('title', 'Заголовок слайда') !!}
-    {!! Form::text('title', null, ['class' => 'validate'.($errors->has('title') ? ' invalid' : '')]) !!}
+    {!! Form::label('name', 'Название') !!}
+    {!! Form::text('name', null, ['class' => 'validate'.($errors->has('name') ? ' invalid' : '')]) !!}
 </div>
 
+@if (isset($item))
+    <div class="input-field col s12">
+        {!! Form::label('slug', 'Alias') !!}
+        {!! Form::text('slug', null, ['class' => 'validate'.($errors->has('slug') ? ' invalid' : '')]) !!}
+        <small>alias для красивого отображения url</small>
+    </div>
+@endif
+
 <div class="input-field col s12">
-    {!! Form::label('text', 'Текст слайда') !!}
+    {!! Form::label('text', 'Описание фотогалереи') !!}
     {!! Form::textarea('text', null, ['class' => 'validate materialize-textarea'.($errors->has('text') ? ' invalid' : '')]) !!}
-</div>
-
-<div class="input-field col s12">
-    {!! Form::label('url', 'Url (ссылка)') !!}
-    {!! Form::text('url', null, ['class' => 'validate materialize-textarea'.($errors->has('url') ? ' invalid' : '')]) !!}
 </div>
 
 <div class="input-field file-field col s12">
@@ -34,5 +37,5 @@
 </div>
 
 <div class="input-field col s12 center">
-    <a href="{{ route('admin.slides.index') }}" class="btn grey waves-effect waves-light">Отмена</a>
+    <a href="{{ route('admin.galleries.index') }}" class="btn grey waves-effect waves-light">Отмена</a>
 </div>

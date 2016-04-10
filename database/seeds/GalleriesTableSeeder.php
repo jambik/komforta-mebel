@@ -1,9 +1,9 @@
 <?php
 
-use App\Slide;
+use App\Gallery;
 use Illuminate\Database\Seeder;
 
-class SlidesTableSeeder extends Seeder
+class GalleriesTableSeeder extends Seeder
 {
     protected $items = [
 
@@ -18,9 +18,9 @@ class SlidesTableSeeder extends Seeder
     {
         for($i=0, $iMax=count($this->items); $i<$iMax; $i++)
         {
-            $row = array_combine(['title', 'text', 'url', 'image'], $this->items[$i]);
+            $row = array_combine(['name', 'text', 'image'], $this->items[$i]);
 
-            Slide::create($row);
+            Gallery::create($row);
         }
     }
 }

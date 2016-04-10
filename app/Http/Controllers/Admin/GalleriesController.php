@@ -2,55 +2,33 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Category;
-use App\Product;
+use App\Gallery;
 use Flash;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class ProductsController extends Controller
+class GalleriesController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @param Request $request
      * @return Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        $category = $request->has('category') && $request->has('category') ? $request->get('category') : null;
+        $items = Gallery::all();
 
-        $items = $category ? Product::whereCategoryId($category)->get() : Product::all();
-
-        $categories = Category::select("categories.*")
-                              ->selectRaw('COUNT(products.id) as products_count')
-                              ->withDepth()
-                              ->leftJoin('products', 'categories.id', '=', 'products.category_id')
-                              ->groupBy('categories.id')
-                              ->defaultOrder()
-                              ->get()
-                              ->toFlatTree();
-
-        return view('admin.products.index', compact('items', 'categories'));
+        return view('admin.galleries.index', compact('items'));
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @param Request $request
      * @return Response
      */
-    public function create(Request $request)
+    public function create()
     {
-        $categories = Category::withDepth()->get()->toFlatTree();
-
-        Category::addSpaces($categories);
-
-        $categories = $categories->lists('name', 'id');
-
-        $categoryId = $this->hasParamInPreviousUrl('category', $request);
-
-        return view('admin.products.create', compact('categories', 'categoryId'));
+        return view('admin.galleries.create');
     }
 
     /**
@@ -65,17 +43,13 @@ class ProductsController extends Controller
             'name' => 'required'
         ]);
 
-        $input = $request->all();
-
-        foreach (['available'] as $value) $input[$value] = $request->has($value) ? true : false;
-
-        $item = Product::create($input);
+        $item = Gallery::create($request->all());
 
         $item->saveImage($item, $request);
 
         Flash::success("Запись - {$item->id} сохранена");
 
-        return redirect(route('admin.products.index'));
+        return redirect(route('admin.galleries.index'));
     }
 
     /**
@@ -97,15 +71,9 @@ class ProductsController extends Controller
      */
     public function edit($id)
     {
-        $item = Product::findOrFail($id);
+        $item = Gallery::findOrFail($id);
 
-        $categories = Category::withDepth()->get()->toFlatTree();
-
-        Category::addSpaces($categories);
-
-        $categories = $categories->lists('name', 'id');
-
-        return view('admin.products.edit', compact('item', 'categories'));
+        return view('admin.galleries.edit', compact('item'));
     }
 
     /**
@@ -122,19 +90,15 @@ class ProductsController extends Controller
             'slug' => 'required|alpha_dash|unique:products,slug,'.$id,
         ]);
 
-        $item = Product::findOrFail($id);
+        $item = Gallery::findOrFail($id);
 
-        $input = $request->all();
-
-        foreach (['available'] as $value) $input[$value] = $request->has($value) ? true : false;
-
-        $item->update($input);
+        $item->update($request->all());
 
         $item->saveImage($item, $request);
 
         Flash::success("Запись - {$id} обновлена");
 
-        return redirect(route('admin.products.index'));
+        return redirect(route('admin.galleries.index'));
     }
 
     /**
@@ -145,7 +109,7 @@ class ProductsController extends Controller
      */
     public function destroy($id)
     {
-        $item = Product::findOrFail($id);
+        $item = Gallery::findOrFail($id);
 
         $item->deleteImageFile();
         $item->deletePhotos();
@@ -153,7 +117,7 @@ class ProductsController extends Controller
 
         Flash::success("Запись - {$id} удалена");
 
-        return redirect(route('admin.products.index'));
+        return redirect(route('admin.galleries.index'));
     }
 
     /**
@@ -165,7 +129,7 @@ class ProductsController extends Controller
      */
     public function photo($id, Request $request)
     {
-        $item = Product::findOrFail($id);
+        $item = Gallery::findOrFail($id);
 
         $photoName = $item->savePhoto($request);
 
@@ -180,11 +144,11 @@ class ProductsController extends Controller
 
         Flash::success("Фотография загружена");
 
-        return redirect(route('admin.products.index'));
+        return redirect(route('admin.galleries.index'));
     }
 
     /**
-     * Delete Photo
+     * Delete photo
      *
      * @param $id
      * @param $photoId
@@ -193,7 +157,7 @@ class ProductsController extends Controller
      */
     public function photoDelete($id, $photoId, Request $request)
     {
-        $item = Product::findOrFail($id);
+        $item = Gallery::findOrFail($id);
         $item->deletePhoto($photoId);
 
         if($request->ajax()) {
@@ -205,22 +169,6 @@ class ProductsController extends Controller
 
         Flash::success("Фотография загружена");
 
-        return redirect(route('admin.products.index'));
+        return redirect(route('admin.galleries.index'));
     }
-
-    /**
-     * Получаем параметр category из previous url, для того чтобы при создании выбиралась нужная каегория
-     *
-     * @param $param
-     * @param Request $request
-     * @return string|bool
-     */
-    public function hasParamInPreviousUrl($param, Request $request)
-    {
-        $previousUrl = $request->session()->previousUrl();
-        parse_str(parse_url($previousUrl, PHP_URL_QUERY), $queryParams);
-
-        return isset($queryParams[$param]) ? $queryParams[$param] : false;
-    }
-
 }

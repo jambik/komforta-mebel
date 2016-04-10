@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
         $this->call(BlocksTableSeeder::class);
         $this->call(NewsTableSeeder::class);
         $this->call(SlidesTableSeeder::class);
+        $this->call(GalleriesTableSeeder::class);
         $this->call(SettingsTableSeeder::class);
 
         Model::reguard();

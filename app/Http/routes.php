@@ -28,6 +28,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'web'], function()
         Route::post('products/{id}/photo', ['as' => 'admin.products.photo', 'uses' =>'Admin\ProductsController@photo'])->where('id', '[0-9]+');
         Route::delete('products/{id}/photo/{photoId}', ['as' => 'admin.products.photo.delete', 'uses' =>'Admin\ProductsController@photoDelete'])->where(['id' => '[0-9]+', 'photoId' => '[0-9]+']);
 
+        ## Galleries
+        Route::resource('galleries', 'Admin\GalleriesController');
+        Route::post('galleries/{id}/photo', ['as' => 'admin.galleries.photo', 'uses' =>'Admin\GalleriesController@photo'])->where('id', '[0-9]+');
+        Route::delete('galleries/{id}/photo/{photoId}', ['as' => 'admin.galleries.photo.delete', 'uses' =>'Admin\GalleriesController@photoDelete'])->where(['id' => '[0-9]+', 'photoId' => '[0-9]+']);
+
         ## Photos
         Route::resource('photos', 'Admin\PhotosController');
 
@@ -87,7 +92,7 @@ Route::group(['middleware' => 'web'], function ()
     Route::get('articles', ['as' => 'articles', 'uses' => 'ArticlesController@index']);
     Route::get('articles/{slug}', ['as' => 'articles.show', 'uses' => 'ArticlesController@show']);
 
-    ## Photo gallery
+    ## Galleries
     Route::get('galleries', ['as' => 'galleries', 'uses' => 'GalleriesController@index']);
     Route::get('galleries/{slug}', ['as' => 'galleries.show', 'uses' => 'GalleriesController@show']);
 

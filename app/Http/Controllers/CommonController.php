@@ -67,7 +67,7 @@ class CommonController extends Controller
             $message->subject('Обратная связь');
         });
 
-        return redirect('feedback')->with('status', 'Сообщение отправлено');
+        return redirect(route('page.show', 'nashi-kontakty'))->with('status', 'Сообщение отправлено');
     }
 
     /**

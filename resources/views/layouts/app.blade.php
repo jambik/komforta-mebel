@@ -55,8 +55,11 @@
                         <input type="text" class="form-control input-sm" name="search" placeholder="поиск по сайту">
                     </form>
                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                        <select class="form-control input-sm">
-                            <option>Выбрать шкаф купе</option>
+                        <select class="form-control input-sm" onchange="document.location = $(this).val();">
+                            <option value="" selected disabled>- Выберите категорию -</option>
+                            @foreach($categories as $category)
+                                <option value="{{ route('catalog.category', $category->slug) }}">{{ $category->name }}</option>
+                            @endforeach
                         </select>
                     </div>
                 </div>
@@ -107,7 +110,7 @@
             </div>
             <div class="col-lg-3 col-md-3 col-sm-6">
                 <div class="block block-delivery">
-                    <div>Доставка</div>
+                    <div><a href="{{ url('/page/dostavka') }}">Доставка</a></div>
                     <p>Ознакомиться с условиями</p>
                 </div>
             </div>
