@@ -31,7 +31,7 @@
                     <label for="name" v-bind:class="{'active': node.name}">Название</label>
                 </div>
 
-                <div class="input-field col s12">
+                <div class="input-field col s12{{-- input-html--}}">
                     <textarea class="materialize-textarea validate" name="about" id="about" v-bind:class="{'valid': node.about}">@{{ node.about }}</textarea>
                     <label for="about" v-bind:class="{'active': node.about}">Описание</label>
                 </div>
@@ -81,9 +81,11 @@
 
 @section('head_scripts')
     <link rel="stylesheet" href="/library/jstree/themes/default/style.min.css" />
+
 @endsection
 
 @section('footer_scripts')
     <script src="/library/jstree/jstree.min.js"></script>
     <script src="/js/admin/categories.js"></script>
+    {{--<script src="/library/ckeditor/ckeditor.js"></script>--}}
 @endsection

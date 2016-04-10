@@ -27,13 +27,13 @@
                 </p>
             @endif
 
-            <a href="{{ route('calculation') }}" class="call-designer">Вызвать замерщика дизайнера</a>
+                <a href="#" onclick="$('#request-design-product').html('{{ $product->name }}'); $('#request-design-product').next().val('{{ $product->name }}'); return false;" data-toggle="modal" data-target="#requestDesignModal" class="call-designer">Заказать дизайн/замер</a>
         </div>
         <div class="col-lg-5 info">
             <h1>{{ $product->name }}</h1>
 
             @if ($product->material)
-                <p class="material"><strong>Материал:</strong> {{ trans('vars.materials')[$product->material] }}</p>
+                <p class="material"><strong>Материал:</strong> {{ trans('vars.material')[$product->material] }}</p>
             @endif
 
             <div class="price-calculate">

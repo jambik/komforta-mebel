@@ -17,7 +17,7 @@ class Product extends Model implements SluggableInterface
     protected $fillable = ['name', 'slug', 'category_id', 'price', 'material', 'brief', 'text', 'available', 'title', 'keywords', 'description', 'image'];
 
     protected $casts = [
-        'price' => 'float',
+        'price' => 'integer',
         'available' => 'boolean',
         'category_id' => 'int',
     ];

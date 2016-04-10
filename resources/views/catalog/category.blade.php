@@ -11,6 +11,10 @@
         <li class="active">{{ $category->name }}</li>
     </ol>
 
+    <h1>{{ $category->name }}</h1>
+    <hr>
+    {!! $category->about ? nl2br($category->about) . '<hr>' : '' !!}
+
     @if ($children->count())
         <div class="row categories-list-line">
             @foreach($children as $category)
