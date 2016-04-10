@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Наше портфолио')
+
 @section('content')
 
     <div class="categories-list">
