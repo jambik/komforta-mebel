@@ -2,8 +2,8 @@
 
 @section('title', 'Мебель комфорта')
 
-@section('slider')
-    @include('partials._slider')
+@section('slides')
+    @include('partials._slides')
 @endsection
 
 @section('content')

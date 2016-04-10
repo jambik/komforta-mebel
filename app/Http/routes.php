@@ -43,6 +43,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'web'], function()
         ## Articles
         Route::resource('articles', 'Admin\ArticlesController');
 
+        ## Slides
+        Route::resource('slides', 'Admin\SlidesController');
+
         ## Users
         Route::resource('users', 'Admin\UsersController');
 

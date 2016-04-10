@@ -1,21 +1,21 @@
-<section id="slider">
+<section id="slides">
     <div class="container">
         <div class="row">
             <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
                 <!-- Indicators -->
                 <ol class="carousel-indicators">
-                    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                    @foreach ($slides as $key => $val)
+                        <li data-target="#carousel-example-generic" data-slide-to="{{ $key }}"{!! $key == 0 ? ' class="active"' : '' !!}></li>
+                    @endforeach
                 </ol>
 
                 <!-- Wrapper for slides -->
                 <div class="carousel-inner" role="listbox">
-                    <div class="item active">
-                        <img src="{{ asset('img/carousel-1.jpg') }}">
-                    </div>
-                    <div class="item">
-                        <img src="{{ asset('img/carousel-2.jpg') }}">
-                    </div>
+                    @foreach ($slides as $key => $val)
+                        <div class="item{{ $key == 0 ? ' active' : '' }}">
+                            <img src="/images/original/{{ $val->img_url . $val->image }}">
+                        </div>
+                    @endforeach
                 </div>
 
                 <!-- Controls -->

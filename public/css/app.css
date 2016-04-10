@@ -39,7 +39,7 @@ nav li { float: left; }
 nav a { padding: 15px 26px; display: inline-block; color: #000; }
 nav a:hover, nav a.active { color: #fff; background: #ff7920; }
 
-#slider { margin: 20px 0 0 0; }
+#slides { margin: 20px 0 0 0; }
 
 #blocks { margin: 40px 0 0 0; }
 #blocks .block { text-align: right; font-size: 20px; font-weight: 700; border-bottom: 12px solid #ff7920; margin: 0 0 15px 0; }

@@ -82,7 +82,7 @@
     </div>
 </nav>
 
-@yield('slider')
+@yield('slides')
 
 <section id="blocks">
     <div class="container">

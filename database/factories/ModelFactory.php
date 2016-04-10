@@ -49,6 +49,15 @@ $factory->define(App\News::class, function (Faker\Generator $faker) {
     ];
 });
 
+$factory->define(App\Slide::class, function (Faker\Generator $faker) {
+    return [
+        'title' => $faker->sentence(2),
+        'text' => $faker->paragraph(3),
+        'url' => '',
+        'image' => $faker->image(storage_path('images').DIRECTORY_SEPARATOR.'slides', 1170, 360, null, false, false),
+    ];
+});
+
 $factory->define(App\Product::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->company,
