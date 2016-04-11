@@ -1,7 +1,7 @@
-@extends('admin.page', ['title' => "Слайдер"])
+@extends('admin.page', ['title' => "Слайды"])
 
 @section('content')
-    <h4 class="center">Новости</h4>
+    <h4 class="center">Слайды</h4>
     <p><a href="{{ route('admin.slides.create') }}" class="btn waves-effect waves-light"><i class="material-icons left">add_circle</i> Добавить</a></p>
 
     <table id="table_items">

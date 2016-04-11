@@ -1,4 +1,4 @@
-@extends('admin.page', ['title' => "Слайдер"])
+@extends('admin.page', ['title' => "Слайды"])
 
 @section('content')
 	<h4 class="center">Создать</h4>

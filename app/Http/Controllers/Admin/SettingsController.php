@@ -27,7 +27,6 @@ class SettingsController extends BackendController
         $settings = Settings::findOrNew(1);
         $settings->id = 1;
         $settings->fill($request->all());
-        //dd($settings);
         $settings->save();
 
         Flash::success("Настройки сохранены ");

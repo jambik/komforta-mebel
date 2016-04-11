@@ -8,6 +8,16 @@ use Illuminate\Http\Request;
 
 class PhotosController extends BackendController
 {
+    protected $resourceName = null;
+
+    protected $model = null;
+
+    public function __construct()
+    {
+        $this->resourceName = 'photos';
+        $this->model = new Photo();
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -15,9 +25,9 @@ class PhotosController extends BackendController
      */
     public function index()
     {
-        $items = Photo::all();
+        $items = $this->model->all();
 
-        return view('admin.photos.index', compact('items'));
+        return view('admin.'.$this->resourceName.'.index', compact('items'));
     }
 
     /**
@@ -27,7 +37,7 @@ class PhotosController extends BackendController
      */
     public function create()
     {
-        return view('admin.photos.create');
+        return view('admin.'.$this->resourceName.'.create');
     }
 
     /**
@@ -42,9 +52,9 @@ class PhotosController extends BackendController
             'photo' => 'mimes:jpeg,bmp,png',
         ]);
 
-        Photo::create($request->all());
+        $this->model->create($request->all());
 
-        return redirect(route('admin.photos.index'));
+        return redirect(route('admin.'.$this->resourceName.'.index'));
     }
 
     /**
@@ -66,9 +76,9 @@ class PhotosController extends BackendController
      */
     public function edit($id)
     {
-        $item = Photo::findOrFail($id);
+        $item = $this->model->findOrFail($id);
 
-        return view('admin.photos.edit', compact('item'));
+        return view('admin.'.$this->resourceName.'.edit', compact('item'));
     }
 
     /**
@@ -80,11 +90,11 @@ class PhotosController extends BackendController
      */
     public function update(Request $request, $id)
     {
-        $item = Photo::findOrFail($id);
+        $item = $this->model->findOrFail($id);
 
         $item->update($request->all());
 
-        return redirect(route('admin.photos.index'));
+        return redirect(route('admin.'.$this->resourceName.'.index'));
     }
 
     /**
@@ -95,14 +105,15 @@ class PhotosController extends BackendController
      */
     public function destroy($id, Request $request)
     {
-        Photo::destroy($id);
+        $this->model->destroy($id);
 
         if ($request->ajax()){
             return json_encode([
-                'status' => 'ok'
+                'status' => 'ok',
+                'message' => 'Запись #' . $id . ' удалена'
             ]);
         }
 
-        return redirect(route('admin.photos.index'));
+        return redirect(route('admin.'.$this->resourceName.'.index'));
     }
 }

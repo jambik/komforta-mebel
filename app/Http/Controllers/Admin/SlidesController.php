@@ -8,6 +8,16 @@ use Illuminate\Http\Request;
 
 class SlidesController extends BackendController
 {
+    protected $resourceName = null;
+
+    protected $model = null;
+
+    public function __construct()
+    {
+        $this->resourceName = 'slides';
+        $this->model = new Slide();
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,9 +25,9 @@ class SlidesController extends BackendController
      */
     public function index()
     {
-        $items = Slide::sorted()->get();
+        $items = $this->model->sorted()->get();
 
-        return view('admin.slides.index', compact('items'));
+        return view('admin.'.$this->resourceName.'.index', compact('items'));
     }
 
     /**
@@ -27,7 +37,7 @@ class SlidesController extends BackendController
      */
     public function create()
     {
-        return view('admin.slides.create');
+        return view('admin.'.$this->resourceName.'.create');
     }
 
     /**
@@ -42,9 +52,9 @@ class SlidesController extends BackendController
             'image' => 'required|mimes:jpeg,bmp,png',
         ]);
 
-        Slide::create($request->all());
+        $this->model->create($request->all());
 
-        return redirect(route('admin.slides.index'));
+        return redirect(route('admin.'.$this->resourceName.'.index'));
     }
 
     /**
@@ -66,9 +76,9 @@ class SlidesController extends BackendController
      */
     public function edit($id)
     {
-        $item = Slide::findOrFail($id);
+        $item = $this->model->findOrFail($id);
 
-        return view('admin.slides.edit', compact('item'));
+        return view('admin.'.$this->resourceName.'.edit', compact('item'));
     }
 
     /**
@@ -80,11 +90,11 @@ class SlidesController extends BackendController
      */
     public function update(Request $request, $id)
     {
-        $item = Slide::findOrFail($id);
+        $item = $this->model->findOrFail($id);
 
         $item->update($request->all());
 
-        return redirect(route('admin.slides.index'));
+        return redirect(route('admin.'.$this->resourceName.'.index'));
     }
 
     /**
@@ -95,8 +105,8 @@ class SlidesController extends BackendController
      */
     public function destroy($id)
     {
-        Slide::destroy($id);
+        $this->model->destroy($id);
 
-        return redirect(route('admin.slides.index'));
+        return redirect(route('admin.'.$this->resourceName.'.index'));
     }
 }

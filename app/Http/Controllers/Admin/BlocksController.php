@@ -8,6 +8,16 @@ use Illuminate\Http\Request;
 
 class BlocksController extends BackendController
 {
+    protected $resourceName = null;
+
+    protected $model = null;
+
+    public function __construct()
+    {
+        $this->resourceName = 'blocks';
+        $this->model = new Block();
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -15,9 +25,9 @@ class BlocksController extends BackendController
      */
     public function index()
     {
-        $items = Block::all();
+        $items = $this->model->all();
 
-        return view('admin.blocks.index', compact('items'));
+        return view('admin.'.$this->resourceName.'.index', compact('items'));
     }
 
     /**
@@ -27,7 +37,7 @@ class BlocksController extends BackendController
      */
     public function create()
     {
-        return view('admin.blocks.create');
+        return view('admin.'.$this->resourceName.'.create');
     }
 
     /**
@@ -42,9 +52,9 @@ class BlocksController extends BackendController
             'alias' => 'required|unique:blocks,alias',
         ]);
 
-        Block::create($request->all());
+        $this->model->create($request->all());
 
-        return redirect(route('admin.blocks.index'));
+        return redirect(route('admin.'.$this->resourceName.'.index'));
     }
 
     /**
@@ -66,9 +76,9 @@ class BlocksController extends BackendController
      */
     public function edit($id)
     {
-        $item = Block::findOrFail($id);
+        $item = $this->model->findOrFail($id);
 
-        return view('admin.blocks.edit', compact('item'));
+        return view('admin.'.$this->resourceName.'.edit', compact('item'));
     }
 
     /**
@@ -81,14 +91,14 @@ class BlocksController extends BackendController
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'alias' => 'required|unique:blocks,alias,'.$id
+            'alias' => 'required|unique:' . $this->model->getTable() . ',alias,'.$id
         ]);
 
-        $item = Block::findOrFail($id);
+        $item = $this->model->findOrFail($id);
 
         $item->update($request->all());
 
-        return redirect(route('admin.blocks.index'));
+        return redirect(route('admin.'.$this->resourceName.'.index'));
     }
 
     /**
@@ -99,8 +109,8 @@ class BlocksController extends BackendController
      */
     public function destroy($id)
     {
-        Block::destroy($id);
+        $this->model->destroy($id);
 
-        return redirect(route('admin.blocks.index'));
+        return redirect(route('admin.'.$this->resourceName.'.index'));
     }
 }

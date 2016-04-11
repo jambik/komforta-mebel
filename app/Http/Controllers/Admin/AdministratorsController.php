@@ -10,6 +10,15 @@ use Illuminate\Http\Request;
 
 class AdministratorsController extends BackendController
 {
+    protected $resourceName = null;
+
+    protected $model = null;
+
+    public function __construct()
+    {
+        $this->resourceName = 'administrators';
+        $this->model = new User();
+    }
 
     /**
      * Display a listing of the resource.
@@ -23,7 +32,7 @@ class AdministratorsController extends BackendController
                     ->whereNotNull('role_user.role_id')
                     ->get();
 
-        return view('admin.administrators.index', compact('items'));
+        return view('admin.'.$this->resourceName.'.index', compact('items'));
     }
 
     /**
@@ -33,7 +42,7 @@ class AdministratorsController extends BackendController
      */
     public function create()
     {
-        return view('admin.administrators.create');
+        return view('admin.'.$this->resourceName.'.create');
     }
 
     /**
@@ -54,14 +63,14 @@ class AdministratorsController extends BackendController
             'password' => $passwordRule
         ]);
 
-        $item = User::create($request->all());
-        $item->password = $passwordRule ? bcrypt($request->input('password')) : "";
+        $item = $this->model->create($request->all());
+        $item->password = $passwordRule ? bcrypt($request->input('password')) : '';
         $item->save();
 
         $adminRole = Role::where('name', 'admin')->first();
         $item->attachRole($adminRole);
 
-        return redirect(route('admin.administrators.index'));
+        return redirect(route('admin.'.$this->resourceName.'.index'));
     }
 
     /**
@@ -72,7 +81,7 @@ class AdministratorsController extends BackendController
      */
     public function show($id)
     {
-        return User::find($id);
+        return $this->model->find($id);
     }
 
     /**
@@ -83,10 +92,10 @@ class AdministratorsController extends BackendController
      */
     public function edit($id)
     {
-        $item = User::findOrFail($id);
+        $item = $this->model->findOrFail($id);
         $item->password = '';
 
-        return view('admin.administrators.edit', compact('item'));
+        return view('admin.'.$this->resourceName.'.edit', compact('item'));
     }
 
     /**
@@ -108,12 +117,12 @@ class AdministratorsController extends BackendController
             'password' => $passwordRule
         ]);
 
-        $item = User::findOrFail($id);
+        $item = $this->model->findOrFail($id);
 
         $item->update($request->except('password') +
             ($passwordRule ? ['password' => bcrypt($request->input('password'))] : []));
 
-        return redirect(route('admin.administrators.index'));
+        return redirect(route('admin.'.$this->resourceName.'.index'));
     }
 
     /**
@@ -124,9 +133,9 @@ class AdministratorsController extends BackendController
      */
     public function destroy($id)
     {
-        User::destroy($id);
+        $this->model->destroy($id);
 
-        return redirect(route('admin.administrators.index'));
+        return redirect(route('admin.'.$this->resourceName.'.index'));
     }
 
 }

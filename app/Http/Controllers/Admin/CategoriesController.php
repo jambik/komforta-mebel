@@ -9,6 +9,16 @@ use Illuminate\Http\Request;
 
 class CategoriesController extends BackendController
 {
+    protected $resourceName = null;
+
+    protected $model = null;
+
+    public function __construct()
+    {
+        $this->resourceName = 'categories';
+        $this->model = new Category();
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -17,13 +27,13 @@ class CategoriesController extends BackendController
      */
     public function index(Request $request)
     {
-        $items = Category::withDepth()->defaultOrder()->get()->toTree();
+        $items = $this->model->withDepth()->defaultOrder()->get()->toTree();
 
         if($request->ajax()) {
             return $items;
         }
 
-        return view('admin.categories.index', compact('items'));
+        return view('admin.'.$this->resourceName.'.index', compact('items'));
     }
 
     /**
@@ -48,7 +58,7 @@ class CategoriesController extends BackendController
             'name' => 'required'
         ]);
 
-        $item = Category::create($request->all());
+        $item = $this->model->create($request->all());
 
         $item->saveImage($item, $request);
 
@@ -56,7 +66,7 @@ class CategoriesController extends BackendController
             return $item;
         }
 
-        return view('admin.categories.index', compact('item'));
+        return view('admin.'.$this->resourceName.'.index', compact('item'));
     }
 
     /**
@@ -68,13 +78,13 @@ class CategoriesController extends BackendController
      */
     public function show($id, Request $request)
     {
-        $item = Category::findOrFail($id);
+        $item = $this->model->findOrFail($id);
 
         if ($request->ajax()){
             return $item;
         }
 
-        return view('admin.categories.index', compact('item'));
+        return view('admin.'.$this->resourceName.'.index', compact('item'));
     }
 
     /**
@@ -98,20 +108,19 @@ class CategoriesController extends BackendController
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'name' => 'required'
+            'name' => 'required',
+            'slug' => 'required|unique:' . $this->model->getTable() . ',slug,'.$id,
         ]);
 
-        $item = Category::findOrFail($id);
+        $item = $this->model->findOrFail($id);
 
         $item->update($request->all());
-
-        $item = Category::findOrFail($id);
 
         if($request->ajax()) {
             return $item;
         }
 
-        return view('admin.categories.index', compact('item'));
+        return view('admin.'.$this->resourceName.'.index', compact('item'));
     }
 
     /**
@@ -123,7 +132,7 @@ class CategoriesController extends BackendController
      */
     public function destroy($id, Request $request)
     {
-        $item = Category::findOrFail($id);
+        $item = $this->model->findOrFail($id);
 
         $item->delete();
 
@@ -133,7 +142,7 @@ class CategoriesController extends BackendController
             ]);
         }
 
-        return view('admin.categories.index');
+        return view('admin.'.$this->resourceName.'.index');
     }
 
     /**
@@ -145,7 +154,7 @@ class CategoriesController extends BackendController
      */
     public function imageDelete($id, Request $request)
     {
-        $category = Category::findOrFail($id);
+        $category = $this->model->findOrFail($id);
 
         $category->deleteImage(true);
 
@@ -158,7 +167,7 @@ class CategoriesController extends BackendController
 
         Flash::success("Картинка удалена");
 
-        return view('admin.categories.index');
+        return view('admin.'.$this->resourceName.'.index');
     }
 
     /**
@@ -175,7 +184,7 @@ class CategoriesController extends BackendController
         $position = $request->get('position');
         $oldPosition = $request->get('old_position');
 
-        $node = Category::findOrFail($id);
+        $node = $this->model->findOrFail($id);
 
         if ($parent != $oldParent) {
             $node->parent_id = $parent;
@@ -198,6 +207,6 @@ class CategoriesController extends BackendController
 
         Flash::success("Запись - {$id} перемещена");
 
-        return view('admin.categories.index');
+        return view('admin.'.$this->resourceName.'.index');
     }
 }

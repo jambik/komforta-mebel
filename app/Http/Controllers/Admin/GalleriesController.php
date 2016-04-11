@@ -9,6 +9,16 @@ use Illuminate\Http\Request;
 
 class GalleriesController extends BackendController
 {
+    protected $resourceName = null;
+
+    protected $model = null;
+
+    public function __construct()
+    {
+        $this->resourceName = 'galleries';
+        $this->model = new Gallery();
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -16,9 +26,9 @@ class GalleriesController extends BackendController
      */
     public function index()
     {
-        $items = Gallery::all();
+        $items = $this->model->all();
 
-        return view('admin.galleries.index', compact('items'));
+        return view('admin.'.$this->resourceName.'.index', compact('items'));
     }
 
     /**
@@ -28,7 +38,7 @@ class GalleriesController extends BackendController
      */
     public function create()
     {
-        return view('admin.galleries.create');
+        return view('admin.'.$this->resourceName.'.create');
     }
 
     /**
@@ -43,9 +53,9 @@ class GalleriesController extends BackendController
             'name' => 'required'
         ]);
 
-        Gallery::create($request->all());
+        $this->model->create($request->all());
 
-        return redirect(route('admin.galleries.index'));
+        return redirect(route('admin.'.$this->resourceName.'.index'));
     }
 
     /**
@@ -67,9 +77,9 @@ class GalleriesController extends BackendController
      */
     public function edit($id)
     {
-        $item = Gallery::findOrFail($id);
+        $item = $this->model->findOrFail($id);
 
-        return view('admin.galleries.edit', compact('item'));
+        return view('admin.'.$this->resourceName.'.edit', compact('item'));
     }
 
     /**
@@ -83,14 +93,14 @@ class GalleriesController extends BackendController
     {
         $this->validate($request, [
             'name' => 'required',
-            'slug' => 'required|alpha_dash|unique:products,slug,'.$id,
+            'slug' => 'required|' . $this->model->getTable() . ':products,slug,'.$id,
         ]);
 
-        $item = Gallery::findOrFail($id);
+        $item = $this->model->findOrFail($id);
 
         $item->update($request->all());
 
-        return redirect(route('admin.galleries.index'));
+        return redirect(route('admin.'.$this->resourceName.'.index'));
     }
 
     /**
@@ -101,12 +111,11 @@ class GalleriesController extends BackendController
      */
     public function destroy($id)
     {
-        $item = Gallery::findOrFail($id);
+        $item = $this->model->findOrFail($id);
 
-        $item->deletePhotos();
         $item->delete();
 
-        return redirect(route('admin.galleries.index'));
+        return redirect(route('admin.'.$this->resourceName.'.index'));
     }
 
     /**
@@ -118,7 +127,7 @@ class GalleriesController extends BackendController
      */
     public function photo($id, Request $request)
     {
-        $item = Gallery::findOrFail($id);
+        $item = $this->model->findOrFail($id);
 
         $photoName = $item->savePhoto($request);
 
@@ -133,7 +142,7 @@ class GalleriesController extends BackendController
 
         Flash::success("Фотография загружена");
 
-        return redirect(route('admin.galleries.index'));
+        return redirect(route('admin.'.$this->resourceName.'.index'));
     }
 
     /**
@@ -146,7 +155,7 @@ class GalleriesController extends BackendController
      */
     public function photoDelete($id, $photoId, Request $request)
     {
-        $item = Gallery::findOrFail($id);
+        $item = $this->model->findOrFail($id);
         $item->deletePhoto($photoId);
 
         if($request->ajax()) {
@@ -156,8 +165,8 @@ class GalleriesController extends BackendController
             ]);
         }
 
-        Flash::success("Фотография загружена");
+        Flash::success("Фотография удалена");
 
-        return redirect(route('admin.galleries.index'));
+        return redirect(route('admin.'.$this->resourceName.'.index'));
     }
 }

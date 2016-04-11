@@ -9,6 +9,16 @@ use Illuminate\Http\Request;
 trait PhotoableTrait
 {
     /**
+     * Boot events
+     */
+    public static function bootPhotoableTrait()
+    {
+        static::deleted(function (self $model){
+            $model->deletePhotos();
+        });
+    }
+
+    /**
      * Photos relation
      *
      * @return mixed
@@ -49,7 +59,7 @@ trait PhotoableTrait
         $photo = $this->photos()->findOrFail($id);
 
         $this->deletePhotoFile($photo);
-        $this->deletePhotoRecord($photo);
+        $this->deletePhotoModel($photo);
     }
 
     /**
@@ -64,13 +74,12 @@ trait PhotoableTrait
     }
 
     /**
-     * Delete photo record
+     * Delete photo model
      *
      * @param Photo $photo
      * @return bool|null
-     * @throws \Exception
      */
-    public function deletePhotoRecord(Photo $photo)
+    public function deletePhotoModel(Photo $photo)
     {
         return $photo->delete();
     }

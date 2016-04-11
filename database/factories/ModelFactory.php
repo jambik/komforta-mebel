@@ -32,7 +32,7 @@ $factory->define(App\Page::class, function (Faker\Generator $faker) {
 
 $factory->define(App\Article::class, function (Faker\Generator $faker) {
     return [
-        'name' => $faker->word,
+        'name' => $faker->company,
         'text' => $faker->paragraph(3),
         'title' => $faker->sentence(2),
         'keywords' => implode(', ', $faker->words(4)),
@@ -63,6 +63,24 @@ $factory->define(App\Gallery::class, function (Faker\Generator $faker) {
         'name' => $faker->company,
         'text' => $faker->paragraph(3),
         'image' => $faker->image(storage_path('images').DIRECTORY_SEPARATOR.'galleries', 640, 480, null, false, false),
+    ];
+});
+
+$factory->defineAs(App\Photo::class, 'product', function ($faker) {
+    return [
+        'name' => $faker->name,
+        'image' => $faker->image(storage_path('images').DIRECTORY_SEPARATOR.'products', 640, 480, null, false, false),
+        'img_url' => 'products/',
+        'photoable_type' => 'App\Product',
+    ];
+});
+
+$factory->defineAs(App\Photo::class, 'gallery', function ($faker) {
+    return [
+        'name' => $faker->name,
+        'image' => $faker->image(storage_path('images').DIRECTORY_SEPARATOR.'galleries', 640, 480, null, false, false),
+        'img_url' => 'products/',
+        'photoable_type' => 'App\Gallery',
     ];
 });
 

@@ -12,15 +12,15 @@ trait ResourceableTrait
     public static function bootResourceableTrait()
     {
         static::created(function ($model){
-            Flash::success("Запись - {$model->id} сохранена");
+            Flash::success("Запись #{$model->id} сохранена");
         });
 
         static::updated(function ($model){
-            Flash::success("Запись - {$model->id} обновлена");
+            Flash::success("Запись #{$model->id} обновлена");
         });
 
         static::deleted(function ($model){
-            Flash::success("Запись - {$model->id} удалена");
+            Flash::success("Запись #{$model->id} удалена");
         });
     }
 }

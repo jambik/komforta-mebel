@@ -8,6 +8,9 @@ use File;
 
 trait ImagableTrait
 {
+    /**
+     * Boot events
+     */
     public static function bootImagableTrait()
     {
         static::saved(function (self $model) {

@@ -10,6 +10,16 @@ use Illuminate\Http\Request;
 
 class ProductsController extends BackendController
 {
+    protected $resourceName = null;
+
+    protected $model = null;
+
+    public function __construct()
+    {
+        $this->resourceName = 'products';
+        $this->model = new Product();
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -20,7 +30,7 @@ class ProductsController extends BackendController
     {
         $category = $request->has('category') && $request->has('category') ? $request->get('category') : null;
 
-        $items = $category ? Product::whereCategoryId($category)->get() : Product::all();
+        $items = $category ? $this->model->whereCategoryId($category)->get() : $this->model->all();
 
         $categories = Category::select("categories.*")
                               ->selectRaw('COUNT(products.id) as products_count')
@@ -31,7 +41,7 @@ class ProductsController extends BackendController
                               ->get()
                               ->toFlatTree();
 
-        return view('admin.products.index', compact('items', 'categories'));
+        return view('admin.'.$this->resourceName.'.index', compact('items', 'categories'));
     }
 
     /**
@@ -50,7 +60,7 @@ class ProductsController extends BackendController
 
         $categoryId = $this->hasParamInPreviousUrl('category', $request);
 
-        return view('admin.products.create', compact('categories', 'categoryId'));
+        return view('admin.'.$this->resourceName.'.create', compact('categories', 'categoryId'));
     }
 
     /**
@@ -69,9 +79,9 @@ class ProductsController extends BackendController
 
         foreach (['available'] as $value) $input[$value] = $request->has($value) ? true : false;
 
-        Product::create($input);
+        $this->model->create($input);
 
-        return redirect(route('admin.products.index'));
+        return redirect(route('admin.'.$this->resourceName.'.index'));
     }
 
     /**
@@ -93,7 +103,7 @@ class ProductsController extends BackendController
      */
     public function edit($id)
     {
-        $item = Product::findOrFail($id);
+        $item = $this->model->findOrFail($id);
 
         $categories = Category::withDepth()->get()->toFlatTree();
 
@@ -101,7 +111,7 @@ class ProductsController extends BackendController
 
         $categories = $categories->lists('name', 'id');
 
-        return view('admin.products.edit', compact('item', 'categories'));
+        return view('admin.'.$this->resourceName.'.edit', compact('item', 'categories'));
     }
 
     /**
@@ -115,10 +125,10 @@ class ProductsController extends BackendController
     {
         $this->validate($request, [
             'name' => 'required',
-            'slug' => 'required|alpha_dash|unique:products,slug,'.$id,
+            'slug' => 'required|unique:' . $this->model->getTable() . ',slug,'.$id,
         ]);
 
-        $item = Product::findOrFail($id);
+        $item = $this->model->findOrFail($id);
 
         $input = $request->all();
 
@@ -126,7 +136,7 @@ class ProductsController extends BackendController
 
         $item->update($input);
 
-        return redirect(route('admin.products.index'));
+        return redirect(route('admin.'.$this->resourceName.'.index'));
     }
 
     /**
@@ -137,12 +147,11 @@ class ProductsController extends BackendController
      */
     public function destroy($id)
     {
-        $item = Product::findOrFail($id);
+        $item = $this->model->findOrFail($id);
 
-        $item->deletePhotos();
         $item->delete();
 
-        return redirect(route('admin.products.index'));
+        return redirect(route('admin.'.$this->resourceName.'.index'));
     }
 
     /**
@@ -154,7 +163,7 @@ class ProductsController extends BackendController
      */
     public function photo($id, Request $request)
     {
-        $item = Product::findOrFail($id);
+        $item = $this->model->findOrFail($id);
 
         $photoName = $item->savePhoto($request);
 
@@ -169,7 +178,7 @@ class ProductsController extends BackendController
 
         Flash::success("Фотография загружена");
 
-        return redirect(route('admin.products.index'));
+        return redirect(route('admin.'.$this->resourceName.'.index'));
     }
 
     /**
@@ -182,7 +191,7 @@ class ProductsController extends BackendController
      */
     public function photoDelete($id, $photoId, Request $request)
     {
-        $item = Product::findOrFail($id);
+        $item = $this->model->findOrFail($id);
         $item->deletePhoto($photoId);
 
         if($request->ajax()) {
@@ -192,9 +201,9 @@ class ProductsController extends BackendController
             ]);
         }
 
-        Flash::success("Фотография загружена");
+        Flash::success("Фотография удалена");
 
-        return redirect(route('admin.products.index'));
+        return redirect(route('admin.'.$this->resourceName.'.index'));
     }
 
     /**

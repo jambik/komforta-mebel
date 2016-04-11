@@ -8,6 +8,16 @@ use Illuminate\Http\Request;
 
 class PagesController extends BackendController
 {
+    protected $resourceName = null;
+
+    protected $model = null;
+
+    public function __construct()
+    {
+        $this->resourceName = 'pages';
+        $this->model = new Page();
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -15,9 +25,9 @@ class PagesController extends BackendController
      */
     public function index()
     {
-        $items = Page::all();
+        $items = $this->model->all();
 
-        return view('admin.pages.index', compact('items'));
+        return view('admin.'.$this->resourceName.'.index', compact('items'));
     }
 
     /**
@@ -27,7 +37,7 @@ class PagesController extends BackendController
      */
     public function create()
     {
-        return view('admin.pages.create');
+        return view('admin.'.$this->resourceName.'.create');
     }
 
     /**
@@ -42,9 +52,9 @@ class PagesController extends BackendController
             'name' => 'required',
         ]);
 
-        Page::create($request->all());
+        $this->model->create($request->all());
 
-        return redirect(route('admin.pages.index'));
+        return redirect(route('admin.'.$this->resourceName.'.index'));
     }
 
     /**
@@ -66,9 +76,9 @@ class PagesController extends BackendController
      */
     public function edit($id)
     {
-        $item = Page::findOrFail($id);
+        $item = $this->model->findOrFail($id);
 
-        return view('admin.pages.edit', compact('item'));
+        return view('admin.'.$this->resourceName.'.edit', compact('item'));
     }
 
     /**
@@ -82,14 +92,14 @@ class PagesController extends BackendController
     {
         $this->validate($request, [
             'name' => 'required',
-            'slug' => 'required|alpha_dash|unique:products,slug,'.$id,
+            'slug' => 'required|unique:' . $this->model->getTable() . ',slug,'.$id,
         ]);
 
-        $item = Page::findOrFail($id);
+        $item = $this->model->findOrFail($id);
 
         $item->update($request->all());
 
-        return redirect(route('admin.pages.index'));
+        return redirect(route('admin.'.$this->resourceName.'.index'));
     }
 
     /**
@@ -100,8 +110,8 @@ class PagesController extends BackendController
      */
     public function destroy($id)
     {
-        Page::destroy($id);
+        $this->model->destroy($id);
 
-        return redirect(route('admin.pages.index'));
+        return redirect(route('admin.'.$this->resourceName.'.index'));
     }
 }

@@ -56,7 +56,7 @@ class NewsController extends BackendController
         $input = $request->all();
         $input['published_at'] = $input['published_at'] ?: Carbon::now();
 
-        $item = $this->model->create($input);
+        $this->model->create($input);
 
         return redirect(route('admin.'.$this->resourceName.'.index'));
     }
@@ -115,7 +115,6 @@ class NewsController extends BackendController
     {
         $item = $this->model->findOrFail($id);
 
-        $item->deleteImageFile();
         $item->delete();
 
         return redirect(route('admin.'.$this->resourceName.'.index'));

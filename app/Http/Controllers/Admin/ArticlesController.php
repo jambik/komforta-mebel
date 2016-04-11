@@ -8,6 +8,16 @@ use Illuminate\Http\Request;
 
 class ArticlesController extends BackendController
 {
+    protected $resourceName = null;
+
+    protected $model = null;
+
+    public function __construct()
+    {
+        $this->resourceName = 'articles';
+        $this->model = new Article();
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -15,9 +25,9 @@ class ArticlesController extends BackendController
      */
     public function index()
     {
-        $items = Article::sorted()->get();
+        $items = $this->model->sorted()->get();
 
-        return view('admin.articles.index', compact('items'));
+        return view('admin.'.$this->resourceName.'.index', compact('items'));
     }
 
     /**
@@ -27,7 +37,7 @@ class ArticlesController extends BackendController
      */
     public function create()
     {
-        return view('admin.articles.create');
+        return view('admin.'.$this->resourceName.'.create');
     }
 
     /**
@@ -42,9 +52,9 @@ class ArticlesController extends BackendController
             'name' => 'required',
         ]);
 
-        Article::create($request->all());
+        $this->model->create($request->all());
 
-        return redirect(route('admin.articles.index'));
+        return redirect(route('admin.'.$this->resourceName.'.index'));
     }
 
     /**
@@ -66,9 +76,9 @@ class ArticlesController extends BackendController
      */
     public function edit($id)
     {
-        $item = Article::findOrFail($id);
+        $item = $this->model->findOrFail($id);
 
-        return view('admin.articles.edit', compact('item'));
+        return view('admin.'.$this->resourceName.'.edit', compact('item'));
     }
 
     /**
@@ -82,14 +92,14 @@ class ArticlesController extends BackendController
     {
         $this->validate($request, [
             'name' => 'required',
-            'slug' => 'required|alpha_dash|unique:articles,slug,'.$id,
+            'slug' => 'required|unique:' . $this->model->getTable() . ',slug,'.$id,
         ]);
 
-        $item = Article::findOrFail($id);
+        $item = $this->model->findOrFail($id);
 
         $item->update($request->all());
 
-        return redirect(route('admin.articles.index'));
+        return redirect(route('admin.'.$this->resourceName.'.index'));
     }
 
     /**
@@ -100,8 +110,8 @@ class ArticlesController extends BackendController
      */
     public function destroy($id)
     {
-        Article::destroy($id);
+        $this->model->destroy($id);
 
-        return redirect(route('admin.articles.index'));
+        return redirect(route('admin.'.$this->resourceName.'.index'));
     }
 }
