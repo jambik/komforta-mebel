@@ -7,7 +7,6 @@ use App\Role;
 use App\User;
 use DB;
 use Illuminate\Http\Request;
-use Laracasts\Flash\Flash;
 
 class AdministratorsController extends BackendController
 {
@@ -62,7 +61,6 @@ class AdministratorsController extends BackendController
         $adminRole = Role::where('name', 'admin')->first();
         $item->attachRole($adminRole);
 
-        Flash::success("Запись - {$item->id} сохранена");
         return redirect(route('admin.administrators.index'));
     }
 
@@ -115,7 +113,6 @@ class AdministratorsController extends BackendController
         $item->update($request->except('password') +
             ($passwordRule ? ['password' => bcrypt($request->input('password'))] : []));
 
-        Flash::success("Запись - {$id} обновлена");
         return redirect(route('admin.administrators.index'));
     }
 
@@ -129,7 +126,6 @@ class AdministratorsController extends BackendController
     {
         User::destroy($id);
 
-        Flash::success("Запись - {$id} удалена");
         return redirect(route('admin.administrators.index'));
     }
 

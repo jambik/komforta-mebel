@@ -56,8 +56,6 @@ class CategoriesController extends BackendController
             return $item;
         }
 
-        Flash::success("Запись - {$item->id} сохранена");
-
         return view('admin.categories.index', compact('item'));
     }
 
@@ -116,8 +114,6 @@ class CategoriesController extends BackendController
             return $item;
         }
 
-        Flash::success("Запись - {$id} обновлена");
-
         return view('admin.categories.index', compact('item'));
     }
 
@@ -140,8 +136,6 @@ class CategoriesController extends BackendController
                 'status' => 'ok'
             ]);
         }
-
-        Flash::success("Запись - {$id} удалена");
 
         return view('admin.categories.index');
     }

@@ -73,8 +73,6 @@ class ProductsController extends BackendController
 
         $item->saveImage($item, $request);
 
-        Flash::success("Запись - {$item->id} сохранена");
-
         return redirect(route('admin.products.index'));
     }
 
@@ -132,8 +130,6 @@ class ProductsController extends BackendController
 
         $item->saveImage($item, $request);
 
-        Flash::success("Запись - {$id} обновлена");
-
         return redirect(route('admin.products.index'));
     }
 
@@ -150,8 +146,6 @@ class ProductsController extends BackendController
         $item->deleteImageFile();
         $item->deletePhotos();
         $item->delete();
-
-        Flash::success("Запись - {$id} удалена");
 
         return redirect(route('admin.products.index'));
     }

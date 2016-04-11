@@ -2,12 +2,13 @@
 
 namespace App;
 
+use App\Traits\ResourceableTrait;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Zizaco\Entrust\Traits\EntrustUserTrait;
 
 class User extends Authenticatable
 {
-    use EntrustUserTrait;
+    use EntrustUserTrait, ResourceableTrait;
 
     /**
      * The database table used by the model.

@@ -2,13 +2,14 @@
 
 namespace App;
 
+use App\Traits\ResourceableTrait;
 use Cviebrock\EloquentSluggable\SluggableInterface;
 use Cviebrock\EloquentSluggable\SluggableTrait;
 use Illuminate\Database\Eloquent\Model;
 
 class Page extends Model implements SluggableInterface
 {
-    use SluggableTrait;
+    use SluggableTrait, ResourceableTrait;
 
     protected $table = 'pages';
 

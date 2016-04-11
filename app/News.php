@@ -3,11 +3,12 @@
 namespace App;
 
 use App\Traits\ImagableTrait;
+use App\Traits\ResourceableTrait;
 use Illuminate\Database\Eloquent\Model;
 
 class News extends Model
 {
-    use ImagableTrait;
+    use ImagableTrait, ResourceableTrait;
 
     protected $table = 'news';
 
@@ -16,5 +17,4 @@ class News extends Model
     protected $dates = ['created_at', 'updated_at', 'published_at'];
 
     protected $appends = ['img_url'];
-
 }

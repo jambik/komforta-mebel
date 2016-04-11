@@ -3,12 +3,13 @@
 namespace App;
 
 use App\Traits\ImagableTrait;
+use App\Traits\ResourceableTrait;
 use Illuminate\Database\Eloquent\Model;
 use Rutorika\Sortable\SortableTrait;
 
 class Slide extends Model
 {
-    use ImagableTrait, SortableTrait;
+    use ImagableTrait, SortableTrait, ResourceableTrait;
 
     protected $table = 'slides';
 

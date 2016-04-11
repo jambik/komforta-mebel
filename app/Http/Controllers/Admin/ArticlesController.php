@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Article;
 use App\Http\Controllers\BackendController;
-use Flash;
 use Illuminate\Http\Request;
 
 class ArticlesController extends BackendController
@@ -44,8 +43,6 @@ class ArticlesController extends BackendController
         ]);
 
         $item = Article::create($request->all());
-
-        Flash::success("Запись - {$item->id} сохранена");
 
         return redirect(route('admin.articles.index'));
     }
@@ -92,8 +89,6 @@ class ArticlesController extends BackendController
 
         $item->update($request->all());
 
-        Flash::success("Запись - {$id} обновлена");
-
         return redirect(route('admin.articles.index'));
     }
 
@@ -106,8 +101,6 @@ class ArticlesController extends BackendController
     public function destroy($id)
     {
         Article::destroy($id);
-
-        Flash::success("Запись - {$id} удалена");
 
         return redirect(route('admin.articles.index'));
     }

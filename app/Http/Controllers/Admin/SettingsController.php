@@ -31,6 +31,7 @@ class SettingsController extends BackendController
         $settings->save();
 
         Flash::success("Настройки сохранены ");
+
         return redirect(route('admin.settings'));
     }
 }

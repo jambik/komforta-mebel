@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\BackendController;
 use App\Photo;
-use Flash;
 use Illuminate\Http\Request;
 
 class PhotosController extends BackendController
@@ -44,8 +43,6 @@ class PhotosController extends BackendController
         ]);
 
         $item = Photo::create($request->all());
-
-        Flash::success("Запись - {$item->id} сохранена");
 
         return redirect(route('admin.photos.index'));
     }
@@ -87,8 +84,6 @@ class PhotosController extends BackendController
 
         $item->update($request->all());
 
-        Flash::success("Запись - {$id} обновлена");
-
         return redirect(route('admin.photos.index'));
     }
 
@@ -107,8 +102,6 @@ class PhotosController extends BackendController
                 'status' => 'ok'
             ]);
         }
-
-        Flash::success("Запись - {$id} удалена");
 
         return redirect(route('admin.photos.index'));
     }

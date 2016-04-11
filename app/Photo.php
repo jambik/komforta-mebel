@@ -2,11 +2,12 @@
 
 namespace App;
 
-use App\Traits\ImagableTrait;
+use App\Traits\ResourceableTrait;
 use Illuminate\Database\Eloquent\Model;
 
 class Photo extends Model
 {
+    use ResourceableTrait;
 
     protected $table = 'photos';
 
@@ -21,5 +22,4 @@ class Photo extends Model
     {
         return $this->morphTo();
     }
-
 }

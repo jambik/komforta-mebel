@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\BackendController;
 use App\Slide;
-use Flash;
 use Illuminate\Http\Request;
 
 class SlidesController extends BackendController
@@ -46,8 +45,6 @@ class SlidesController extends BackendController
         $item = Slide::create($request->all());
 
         $item->saveImage($item, $request);
-
-        Flash::success("Запись - {$item->id} сохранена");
 
         return redirect(route('admin.slides.index'));
     }
@@ -91,8 +88,6 @@ class SlidesController extends BackendController
 
         $item->saveImage($item, $request);
 
-        Flash::success("Запись - {$id} обновлена");
-
         return redirect(route('admin.slides.index'));
     }
 
@@ -111,8 +106,6 @@ class SlidesController extends BackendController
                 'status' => 'ok'
             ]);
         }
-
-        Flash::success("Запись - {$id} удалена");
 
         return redirect(route('admin.slides.index'));
     }

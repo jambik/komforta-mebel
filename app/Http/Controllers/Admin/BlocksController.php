@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Block;
 use App\Http\Controllers\BackendController;
-use Flash;
 use Illuminate\Http\Request;
 
 class BlocksController extends BackendController
@@ -44,8 +43,6 @@ class BlocksController extends BackendController
         ]);
 
         $item = Block::create($request->all());
-
-        Flash::success("Запись - {$item->id} сохранена");
 
         return redirect(route('admin.blocks.index'));
     }
@@ -91,8 +88,6 @@ class BlocksController extends BackendController
 
         $item->update($request->all());
 
-        Flash::success("Запись - {$id} обновлена");
-
         return redirect(route('admin.blocks.index'));
     }
 
@@ -105,8 +100,6 @@ class BlocksController extends BackendController
     public function destroy($id)
     {
         Block::destroy($id);
-
-        Flash::success("Запись - {$id} удалена");
 
         return redirect(route('admin.blocks.index'));
     }

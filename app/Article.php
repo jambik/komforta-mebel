@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Traits\ResourceableTrait;
 use Cviebrock\EloquentSluggable\SluggableInterface;
 use Cviebrock\EloquentSluggable\SluggableTrait;
 use Illuminate\Database\Eloquent\Model;
@@ -9,7 +10,7 @@ use Rutorika\Sortable\SortableTrait;
 
 class Article extends Model implements SluggableInterface
 {
-    use SluggableTrait, SortableTrait;
+    use SluggableTrait, SortableTrait, ResourceableTrait;
 
     protected $table = 'articles';
 

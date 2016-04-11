@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\BackendController;
 use App\Page;
-use Flash;
 use Illuminate\Http\Request;
 
 class PagesController extends BackendController
@@ -44,8 +43,6 @@ class PagesController extends BackendController
         ]);
 
         $item = Page::create($request->all());
-
-        Flash::success("Запись - {$item->id} сохранена");
 
         return redirect(route('admin.pages.index'));
     }
@@ -92,8 +89,6 @@ class PagesController extends BackendController
 
         $item->update($request->all());
 
-        Flash::success("Запись - {$id} обновлена");
-
         return redirect(route('admin.pages.index'));
     }
 
@@ -106,8 +101,6 @@ class PagesController extends BackendController
     public function destroy($id)
     {
         Page::destroy($id);
-
-        Flash::success("Запись - {$id} удалена");
 
         return redirect(route('admin.pages.index'));
     }

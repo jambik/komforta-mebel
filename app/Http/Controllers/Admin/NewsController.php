@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\BackendController;
 use App\News;
 use Carbon\Carbon;
-use Flash;
 use Illuminate\Http\Request;
 
 class NewsController extends BackendController
@@ -16,8 +15,6 @@ class NewsController extends BackendController
 
     public function __construct()
     {
-        parent::__construct();
-
         $this->resourceName = 'news';
         $this->model = new News();
     }
@@ -62,8 +59,6 @@ class NewsController extends BackendController
         $item = $this->model->create($input);
 
         $item->saveImage($item, $request);
-
-        Flash::success("Запись - {$item->id} сохранена");
 
         return redirect(route('admin.'.$this->resourceName.'.index'));
     }
@@ -111,8 +106,6 @@ class NewsController extends BackendController
 
         $item->saveImage($item, $request);
 
-        Flash::success("Запись - {$id} обновлена");
-
         return redirect(route('admin.'.$this->resourceName.'.index'));
     }
 
@@ -128,8 +121,6 @@ class NewsController extends BackendController
 
         $item->deleteImageFile();
         $item->delete();
-
-        Flash::success("Запись - {$id} удалена");
 
         return redirect(route('admin.'.$this->resourceName.'.index'));
     }

@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Traits\ImagableTrait;
+use App\Traits\ResourceableTrait;
 use Cviebrock\EloquentSluggable\SluggableInterface;
 use Cviebrock\EloquentSluggable\SluggableTrait;
 use Illuminate\Database\Eloquent\Model;
@@ -10,7 +11,7 @@ use Kalnoy\Nestedset\NodeTrait;
 
 class Category extends Model implements SluggableInterface
 {
-    use NodeTrait, ImagableTrait, SluggableTrait;
+    use NodeTrait, ImagableTrait, SluggableTrait, ResourceableTrait;
 
     protected $table = 'categories';
 

@@ -4,13 +4,14 @@ namespace App;
 
 use App\Traits\ImagableTrait;
 use App\Traits\PhotoableTrait;
+use App\Traits\ResourceableTrait;
 use Cviebrock\EloquentSluggable\SluggableInterface;
 use Cviebrock\EloquentSluggable\SluggableTrait;
 use Illuminate\Database\Eloquent\Model;
 
 class Gallery extends Model implements SluggableInterface
 {
-    use ImagableTrait, PhotoableTrait, SluggableTrait;
+    use ImagableTrait, PhotoableTrait, SluggableTrait, ResourceableTrait;
 
     protected $table = 'galleries';
 

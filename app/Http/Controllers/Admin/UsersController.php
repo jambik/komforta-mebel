@@ -6,7 +6,6 @@ use App\Http\Controllers\BackendController;
 use App\User;
 use DB;
 use Illuminate\Http\Request;
-use Laracasts\Flash\Flash;
 
 class UsersController extends BackendController
 {
@@ -53,8 +52,6 @@ class UsersController extends BackendController
         ]);
 
         $item = User::create($request->except('password') + ['password' => bcrypt($request->input('password'))]);
-
-        Flash::success("Запись - {$item->id} сохранена");
 
         return redirect(route('admin.users.index'));
     }
@@ -106,8 +103,6 @@ class UsersController extends BackendController
 
         $item->update($request->except('password') + ($passwordRule ? ['password' => bcrypt($request->input('password'))] : []));
 
-        Flash::success("Запись - {$id} обновлена");
-
         return redirect(route('admin.users.index'));
     }
 
@@ -120,8 +115,6 @@ class UsersController extends BackendController
     public function destroy($id)
     {
         User::destroy($id);
-
-        Flash::success("Запись - {$id} удалена");
 
         return redirect(route('admin.users.index'));
     }
