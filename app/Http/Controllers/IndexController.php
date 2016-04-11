@@ -7,7 +7,7 @@ use App\Page;
 use App\Product;
 use Illuminate\Http\Request;
 
-class IndexController extends Controller
+class IndexController extends FrontendController
 {
     /**
      * Show the application dashboard.

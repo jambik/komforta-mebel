@@ -3,13 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests;
-use App\Page;
 use Illuminate\Http\Request;
 use Mail;
 use ReCaptcha\ReCaptcha;
 use Validator;
 
-class CommonController extends Controller
+class CommonController extends FrontendController
 {
     /**
      * Show the feedback page.

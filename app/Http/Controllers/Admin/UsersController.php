@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\BackendController;
 use App\User;
 use DB;
 use Illuminate\Http\Request;
 use Laracasts\Flash\Flash;
 
-class UsersController extends Controller
+class UsersController extends BackendController
 {
 
     /**

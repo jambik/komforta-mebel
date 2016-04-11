@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\BackendController;
 use App\Photo;
 use Flash;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
-class PhotosController extends Controller
+class PhotosController extends BackendController
 {
     /**
      * Display a listing of the resource.

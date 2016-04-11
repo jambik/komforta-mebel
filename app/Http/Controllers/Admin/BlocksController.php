@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Block;
+use App\Http\Controllers\BackendController;
 use Flash;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
-class BlocksController extends Controller
+class BlocksController extends BackendController
 {
     /**
      * Display a listing of the resource.

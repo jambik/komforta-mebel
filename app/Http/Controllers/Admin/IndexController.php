@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\BackendController;
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
 
-class IndexController extends Controller
+class IndexController extends BackendController
 {
     public function index()
     {

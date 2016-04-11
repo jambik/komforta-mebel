@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\News;
 
-class NewsController extends Controller
+class NewsController extends FrontendController
 {
     /**
      * Display a listing of the resource.

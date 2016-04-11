@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\BackendController;
 use App\Settings;
 use Flash;
 use Illuminate\Http\Request;
 
-class SettingsController extends Controller
+class SettingsController extends BackendController
 {
     public function index()
     {

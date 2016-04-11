@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Category;
+use App\Http\Controllers\BackendController;
 use App\Product;
 use Flash;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
-class ProductsController extends Controller
+class ProductsController extends BackendController
 {
     /**
      * Display a listing of the resource.

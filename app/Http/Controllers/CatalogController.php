@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Category;
 use App\Product;
 
-class CatalogController extends Controller
+class CatalogController extends FrontendController
 {
     /**
      * Display catalog index page.

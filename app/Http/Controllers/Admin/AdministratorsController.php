@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\BackendController;
 use App\Role;
 use App\User;
 use DB;
 use Illuminate\Http\Request;
 use Laracasts\Flash\Flash;
 
-class AdministratorsController extends Controller
+class AdministratorsController extends BackendController
 {
 
     /**

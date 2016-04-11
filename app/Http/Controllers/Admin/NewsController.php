@@ -2,14 +2,26 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\BackendController;
 use App\News;
 use Carbon\Carbon;
 use Flash;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
-class NewsController extends Controller
+class NewsController extends BackendController
 {
+    protected $resourceName = null;
+
+    protected $model = null;
+
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->resourceName = 'news';
+        $this->model = new News();
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -17,9 +29,9 @@ class NewsController extends Controller
      */
     public function index()
     {
-        $items = News::orderBy('published_at', 'desc')->get();
+        $items = $this->model->orderBy('published_at', 'desc')->get();
 
-        return view('admin.news.index', compact('items'));
+        return view('admin.'.$this->resourceName.'.index', compact('items'));
     }
 
     /**
@@ -29,7 +41,7 @@ class NewsController extends Controller
      */
     public function create()
     {
-        return view('admin.news.create');
+        return view('admin.'.$this->resourceName.'.create');
     }
 
     /**
@@ -47,13 +59,13 @@ class NewsController extends Controller
         $input = $request->all();
         $input['published_at'] = $input['published_at'] ?: Carbon::now();
 
-        $item = News::create($input);
+        $item = $this->model->create($input);
 
         $item->saveImage($item, $request);
 
         Flash::success("Запись - {$item->id} сохранена");
 
-        return redirect(route('admin.news.index'));
+        return redirect(route('admin.'.$this->resourceName.'.index'));
     }
 
     /**
@@ -75,9 +87,9 @@ class NewsController extends Controller
      */
     public function edit($id)
     {
-        $item = News::findOrFail($id);
+        $item = $this->model->findOrFail($id);
 
-        return view('admin.news.edit', compact('item'));
+        return view('admin.'.$this->resourceName.'.edit', compact('item'));
     }
 
     /**
@@ -93,7 +105,7 @@ class NewsController extends Controller
             'title' => 'required'
         ]);
 
-        $item = News::findOrFail($id);
+        $item = $this->model->findOrFail($id);
 
         $item->update($request->all());
 
@@ -101,7 +113,7 @@ class NewsController extends Controller
 
         Flash::success("Запись - {$id} обновлена");
 
-        return redirect(route('admin.news.index'));
+        return redirect(route('admin.'.$this->resourceName.'.index'));
     }
 
     /**
@@ -112,13 +124,13 @@ class NewsController extends Controller
      */
     public function destroy($id)
     {
-        $item = News::findOrFail($id);
+        $item = $this->model->findOrFail($id);
 
         $item->deleteImageFile();
         $item->delete();
 
         Flash::success("Запись - {$id} удалена");
 
-        return redirect(route('admin.news.index'));
+        return redirect(route('admin.'.$this->resourceName.'.index'));
     }
 }

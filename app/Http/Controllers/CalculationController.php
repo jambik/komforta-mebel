@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Mail;
 use Validator;
 
-class CalculationController extends Controller
+class CalculationController extends FrontendController
 {
     /**
      * Display calculation page.

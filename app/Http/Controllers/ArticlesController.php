@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Article;
 
-class ArticlesController extends Controller
+class ArticlesController extends FrontendController
 {
     /**
      * Display a listing of the resource.

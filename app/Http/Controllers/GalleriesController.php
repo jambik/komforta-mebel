@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Gallery;
 
-class GalleriesController extends Controller
+class GalleriesController extends FrontendController
 {
     /**
      * Display catalog index page.

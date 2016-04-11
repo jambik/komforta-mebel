@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Page;
 
-class PagesController extends Controller
+class PagesController extends FrontendController
 {
     /**
      * Display the page.
