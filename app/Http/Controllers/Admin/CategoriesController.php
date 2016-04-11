@@ -85,9 +85,7 @@ class CategoriesController extends BackendController
      */
     public function edit($id)
     {
-        $item = Category::findOrFail($id);
-
-        return true;
+        //
     }
 
     /**
@@ -106,7 +104,6 @@ class CategoriesController extends BackendController
         $item = Category::findOrFail($id);
 
         $item->update($request->all());
-        $item->saveImage($item, $request);
 
         $item = Category::findOrFail($id);
 
@@ -128,7 +125,6 @@ class CategoriesController extends BackendController
     {
         $item = Category::findOrFail($id);
 
-        $item->deleteImageFile();
         $item->delete();
 
         if ($request->ajax()){
@@ -151,7 +147,7 @@ class CategoriesController extends BackendController
     {
         $category = Category::findOrFail($id);
 
-        $category->deleteImage();
+        $category->deleteImage(true);
 
         if ($request->ajax()){
             return json_encode([

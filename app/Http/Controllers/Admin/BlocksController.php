@@ -42,7 +42,7 @@ class BlocksController extends BackendController
             'alias' => 'required|unique:blocks,alias',
         ]);
 
-        $item = Block::create($request->all());
+        Block::create($request->all());
 
         return redirect(route('admin.blocks.index'));
     }

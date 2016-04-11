@@ -42,7 +42,7 @@ class ArticlesController extends BackendController
             'name' => 'required',
         ]);
 
-        $item = Article::create($request->all());
+        Article::create($request->all());
 
         return redirect(route('admin.articles.index'));
     }

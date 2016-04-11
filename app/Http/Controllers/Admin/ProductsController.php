@@ -69,9 +69,7 @@ class ProductsController extends BackendController
 
         foreach (['available'] as $value) $input[$value] = $request->has($value) ? true : false;
 
-        $item = Product::create($input);
-
-        $item->saveImage($item, $request);
+        Product::create($input);
 
         return redirect(route('admin.products.index'));
     }
@@ -128,8 +126,6 @@ class ProductsController extends BackendController
 
         $item->update($input);
 
-        $item->saveImage($item, $request);
-
         return redirect(route('admin.products.index'));
     }
 
@@ -143,7 +139,6 @@ class ProductsController extends BackendController
     {
         $item = Product::findOrFail($id);
 
-        $item->deleteImageFile();
         $item->deletePhotos();
         $item->delete();
 

@@ -42,7 +42,7 @@ class PhotosController extends BackendController
             'photo' => 'mimes:jpeg,bmp,png',
         ]);
 
-        $item = Photo::create($request->all());
+        Photo::create($request->all());
 
         return redirect(route('admin.photos.index'));
     }

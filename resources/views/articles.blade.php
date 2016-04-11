@@ -9,7 +9,7 @@
         <div class="articles-list">
             @foreach($articles as $value)
                 <div class="item">
-                    <div class="name"><a href="{{ route('articles.show', $value->slug) }}">{{ $value->title }}</a></div>
+                    <div class="name"><a href="{{ route('articles.show', $value->slug) }}">{{ $value->name }}</a></div>
                     <p>{{ str_limit(strip_tags($value->text), 150, '...') }}</p>
                 </div>
             @endforeach

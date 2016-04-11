@@ -42,7 +42,7 @@ class PagesController extends BackendController
             'name' => 'required',
         ]);
 
-        $item = Page::create($request->all());
+        Page::create($request->all());
 
         return redirect(route('admin.pages.index'));
     }

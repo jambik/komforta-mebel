@@ -12,5 +12,7 @@
                 <a class="popup-gallery" title="{{ $val->name }}" href="/images/original/{{ $val->img_url . $val->image }}"><img src="/images/small/{{ $val->img_url . $val->image }}" class="img-thumbnail" alt="{{ $val->name }}"></a>
             @endforeach
         </div>
+    @else
+        <div>В этой фотогалерее пока нет фотографий</div>
     @endif
 @endsection

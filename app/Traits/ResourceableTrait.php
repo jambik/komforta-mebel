@@ -6,10 +6,11 @@ use Flash;
 
 trait ResourceableTrait
 {
-    public static function boot()
+    /**
+     * Boot events
+     */
+    public static function bootResourceableTrait()
     {
-        parent::boot();
-
         static::created(function ($model){
             Flash::success("Запись - {$model->id} сохранена");
         });

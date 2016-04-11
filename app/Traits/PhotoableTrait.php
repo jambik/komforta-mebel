@@ -8,11 +8,22 @@ use Illuminate\Http\Request;
 
 trait PhotoableTrait
 {
+    /**
+     * Photos relation
+     *
+     * @return mixed
+     */
     public function photos()
     {
         return $this->morphMany('App\Photo', 'photoable');
     }
 
+    /**
+     * Save photo
+     *
+     * @param Request $request
+     * @return mixed
+     */
     public function savePhoto(Request $request)
     {
         $imageName      = strtolower(class_basename($this)).'-'.$this->id;
@@ -28,24 +39,47 @@ trait PhotoableTrait
         return $item['image'];
     }
 
+    /**
+     * Delete photo
+     *
+     * @param $id
+     */
     public function deletePhoto($id)
     {
         $photo = $this->photos()->findOrFail($id);
 
         $this->deletePhotoFile($photo);
-        $this->deletePhotoRow($photo);
+        $this->deletePhotoRecord($photo);
     }
 
+    /**
+     * Delete photo file
+     *
+     * @param Photo $photo
+     * @return bool
+     */
     public function deletePhotoFile(Photo $photo)
     {
         return File::delete($this->imagePath().DIRECTORY_SEPARATOR.$photo->image);
     }
 
-    public function deletePhotoRow(Photo $photo)
+    /**
+     * Delete photo record
+     *
+     * @param Photo $photo
+     * @return bool|null
+     * @throws \Exception
+     */
+    public function deletePhotoRecord(Photo $photo)
     {
         return $photo->delete();
     }
 
+    /**
+     * Delete all photos
+     *
+     * @return bool|null
+     */
     public function deletePhotos()
     {
         if ($this->photos->count()) {

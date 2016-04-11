@@ -58,8 +58,6 @@ class NewsController extends BackendController
 
         $item = $this->model->create($input);
 
-        $item->saveImage($item, $request);
-
         return redirect(route('admin.'.$this->resourceName.'.index'));
     }
 
@@ -103,8 +101,6 @@ class NewsController extends BackendController
         $item = $this->model->findOrFail($id);
 
         $item->update($request->all());
-
-        $item->saveImage($item, $request);
 
         return redirect(route('admin.'.$this->resourceName.'.index'));
     }

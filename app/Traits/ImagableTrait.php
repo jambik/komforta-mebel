@@ -2,11 +2,23 @@
 
 namespace App\Traits;
 
+use DB;
+use Debugbar;
 use File;
-use Illuminate\Http\Request;
 
 trait ImagableTrait
 {
+    public static function bootImagableTrait()
+    {
+        static::saved(function (self $model) {
+            $model->saveImage();
+        });
+
+        static::deleted(function (self $model){
+            $model->deleteImage();
+        });
+    }
+
     /**
      * Get Image url path attribute
      *
@@ -20,42 +32,57 @@ trait ImagableTrait
     /**
      * Save Item Image
      *
-     * @param         $item
-     * @param Request $request
-     *
-     * @return null | string
+     * @return void
      */
-    public function saveImage($item, Request $request)
+    public function saveImage()
     {
-        if ($request->hasFile('image'))
+        if (request()->hasFile('image'))
         {
-            $imageName      = strtolower(class_basename($this)).'-'.$item->id;
-            $imageExtension = strtolower($request->file('image')->getClientOriginalExtension());
+            $imageName      = strtolower(class_basename($this)).'-'.$this->id;
+            $imageExtension = strtolower(request()->file('image')->getClientOriginalExtension());
 
-            $file = $request->file('image')->move($this->imagePath(), $imageName.".".$imageExtension);
-            $item->image = $file->getFilename();
-            $item->save();
+            $file = request()->file('image')->move($this->imagePath(), $imageName.".".$imageExtension);
+            $this->image = $file->getFilename();
 
-            return $item->image;
+            DB::table($this->getTable())
+              ->where('id', $this->id)
+              ->update(['image' => $this->image]);
         }
-
-        return null;
     }
 
-    public function deleteImage()
+    /**
+     * Delete Image
+     *
+     * @param bool $clearAttribute  Clear 'image' attribute
+     * @return bool
+     */
+    public function deleteImage($clearAttribute = false)
     {
         $this->deleteImageFile();
-        $this->deleteImageField();
+
+        if ($clearAttribute){
+            $this->clearImageAttribute();
+        }
 
         return true;
     }
 
+    /**
+     * Delete image file
+     *
+     * @return bool
+     */
     public function deleteImageFile()
     {
         return File::delete($this->imagePath().DIRECTORY_SEPARATOR.$this->image);
     }
 
-    public function deleteImageField()
+    /**
+     * Clear image attribute
+     *
+     * @return mixed
+     */
+    public function clearImageAttribute()
     {
         $this->image = '';
         return $this->save();

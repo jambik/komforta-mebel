@@ -42,9 +42,7 @@ class SlidesController extends BackendController
             'image' => 'required|mimes:jpeg,bmp,png',
         ]);
 
-        $item = Slide::create($request->all());
-
-        $item->saveImage($item, $request);
+        Slide::create($request->all());
 
         return redirect(route('admin.slides.index'));
     }
@@ -86,8 +84,6 @@ class SlidesController extends BackendController
 
         $item->update($request->all());
 
-        $item->saveImage($item, $request);
-
         return redirect(route('admin.slides.index'));
     }
 
@@ -97,15 +93,9 @@ class SlidesController extends BackendController
      * @param  int  $id
      * @return Response
      */
-    public function destroy($id, Request $request)
+    public function destroy($id)
     {
         Slide::destroy($id);
-
-        if ($request->ajax()){
-            return json_encode([
-                'status' => 'ok'
-            ]);
-        }
 
         return redirect(route('admin.slides.index'));
     }

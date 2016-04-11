@@ -43,9 +43,7 @@ class GalleriesController extends BackendController
             'name' => 'required'
         ]);
 
-        $item = Gallery::create($request->all());
-
-        $item->saveImage($item, $request);
+        Gallery::create($request->all());
 
         return redirect(route('admin.galleries.index'));
     }
@@ -92,8 +90,6 @@ class GalleriesController extends BackendController
 
         $item->update($request->all());
 
-        $item->saveImage($item, $request);
-
         return redirect(route('admin.galleries.index'));
     }
 
@@ -107,7 +103,6 @@ class GalleriesController extends BackendController
     {
         $item = Gallery::findOrFail($id);
 
-        $item->deleteImageFile();
         $item->deletePhotos();
         $item->delete();
 
