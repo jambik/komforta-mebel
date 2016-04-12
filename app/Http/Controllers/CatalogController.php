@@ -14,8 +14,6 @@ class CatalogController extends FrontendController
      */
     public function index()
     {
-//        $categories = Category::withDepth()->defaultOrder()->get()->toFlatTree();
-
         return view('catalog.index');
     }
 
@@ -32,12 +30,6 @@ class CatalogController extends FrontendController
         $children = $descendants->whereLoose('parent_id', $category->id);
 
         $products = Product::whereIn('category_id', $descendants->pluck('id')->push($category->id)->toArray())->get();
-
-//        dump($children->toArray());
-//        dump($descendants->toArray());
-//        dump($descendants->pluck('id'));
-//        dump($products->toArray());
-//        dump($category->ancestors()->get()->toArray());
 
         return view('catalog.category', compact('category', 'children', 'products'));
     }
@@ -56,13 +48,6 @@ class CatalogController extends FrontendController
         $sameProductsCount = 3;
         $sameProducts      = Product::all();
         $sameProducts      = $sameProducts->random($sameProducts->count() < $sameProductsCount ? $sameProducts->count() : $sameProductsCount);
-
-//        dump($sameProducts->toArray());
-//        dump($children->toArray());
-//        dump($descendants->toArray());
-//        dump($descendants->pluck('id'));
-//        dump($products->toArray());
-//        dump($category->ancestors()->get()->toArray());
 
         return view('catalog.product', compact('category', 'product', 'sameProducts'));
     }
