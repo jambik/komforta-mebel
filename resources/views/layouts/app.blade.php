@@ -16,6 +16,10 @@
     <script src="{{ asset('/js/app.js') }}" type="text/javascript"></script>
     {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
 
+    {{--vkontakte--}}
+    <script type="text/javascript" src="//vk.com/js/api/openapi.js?121"></script>
+    <script type="text/javascript">VK.init({apiId: 5412143, onlyWidgets: true});</script>
+
     @yield('header_scripts')
 
     <!--[if lt IE 9]>
@@ -129,6 +133,11 @@
                         @include('partials._categories')
                     </div>
                     <div class="categories-bottom"></div>
+                    {{--vkontakte--}}
+                    <div id="vk_comments"></div>
+                    <script type="text/javascript">
+                        VK.Widgets.Comments("vk_comments", {limit: 10, width: "260", attach: "*"});
+                    </script>
                 </div>
             </div>
             <div class="col-lg-9 col-md-8">
@@ -162,5 +171,6 @@
 @include('partials._callback')
 @include('partials._flash')
 @yield('footer_scripts')
+@include('partials._yandex_metrika_counter')
 </body>
 </html>
