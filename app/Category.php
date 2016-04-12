@@ -46,7 +46,7 @@ class Category extends Model implements SluggableInterface
     /**
      * Get all products of category.
      */
-    public function comments()
+    public function products()
     {
         return $this->hasMany('App\Product');
     }

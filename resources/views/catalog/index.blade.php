@@ -4,17 +4,14 @@
 
 @section('content')
 
-    <div class="categories-list">
+    <div>
         @foreach($categories as $category)
-            <div class="media category">
-                <div class="media-left media-middle">
-                    <div class="image"><a href="{{ url('/catalog/' . $category->slug) }}"><img class="img-thumbnail" src="{{ $category->image ? '/images/small/' . $category->img_url . $category->image : '/img/default.png' }}"></a></div>
+            @if ($category->products->count())
+                <div class="caption-block"><div>{{ $category->name }}<a href="{{ url('/catalog/' . $category->slug) }}">подробнее</a></div></div>
+                <div class="row products-tiles">
+                    @each('catalog.product_tile', $category->products()->limit(3)->get(), 'product')
                 </div>
-                <div class="media-body media-middle">
-                    <div class="name"><a href="{{ url('/catalog/' . $category->slug) }}">{{ $category->name }}</a></div>
-                    @if ($category->about)<p>{{ str_limit(strip_tags($category->about), 150, '...') }}</p>@endif
-                </div>
-            </div>
+            @endif
         @endforeach
     </div>
 
