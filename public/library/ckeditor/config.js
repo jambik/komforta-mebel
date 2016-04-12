@@ -10,31 +10,28 @@ CKEDITOR.editorConfig = function( config ) {
 
     // The toolbar groups arrangement, optimized for two toolbar rows.
     config.toolbarGroups = [
-        { name: 'clipboard',   groups: [ 'clipboard', 'undo' ] },
-        { name: 'editing',     groups: [ 'find', 'selection', 'spellchecker' ] },
-        { name: 'links' },
-        { name: 'insert' },
-        { name: 'forms' },
-        { name: 'tools' },
-        { name: 'document',	   groups: [ 'mode', 'document', 'doctools', 'CreateDiv' ] },
-        { name: 'others' },
-        '/',
+        { name: 'document', groups: [ 'mode', 'document', 'doctools' ] },
+        { name: 'clipboard', groups: [ 'clipboard', 'undo' ] },
+        { name: 'editing', groups: [ 'find', 'selection', 'spellchecker', 'editing' ] },
+        { name: 'links', groups: [ 'links' ] },
+        { name: 'insert', groups: [ 'insert' ] },
+        { name: 'others', groups: [ 'others' ] },
         { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
-        { name: 'paragraph',   groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ] },
-        { name: 'styles' },
-        { name: 'colors' },
-        { name: 'about' }
+        { name: 'align', groups: [ 'align' ] },
+        { name: 'paragraph', groups: [ 'blocks', 'list', 'indent', 'bidi', 'paragraph' ] },
+        { name: 'styles', groups: [ 'styles' ] },
+        { name: 'tools', groups: [ 'tools' ] },
     ];
+    config.removeButtons = 'Subscript,Superscript,About,Strike,Cut,Copy,Paste,PasteText,PasteFromWord,Scayt,Anchor,SpecialChar';
 
-    // Remove some buttons provided by the standard plugins, which are
-    // not needed in the Standard(s) toolbar.
-    config.removeButtons = 'Underline,Subscript,Superscript';
+    config.extraPlugins = 'div,stylesheetparser,justify,font';
 
-    // Set the most common block elements.
-    config.format_tags = 'p;h1;h2;h3;pre';
+    config.allowedContent = true;
 
-    // Simplify the dialog windows.
-    //config.removeDialogTabs = 'image:advanced;link:advanced';
+    config.toolbarCanCollapse = true;
+    config.toolbarStartupExpanded = false;
+
+    config.format_tags = 'h1;h2;h3;h4;h5;h6;p;pre';
 
     config.bodyClass = 'container';
     config.contentsCss = ['/css/app.bundle.css', '/css/app.css'];
