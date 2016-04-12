@@ -109,7 +109,7 @@ class CategoriesController extends BackendController
     {
         $this->validate($request, [
             'name' => 'required',
-            'slug' => 'required|unique:' . $this->model->getTable() . ',slug,'.$id,
+//            'slug' => 'required|unique:' . $this->model->getTable() . ',slug,'.$id,
         ]);
 
         $item = $this->model->findOrFail($id);

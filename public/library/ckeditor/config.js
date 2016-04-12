@@ -33,7 +33,7 @@ CKEDITOR.editorConfig = function( config ) {
 
     config.format_tags = 'h1;h2;h3;h4;h5;h6;p;pre';
 
-    config.bodyClass = 'container';
+    config.bodyClass = 'container-fluid';
     config.contentsCss = ['/css/app.bundle.css', '/css/app.css'];
 
     config.filebrowserBrowseUrl      = '/library/ckfinder/ckfinder.html';

@@ -41,12 +41,22 @@ new Vue({
                 that.node = selected.node.original;
                 that.nodeLoading = false;
                 $('#name').focus();
+                CKEDITOR.instances.about.setData('', {
+                    callback: function() {
+                        this.checkDirty(); // true
+                    }
+                });
             }
             else {
                 that.resetNodeForm();
                 $(that.nodeFormId).attr('action', that.baseUrl + '/' + selected.node.original.id);
                 $.get(that.baseUrl + '/' + selected.node.original.id, function(data) {
                     that.node = data;
+                    CKEDITOR.instances.about.setData(that.node.about, {
+                        callback: function() {
+                            this.checkDirty(); // true
+                        }
+                    });
                 })
                 .fail(function(){
                     sweetAlert("", "Ошибка при запросе к серсеру", 'error');
