@@ -14,9 +14,9 @@ class CatalogController extends FrontendController
      */
     public function index()
     {
-        $categories = Category::withDepth()->defaultOrder()->get()->toFlatTree();
+//        $categories = Category::withDepth()->defaultOrder()->get()->toFlatTree();
 
-        return view('catalog.index', compact('categories'));
+        return view('catalog.index');
     }
 
     /**
