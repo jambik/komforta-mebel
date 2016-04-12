@@ -3,7 +3,7 @@
 @section('title', $gallery->name)
 
 @section('content')
-    <div><a href="{{ route('galleries') }}"><i class="fa fa-chevron-left"></i> все новости</a></div>
+    <div><a href="{{ route('galleries') }}"><i class="fa fa-chevron-left"></i> все альбомы</a></div>
     <h1>{{ $gallery->name }}</h1>
     <hr>
     <div>&nbsp;</div>
