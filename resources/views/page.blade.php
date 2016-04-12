@@ -16,16 +16,16 @@
         <div>&nbsp;</div>
         <form action="{{ route('feedback.send') }}" method="POST" id="form_feedback">
             {!! Form::token() !!}
-            <div class="form-group">
+            <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                 <input type="text" class="form-control" name="name" placeholder="Имя" value="{{ old('name') }}">
             </div>
-            <div class="form-group">
+            <div class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
                 <input type="text" class="form-control" name="phone" placeholder="Телефон" value="{{ old('phone') }}">
             </div>
-            <div class="form-group">
+            <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                 <input type="text" class="form-control" name="email" placeholder="Email" value="{{ old('email') }}">
             </div>
-            <div class="form-group">
+            <div class="form-group{{ $errors->has('message') ? ' has-error' : '' }}">
                 <textarea class="form-control" name="message" placeholder="Сообщение" style="min-height: 150px;">{{ old('message') }}</textarea>
             </div>
             <div class="form-group">

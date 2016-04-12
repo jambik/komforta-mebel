@@ -79,7 +79,7 @@ $factory->defineAs(App\Photo::class, 'gallery', function ($faker) {
     return [
         'name' => $faker->name,
         'image' => $faker->image(storage_path('images').DIRECTORY_SEPARATOR.'galleries', 640, 480, null, false, false),
-        'img_url' => 'products/',
+        'img_url' => 'galleries/',
         'photoable_type' => 'App\Gallery',
     ];
 });
