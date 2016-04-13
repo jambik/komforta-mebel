@@ -30,7 +30,7 @@ class ProductsController extends BackendController
     {
         $category = $request->has('category') && $request->has('category') ? $request->get('category') : null;
 
-        $items = $category ? $this->model->whereCategoryId($category)->get() : $this->model->all();
+        $items = $category ? $this->model->whereCategoryId($category)->get() : collect([]);
 
         $categories = Category::select("categories.*")
                               ->selectRaw('COUNT(products.id) as products_count')
@@ -79,9 +79,9 @@ class ProductsController extends BackendController
 
         foreach (['available'] as $value) $input[$value] = $request->has($value) ? true : false;
 
-        $this->model->create($input);
+        $item = $this->model->create($input);
 
-        return redirect(route('admin.'.$this->resourceName.'.index'));
+        return redirect(route('admin.'.$this->resourceName.'.index') . '?category='.$item->category_id);
     }
 
     /**
@@ -136,7 +136,7 @@ class ProductsController extends BackendController
 
         $item->update($input);
 
-        return redirect(route('admin.'.$this->resourceName.'.index'));
+        return redirect(route('admin.'.$this->resourceName.'.index') . '?category='.$item->category_id);
     }
 
     /**

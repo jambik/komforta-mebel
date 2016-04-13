@@ -95,6 +95,19 @@ main {
     vertical-align: middle;
 }
 
+.no-items {
+    background: #eee;
+    padding: 50px 0;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.no-items::after {
+    content: "нет записей";
+}
+
+
+
 /* products */
 .products .collection span.badge {
     min-width: inherit;

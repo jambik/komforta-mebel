@@ -10,6 +10,11 @@
                     {!! Form::email('email', null, ['class' => 'validate']) !!}
                 </div>
 
+                <div class="input-field col s12">
+                    {!! Form::label('phone', 'Телефон') !!}
+                    {!! Form::text('phone', null, ['class' => 'validate']) !!}
+                </div>
+
                 <div class="input-field col s12 input-html">
                     {!! Form::label('description', 'Описание сайта') !!}
                     {!! Form::textarea('description', null, ['class' => 'materialize-textarea validate']) !!}

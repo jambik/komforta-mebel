@@ -45,7 +45,7 @@
             </div>
             <div class="col-lg-3 col-md-3 col-sm-6 phones">
                 <div class="phone">
-                    Телефон: <span>+7 (495) 123-45-67</span>
+                    Телефон: <span>{{ $settings->phone }}</span>
                 </div>
                 <div class="phone-icons">
                     <img src="{{ asset('img/phone.png') }}">
@@ -53,7 +53,7 @@
             </div>
             <div class="col-lg-5 col-md-5 col-sm-6 contacts text-right">
                 <div class="address">г.Москва, Алтуфьевское шоссе 33</div>
-                <div class="email">E-mail: info@mebel-kf.ru</div>
+                <div class="email">E-mail: {{ $settings->email }}</div>
                 <div class="row search">
                     <form action="#search" method="GET" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                         <input type="text" class="form-control input-sm" name="search" placeholder="поиск по сайту">

@@ -26,12 +26,9 @@ class UsersController extends BackendController
      */
     public function index()
     {
-        $items = DB::table('users')
-                    ->leftJoin('role_user', 'role_user.user_id', '=', 'users.id')
-                    ->where('role_user.role_id', null)
-                    ->get();
+        $items = User::has('roles', '=', 0)->get();
 
-        return view('admin..'.$this->resourceName.'..index', compact('items'));
+        return view('admin.'.$this->resourceName.'.index', compact('items'));
     }
 
     /**
@@ -41,7 +38,7 @@ class UsersController extends BackendController
      */
     public function create()
     {
-        return view('admin..'.$this->resourceName.'..create');
+        return view('admin.'.$this->resourceName.'.create');
     }
 
     /**
@@ -61,7 +58,7 @@ class UsersController extends BackendController
 
         $this->model->create($request->except('password') + ['password' => bcrypt($request->input('password'))]);
 
-        return redirect(route('admin..'.$this->resourceName.'..index'));
+        return redirect(route('admin.'.$this->resourceName.'.index'));
     }
 
     /**
@@ -86,7 +83,7 @@ class UsersController extends BackendController
         $item = $this->model->findOrFail($id);
         $item->password = '';
 
-        return view('admin..'.$this->resourceName.'..edit', compact('item'));
+        return view('admin.'.$this->resourceName.'.edit', compact('item'));
     }
 
     /**
@@ -111,7 +108,7 @@ class UsersController extends BackendController
 
         $item->update($request->except('password') + ($passwordRule ? ['password' => bcrypt($request->input('password'))] : []));
 
-        return redirect(route('admin..'.$this->resourceName.'..index'));
+        return redirect(route('admin.'.$this->resourceName.'.index'));
     }
 
     /**
@@ -124,7 +121,7 @@ class UsersController extends BackendController
     {
         $this->model->destroy($id);
 
-        return redirect(route('admin..'.$this->resourceName.'..index'));
+        return redirect(route('admin.'.$this->resourceName.'.index'));
     }
 
 }

@@ -81,7 +81,7 @@
 </div>
 
 <div class="input-field col s12 center">
-    <a href="{{ route('admin.products.index') }}" class="btn grey waves-effect waves-light">Отмена</a>
+    <a href="{{ isset($item) ? route('admin.products.index') . '?category=' . $item->category_id : session()->previousUrl() }}" class="btn grey waves-effect waves-light">Отмена</a>
 </div>
 
 @section('head_scripts')

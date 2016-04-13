@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSettingsTable extends Migration
+class AlterSettingsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,11 +12,8 @@ class CreateSettingsTable extends Migration
      */
     public function up()
     {
-        Schema::create('settings', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('email')->default('');
-            $table->text('description')->default('');
-            $table->timestamps();
+        Schema::table('settings', function (Blueprint $table) {
+            $table->string('phone')->after('email')->default('');
         });
     }
 
@@ -27,6 +24,8 @@ class CreateSettingsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('settings');
+        Schema::table('settings', function (Blueprint $table) {
+            $table->dropColumn('phone');
+        });
     }
 }

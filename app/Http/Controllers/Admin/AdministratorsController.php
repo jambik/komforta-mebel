@@ -27,10 +27,9 @@ class AdministratorsController extends BackendController
      */
     public function index()
     {
-        $items = DB::table('users')
-                    ->leftJoin('role_user', 'role_user.user_id', '=', 'users.id')
-                    ->whereNotNull('role_user.role_id')
-                    ->get();
+        $items = User::whereHas('roles', function ($query) {
+            $query->where('role_id', 1);
+        })->where('id', '<>', 1)->get();
 
         return view('admin.'.$this->resourceName.'.index', compact('items'));
     }
