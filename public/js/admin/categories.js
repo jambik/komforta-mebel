@@ -41,22 +41,13 @@ new Vue({
                 that.node = selected.node.original;
                 that.nodeLoading = false;
                 $('#name').focus();
-                CKEDITOR.instances.about.setData('', {
-                    callback: function() {
-                        this.checkDirty(); // true
-                    }
-                });
-            }
-            else {
+                CKEDITOR.instances.about.setData('');
+            } else {
                 that.resetNodeForm();
                 $(that.nodeFormId).attr('action', that.baseUrl + '/' + selected.node.original.id);
                 $.get(that.baseUrl + '/' + selected.node.original.id, function(data) {
                     that.node = data;
-                    CKEDITOR.instances.about.setData(that.node.about, {
-                        callback: function() {
-                            this.checkDirty(); // true
-                        }
-                    });
+                    CKEDITOR.instances.about.setData(that.node.about);
                 })
                 .fail(function(){
                     sweetAlert("", "Ошибка при запросе к серсеру", 'error');
@@ -87,6 +78,7 @@ new Vue({
         });
 
         $(that.nodeFormId).on('submit', function(e) {
+            $('#about').val(CKEDITOR.instances.about.getData());
             that.ajaxFormSubmit(e, that.nodeSaved);
         });
     },
