@@ -25,7 +25,7 @@
 </div>
 <div>
     Высота верхних шкафов:
-    {{ $vars['cupboard_height'][$input['cupboard_height']] }}
+    {{ $cupboardHeights[$input['cupboard_height']] }}
 </div>
 <div>
     Техника:

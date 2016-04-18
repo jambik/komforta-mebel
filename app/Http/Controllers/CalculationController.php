@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\CupboardHeight;
 use Illuminate\Http\Request;
 use Mail;
 use Validator;
@@ -15,7 +16,9 @@ class CalculationController extends FrontendController
      */
     public function calculate()
     {
-        return view('calculation');
+        $cupboardHeights = CupboardHeight::lists('name', 'id')->all();
+
+        return view('calculation', compact('cupboardHeights'));
     }
 
     /**
@@ -45,7 +48,7 @@ class CalculationController extends FrontendController
             $this->throwValidationException($request, $validator);
         }
 
-        Mail::queue('emails.calculation', ['input' => $request->all(), 'vars' => trans('vars')], function ($message) {
+        Mail::queue('emails.calculation', ['input' => $request->all(), 'vars' => trans('vars'), 'cupboardHeights' => CupboardHeight::lists('name', 'id')->all()], function ($message) {
             $message->from(env('MAIL_ADDRESS'), env('MAIL_NAME'));
             $message->to(env('MAIL_ADDRESS'));
             $message->subject('Заявка на расчет');

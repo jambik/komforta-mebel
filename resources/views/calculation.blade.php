@@ -54,9 +54,7 @@
                     </div>
                 @endforeach
             </div>
-            <div class="col-lg-6" id="furnitureTypeImage">
-
-            </div>
+            <div class="col-lg-6" id="furnitureTypeImage"></div>
         </div>
         <p>&nbsp;</p>
 
@@ -64,7 +62,7 @@
             <div class="caption-block-grey">Высота верхних шкафов:</div>
             <div class="col-lg-6">
                 <select name="cupboard_height" id="cupboard_height" class="form-control">
-                    @foreach (trans('vars.cupboard_height') as $key => $val)<option value="{{ $key }}"{{ old('cupboard_height') == $key ? ' selected' : '' }}>{{ $val }}</option>@endforeach
+                    @foreach ($cupboardHeights as $key => $val)<option value="{{ $key }}"{{ old('cupboard_height') == $key ? ' selected' : '' }}>{{ $val }}</option>@endforeach
                 </select>
             </div>
         </div>

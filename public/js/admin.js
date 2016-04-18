@@ -162,7 +162,8 @@ function confirmDelete(element, id, url)
  * @param id
  * @param positionId
  */
-var changePosition = function(requestData){
+function changePosition(requestData)
+{
     $.ajax({
         'url': '/admin/sort',
         'type': 'POST',
@@ -179,3 +180,25 @@ var changePosition = function(requestData){
         }
     });
 };
+
+function deleteImage(element)
+{
+    var $preloader = $(element).next('.preloader');
+
+    if ($preloader.length){
+        $preloader.show();
+    }
+
+    $.post($(element).data('requestUrl'), { '_method': 'DELETE' }, function(data){
+        $(element).parent().remove();
+        console.log(data);
+    }, 'json')
+    .fail(function(){
+        sweetAlert("", "Ошибка при запросе к серсеру", 'error');
+    })
+    .always(function(){
+        if ($preloader.length){
+            $preloader.hide();
+        }
+    });
+}

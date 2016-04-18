@@ -72,7 +72,9 @@
 
 @if (isset($item) && $item->image)
     <div class="col s12">
-        <img src="/images/medium/{{ $item->img_url.$item->image }}" alt="" />
+        <div><img src="/images/medium/{{ $item->img_url.$item->image }}" alt="" /></div>
+        <button class="btn btn-small red waves-effect waves-light" type="button" title="Удалить фото" onclick="deleteImage(this)" data-request-url="{{ route('admin.products.image.delete', $item->id) }}"><i class="material-icons">delete</i></button>
+        <div class="preloader-wrapper small active preloader" style="display: none;"><div class="spinner-layer spinner-red-only"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>
     </div>
 @endif
 

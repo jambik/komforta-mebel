@@ -25,6 +25,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'web'], function()
 
         ## Products
         Route::resource('products', 'Admin\ProductsController');
+        Route::delete('products/{id}/image', ['as' => 'admin.products.image.delete', 'uses' =>'Admin\ProductsController@imageDelete']);
         Route::post('products/{id}/photo', ['as' => 'admin.products.photo', 'uses' =>'Admin\ProductsController@photo'])->where('id', '[0-9]+');
         Route::delete('products/{id}/photo/{photoId}', ['as' => 'admin.products.photo.delete', 'uses' =>'Admin\ProductsController@photoDelete'])->where(['id' => '[0-9]+', 'photoId' => '[0-9]+']);
 
@@ -56,6 +57,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'web'], function()
 
         ## Administrators
         Route::resource('administrators', 'Admin\AdministratorsController');
+
+        ## Cupboard Heights
+        Route::resource('cupboard_heights', 'Admin\CupboardHeightsController');
 
         ## Sortable routes
         Route::post('sort', ['as' => 'sort', 'uses' => '\Rutorika\Sortable\SortableController@sort']);

@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Gallery;
+use App\CupboardHeight;
 use App\Http\Controllers\BackendController;
-use Flash;
 use Illuminate\Http\Request;
 
-class GalleriesController extends BackendController
+class CupboardHeightsController extends BackendController
 {
     protected $resourceName = null;
 
@@ -15,10 +14,10 @@ class GalleriesController extends BackendController
 
     public function __construct()
     {
-        $this->resourceName = 'galleries';
-        $this->model = new Gallery();
+        $this->resourceName = 'cupboard_heights';
+        $this->model = new CupboardHeight();
     }
-
+    
     /**
      * Display a listing of the resource.
      *
@@ -50,7 +49,7 @@ class GalleriesController extends BackendController
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required'
+            'name' => 'required',
         ]);
 
         $this->model->create($request->all());
@@ -93,7 +92,6 @@ class GalleriesController extends BackendController
     {
         $this->validate($request, [
             'name' => 'required',
-            'slug' => 'required|unique:' . $this->model->getTable() . ',slug,'.$id,
         ]);
 
         $item = $this->model->findOrFail($id);
@@ -111,61 +109,7 @@ class GalleriesController extends BackendController
      */
     public function destroy($id)
     {
-        $item = $this->model->findOrFail($id);
-
-        $item->delete();
-
-        return redirect(route('admin.'.$this->resourceName.'.index'));
-    }
-
-    /**
-     * Upload photo
-     *
-     * @param  int  $id
-     * @param  Request $request
-     * @return Response
-     */
-    public function photo($id, Request $request)
-    {
-        $item = $this->model->findOrFail($id);
-
-        $photoName = $item->savePhoto($request);
-
-        if($request->ajax()) {
-            return json_encode([
-                'status'  => 'ok',
-                'image'   => $photoName,
-                'img_url' => $item->img_url,
-                'message' => 'Фотография загружена',
-            ]);
-        }
-
-        Flash::success("Фотография загружена");
-
-        return redirect(route('admin.'.$this->resourceName.'.index'));
-    }
-
-    /**
-     * Delete photo
-     *
-     * @param $id
-     * @param $photoId
-     * @param Request $request
-     * @return Response
-     */
-    public function photoDelete($id, $photoId, Request $request)
-    {
-        $item = $this->model->findOrFail($id);
-        $item->deletePhoto($photoId);
-
-        if($request->ajax()) {
-            return json_encode([
-                'status'  => 'ok',
-                'message' => 'Фотография удалена',
-            ]);
-        }
-
-        Flash::success("Фотография удалена");
+        $this->model->destroy($id);
 
         return redirect(route('admin.'.$this->resourceName.'.index'));
     }

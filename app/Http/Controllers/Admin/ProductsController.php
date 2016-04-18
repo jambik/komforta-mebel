@@ -155,6 +155,31 @@ class ProductsController extends BackendController
     }
 
     /**
+     * Delete Photo
+     *
+     * @param $id
+     * @param $photoId
+     * @param Request $request
+     * @return Response
+     */
+    public function imageDelete($id, Request $request)
+    {
+        $item = $this->model->findOrFail($id);
+        $item->deleteImage(true);
+
+        if($request->ajax()) {
+            return json_encode([
+                'status'  => 'ok',
+                'message' => 'Фотография удалена',
+            ]);
+        }
+
+        Flash::success("Фотография удалена");
+
+        return redirect(route('admin.'.$this->resourceName.'.edit', $id));
+    }
+
+    /**
      * Upload photo
      *
      * @param  int  $id

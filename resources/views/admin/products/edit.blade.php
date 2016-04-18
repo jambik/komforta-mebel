@@ -3,7 +3,7 @@
 @section('content')
 	<h4 class="center">Редактировать</h4>
 	<div class="row">
-		<div class="col l6 offset-l3 m8 offset-m2">
+		<div class="col l8 offset-l2 m12">
             <ul class="tabs z-depth-1 hoverable">
                 <li class="tab col s6"><a href="#tab1">Основные свойства</a></li>
                 <li class="tab col s6"><a href="#tab2">Фотографии</a></li>
