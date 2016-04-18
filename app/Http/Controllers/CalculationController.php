@@ -6,6 +6,7 @@ use App\CupboardHeight;
 use App\Settings;
 use Illuminate\Http\Request;
 use Mail;
+use ReCaptcha\ReCaptcha;
 use Validator;
 
 class CalculationController extends FrontendController
@@ -43,6 +44,17 @@ class CalculationController extends FrontendController
         ];
 
         $validator = Validator::make($request->all(), $rules, $messages);
+
+        $validator->after(function($validator) use ($request)
+        {
+            $recaptcha = new ReCaptcha(env('GOOGLE_RECAPTCHA_SECRET'));
+            $resp = $recaptcha->verify($request->get('g-recaptcha-response'), $_SERVER['REMOTE_ADDR']);
+
+            if ( ! $resp->isSuccess())
+            {
+                $validator->errors()->add('google_recaptcha_error', 'Ошибка reCAPTCHA: '.implode(', ', $resp->getErrorCodes()));
+            }
+        });
 
         if ($validator->fails())
         {

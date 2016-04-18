@@ -90,10 +90,19 @@
                 </div>
             </div>
         </div>
-        <p>&nbsp;</p>
+        <div>&nbsp;</div>
+
+        <div class="form-group">
+            <div class="g-recaptcha" data-sitekey="{{ env('GOOGLE_RECAPTCHA_KEY') }}"></div>
+        </div>
+        <hr>
 
         <div class="form-group">
             <button type="submit" class="btn btn-lg btn-warning">Заявка на расчет</button>
         </div>
     </form>
+@endsection
+
+@section('header_scripts')
+    <script src='https://www.google.com/recaptcha/api.js?hl=ru'></script>
 @endsection
