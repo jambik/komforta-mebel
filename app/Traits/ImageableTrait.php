@@ -3,15 +3,14 @@
 namespace App\Traits;
 
 use DB;
-use Debugbar;
 use File;
 
-trait ImagableTrait
+trait ImageableTrait
 {
     /**
      * Boot events
      */
-    public static function bootImagableTrait()
+    public static function bootImageableTrait()
     {
         static::saved(function (self $model) {
             $model->saveImage();

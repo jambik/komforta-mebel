@@ -155,10 +155,9 @@ class ProductsController extends BackendController
     }
 
     /**
-     * Delete Photo
+     * Delete Image
      *
      * @param $id
-     * @param $photoId
      * @param Request $request
      * @return Response
      */

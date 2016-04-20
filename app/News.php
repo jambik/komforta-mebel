@@ -2,13 +2,13 @@
 
 namespace App;
 
-use App\Traits\ImagableTrait;
+use App\Traits\ImageableTrait;
 use App\Traits\ResourceableTrait;
 use Illuminate\Database\Eloquent\Model;
 
 class News extends Model
 {
-    use ImagableTrait, ResourceableTrait;
+    use ImageableTrait, ResourceableTrait;
 
     protected $table = 'news';
 

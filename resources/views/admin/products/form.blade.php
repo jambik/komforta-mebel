@@ -59,7 +59,6 @@
     {!! Form::text('description', null, ['class' => 'validate'.($errors->has('description') ? ' invalid' : '')]) !!}
 </div>
 
-
 <div class="input-field file-field col s12">
     <div class="btn">
         <span>Фото</span>

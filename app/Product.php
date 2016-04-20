@@ -2,7 +2,7 @@
 
 namespace App;
 
-use App\Traits\ImagableTrait;
+use App\Traits\ImageableTrait;
 use App\Traits\PhotoableTrait;
 use App\Traits\ResourceableTrait;
 use Cviebrock\EloquentSluggable\SluggableInterface;
@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model implements SluggableInterface
 {
-    use ImagableTrait, PhotoableTrait, SluggableTrait, ResourceableTrait;
+    use ImageableTrait, PhotoableTrait, SluggableTrait, ResourceableTrait;
 
     protected $table = 'products';
 
