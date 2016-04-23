@@ -14,6 +14,8 @@
                     </p>
                     <h3 class="text-center">Регистрация на сайте</h3>
                     <div>&nbsp;</div>
+                    @include('partials._status')
+                    @include('partials._errors')
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
                         {!! csrf_field() !!}
 

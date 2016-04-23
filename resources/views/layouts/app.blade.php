@@ -34,6 +34,14 @@
 <header>
     <div class="container">
         <div class="row logo-row">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
+                    <span class="sr-only">Меню</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
             <div class="col-lg-4 col-md-4 col-sm-6 logo">
                 <div class="logo-img">
                     <a href="/"><img src="{{ asset('img/logo.png') }}" class="img-responsive"></a>
@@ -43,7 +51,7 @@
                     <div class="slogan">У нас свое производство</div>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-3 col-sm-6 phones">
+            <div class="col-lg-3 col-md-3 col-sm-6 phones hidden-xs">
                 <div class="phone">
                     Телефон: <span>{{ $settings->phone }}</span>
                 </div>
@@ -51,7 +59,7 @@
                     <img src="{{ asset('img/phone.png') }}">
                 </div>
             </div>
-            <div class="col-lg-5 col-md-5 col-sm-6 contacts text-right">
+            <div class="col-lg-5 col-md-5 col-sm-6 contacts text-right hidden-xs">
                 <div class="address">г.Москва, Алтуфьевское шоссе 33</div>
                 <div class="email">E-mail: {{ $settings->email }}</div>
                 <div class="row search">
@@ -72,7 +80,7 @@
     </div>
 </header>
 
-<nav>
+<nav class="collapse navbar-collapse" id="navbar">
     <div class="container">
         <div class="row">
             <ul>

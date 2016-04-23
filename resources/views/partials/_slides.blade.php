@@ -1,5 +1,5 @@
 @if ($slides->count())
-    <section id="slides">
+    <section id="slides" class="hidden-xs">
         <div class="container">
             <div class="row">
                 <div id="slider" class="carousel slide" data-ride="carousel">
