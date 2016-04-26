@@ -76,7 +76,7 @@ Route::group(['middleware' => 'web'], function ()
     Route::get('/', ['as' => 'index', 'uses' => 'IndexController@index']);
 
     ## Search
-    Route::get('/', ['as' => 'search', 'uses' => 'SearchController@index']);
+    Route::get('/search', ['as' => 'search', 'uses' => 'SearchController@index']);
 
     # Feedback
     Route::get('feedback', ['as' => 'feedback', 'uses' => 'CommonController@feedback']);
