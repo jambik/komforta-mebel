@@ -80,6 +80,18 @@ nav a:hover, nav a.active { color: #fff; background: #ff7920; }
 .products-tiles .btn-round a { display: inline-block; color: #000; font-size: 12px; padding: 5px 10px; border-radius: 8px; border: 1px solid #ccc; background: #eee linear-gradient(#fff, #eee); }
 .products-tiles a.more { display: block; margin: 0 0 10px 0; text-align: center; color: #000; text-decoration: underline; font-size: 12px; }
 
+.products-list {  }
+.products-list .product-list { border-bottom: 1px solid #fe7920; margin: 0 0 30px 0; padding: 0 0 20px 0; }
+.products-list .img { float: left; width: 20%; }
+.products-list .img img { width: 100%; cursor: zoom-in; }
+.products-list .info { float: left; width: 80%; padding: 0 0 0 20px; }
+.products-list .name { margin: 0 0 10px 0; font-size: 20px; text-transform: uppercase; }
+.products-list .price { margin: 0 0 15px 0; font-size: 14px; }
+.products-list .price span { color: #c36000; font-weight: 700; }
+.products-list .btn-round { margin: 0 0 10px 0; }
+.products-list .btn-round a { display: inline-block; color: #000; font-size: 12px; padding: 5px 10px; border-radius: 8px; border: 1px solid #ccc; background: #eee linear-gradient(#fff, #eee); }
+.products-list a.more { display: inline-block; margin: 0 0 10px 0; text-align: center; color: #000; text-decoration: underline; font-size: 12px; }
+
 .product { margin: 0 0 50px 0; }
 .product .images {}
 .product .img { margin: 0 0 20px 0; }

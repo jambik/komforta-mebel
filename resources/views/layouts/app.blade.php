@@ -63,7 +63,7 @@
                 <div class="address">г.Москва, Алтуфьевское шоссе 33</div>
                 <div class="email">E-mail: {{ $settings->email }}</div>
                 <div class="row search">
-                    <form action="#search" method="GET" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                    <form action="{{ route('search') }}" method="GET" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                         <input type="text" class="form-control input-sm" name="search" placeholder="поиск по сайту">
                     </form>
                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">

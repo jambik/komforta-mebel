@@ -52,7 +52,16 @@
                 <p class="brief">{{ $product->brief }}</p>
             @endif
         </div>
+        <div class="col-sm-12">
+            @if ($product->text)
+                <p>&nbsp;</p>
+                <h3>Описание:</h3>
+                {!! $product->text !!}
+            @endif
+        </div>
     </div>
+
+    <hr>
 
     @if ($sameProducts->count())
         <div class="caption-block"><div>Похожие товары</div></div>
