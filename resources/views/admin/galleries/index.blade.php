@@ -13,6 +13,7 @@
                     <th>Название</th>
                     <th>Alias</th>
                     <th>Описание</th>
+                    <th>Тип галереи</th>
                     <th class="filter-false btn-collumn" data-sorter="false"></th>
                     <th class="filter-false btn-collumn" data-sorter="false"></th>
                 </tr>
@@ -43,6 +44,7 @@
                         <td>{{ $item->name }}</td>
                         <td>{{ $item->slug }}</td>
                         <td>{{ str_limit($item->text, 300) }}</td>
+                        <td>{{ $item->page ? 'Как страница' : '' }}</td>
                         <td><a href="{{ route('admin.galleries.edit', $item->id) }}" class="btn btn-small waves-effect waves-light"><i class="material-icons">edit</i></a></td>
                         <td><button onclick="confirmDelete(this, '{{ $item->id }}')" class="btn btn-small waves-effect waves-light red darken-2"><i class="material-icons">delete</i></button></td>
                     </tr>

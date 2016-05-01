@@ -15,7 +15,7 @@ class Gallery extends Model implements SluggableInterface
 
     protected $table = 'galleries';
 
-    protected $fillable = ['name', 'slug', 'text', 'image'];
+    protected $fillable = ['name', 'slug', 'text', 'page', 'image'];
 
     protected $appends = ['img_url'];
 

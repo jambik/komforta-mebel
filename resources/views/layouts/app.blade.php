@@ -60,7 +60,7 @@
                 </div>
             </div>
             <div class="col-lg-5 col-md-5 col-sm-6 contacts text-right hidden-xs">
-                <div class="address">г.Москва, Алтуфьевское шоссе 33</div>
+                <div class="address">{{ $settings->address }}</div>
                 <div class="email">E-mail: {{ $settings->email }}</div>
                 <div class="row search">
                     <form action="{{ route('search') }}" method="GET" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
@@ -91,6 +91,7 @@
                 <li><a href="{{ route('articles') }}">Статьи</a></li>
                 <li><a href="{{ url('/page/proizvodstvo') }}">Производство</a></li>
                 <li><a href="{{ route('galleries') }}">Наше портфолио</a></li>
+                <li><a href="{{ url('/page/materialy') }}">Материалы</a></li>
                 <li><a href="{{ url('/page/nashi-kontakty') }}">Наши контакты</a></li>
             </ul>
         </div>
@@ -158,7 +159,13 @@
 <footer>
     <div class="container">
         <div class="row">
-            <div class="copyright">копирайт</div>
+            <div class="copyright"></div>
+            <div class="social-buttons">
+                <a href="https://www.facebook.com/profile.php?id=100012062166999" target="_blank"><img src="{{ asset('img/social-buttons/facebook.png') }}"></a>
+                <a href="#" target="_blank"><img src="{{ asset('img/social-buttons/vkontakte.png') }}"></a>
+                <a href="https://www.instagram.com/mebel_komforta/" target="_blank"><img src="{{ asset('img/social-buttons/instagram.png') }}"></a>
+                <a href="https://ok.ru/profile/585653115696" target="_blank"><img src="{{ asset('img/social-buttons/odnoklassniki.png') }}"></a>
+            </div>
         </div>
         <div class="row">
             <ul>
@@ -169,6 +176,7 @@
                 <li><a href="{{ route('articles') }}">Статьи</a></li>
                 <li><a href="{{ url('/page/proizvodstvo') }}">Производство</a></li>
                 <li><a href="{{ route('galleries') }}">Наше портфолио</a></li>
+                <li><a href="{{ url('/page/materialy') }}">Материалы</a></li>
                 <li><a href="{{ url('/page/nashi-kontakty') }}">Наши контакты</a></li>
             </ul>
         </div>

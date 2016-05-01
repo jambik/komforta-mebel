@@ -16,6 +16,11 @@
     {!! Form::textarea('text', null, ['class' => 'validate materialize-textarea'.($errors->has('text') ? ' invalid' : '')]) !!}
 </div>
 
+<div class="input-field col s12 input-checkbox">
+    {!! Form::checkbox('page', 1, null, ['id' => 'page', 'class' => $errors->has('page') ? ' invalid' : '']) !!}
+    {!! Form::label('page', 'Страница') !!}
+</div>
+
 <div class="input-field file-field col s12">
     <div class="btn">
         <span>Фото</span>

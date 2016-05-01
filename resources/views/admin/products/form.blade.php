@@ -17,6 +17,14 @@
 </div>
 
 <div class="input-field col s12">
+    <select name="price_type" id="price_type">
+        <option value="0">- Цена за -</option>
+        @foreach (trans('vars.price_type') as $key => $val)<option value="{{ $key }}"{{ isset($item) && $item->price_type == $key ? ' selected' : '' }}>{{ $val }}</option>@endforeach
+    </select>
+    {!! Form::label('price_type', 'Цена за') !!}
+</div>
+
+<div class="input-field col s12">
     {!! Form::select('category_id', $categories, isset($categoryId) ? $categoryId : null, ['class' => 'validate'.($errors->has('category_id') ? ' invalid' : '')]) !!}
     {!! Form::label('category_id', 'Категория') !!}
 </div>

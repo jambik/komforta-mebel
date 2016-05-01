@@ -53,7 +53,11 @@ class GalleriesController extends BackendController
             'name' => 'required'
         ]);
 
-        $this->model->create($request->all());
+        $input = $request->all();
+
+        foreach (['page'] as $value) $input[$value] = $request->has($value) ? true : false;
+
+        $item = $this->model->create($input);
 
         return redirect(route('admin.'.$this->resourceName.'.index'));
     }
@@ -98,7 +102,11 @@ class GalleriesController extends BackendController
 
         $item = $this->model->findOrFail($id);
 
-        $item->update($request->all());
+        $input = $request->all();
+
+        foreach (['page'] as $value) $input[$value] = $request->has($value) ? true : false;
+
+        $item->update($input);
 
         return redirect(route('admin.'.$this->resourceName.'.index'));
     }

@@ -10,7 +10,7 @@
             @endif
         </div>
         <div class="name"><a href="{{ route('catalog.product', $product->slug) }}">{{ $product->name }}</a></div>
-        <div class="price">Базовая стоимость: <span>от {{ $product->price }} руб.</span></div>
+        <div class="price">Базовая стоимость: <span>от {{ number_format($product->price, 0, '', ' ') }} руб.</span></div>
         <div class="btn-round"><a href="#" onclick="$('#request-design-product').html('{{ $product->name }}'); $('#request-design-product').next().val('{{ $product->name }}'); return false;" data-toggle="modal" data-target="#requestDesignModal">Заказать дизайн/замер</a></div>
         <a href="{{ route('catalog.product', $product->slug) }}" class="more">Подробнее</a>
     </div>

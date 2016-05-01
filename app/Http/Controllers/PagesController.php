@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Gallery;
 use App\Page;
 
 class PagesController extends FrontendController
@@ -16,6 +17,8 @@ class PagesController extends FrontendController
     {
         $page = Page::findBySlugOrFail($slug);
 
-        return view('page', compact('page'));
+        $gallery = $page->slug == 'materialy' ? Gallery::findBySlugOrFail('materialy') : null;
+
+        return view('page', compact('page', 'gallery'));
     }
 }

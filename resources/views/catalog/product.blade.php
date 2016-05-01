@@ -38,8 +38,8 @@
 
             <div class="price-calculate">
                 <div class="price">
-                    от <strong>{{ $product->price }}</strong> руб.
-                    <span>расчет от погонного метра</span>
+                    от <strong>{{ number_format($product->price, 0, '', ' ') }}</strong> руб.
+                    <span>{{ trans('vars.price_type')[$product->price_type] }}</span>
                 </div>
                 <div class="calculate">
                     <a href="#"><img src="{{ asset('img/calculator.png') }}"></a>

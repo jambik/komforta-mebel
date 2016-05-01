@@ -36,7 +36,7 @@ nav { margin: 20px 0 0 0; }
 nav .row { background: #66a633 linear-gradient(#b4dd72, #66a633); }
 nav ul { margin: 0; padding: 0; list-style: none; }
 nav li { float: left; }
-nav a { padding: 15px 26px; display: inline-block; color: #000; }
+nav a { padding: 15px 18px; display: inline-block; color: #000; }
 nav a:hover, nav a.active { color: #fff; background: #ff7920; }
 
 #slides { margin: 20px 0 0 0; }
@@ -131,8 +131,9 @@ footer { background: #68a834; margin: 100px 0 0 0; }
 footer .copyright { padding: 20px 0; }
 footer ul { margin: 30px 0; padding: 0; list-style: none; }
 footer li { float: left; }
-footer a { padding: 15px 26px; display: inline-block; color: #000; }
-footer a:hover, footer a.active { color: #fff; background: #ff7920; }
+footer ul a { padding: 15px 15px; display: inline-block; color: #000; }
+footer ul a:hover, footer ul a.active { color: #fff; background: #ff7920; }
+footer .social-buttons a { padding: 15px 15px; display: inline-block; color: #000; }
 
 .icon-bar { border-color: #ff7920; border-width: 1px; border-style: solid; }
 

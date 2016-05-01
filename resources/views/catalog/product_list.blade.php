@@ -11,7 +11,7 @@
         </div>
         <div class="info">
             <div class="name"><a href="{{ route('catalog.product', $product->slug) }}">{{ $product->name }}</a></div>
-            <div class="price">Базовая стоимость: <span>от {{ $product->price }} руб.</span></div>
+            <div class="price">Базовая стоимость: <span>от {{ number_format($product->price, 0, '', ' ') }} руб.</span></div>
             <div class="brief">{{ str_limit($product->brief, 300) }}</div>
         </div>
         <div class="clearfix"></div>
