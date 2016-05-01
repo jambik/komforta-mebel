@@ -52,7 +52,7 @@
                 </div>
             </div>
             <div class="col-lg-3 col-md-3 col-sm-6 phones hidden-xs">
-                <div class="phone">
+                <div class="phone text-right">
                     Телефон: <span>{{ $settings->phone }}</span>
                 </div>
                 <div class="phone-icons">
