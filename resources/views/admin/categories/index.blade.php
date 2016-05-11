@@ -37,6 +37,11 @@
                 </div>
 
                 <div class="input-field col s12">
+                    <input id="slug" name="slug" v-model="node.slug" type="text" class="validate" v-bind:class="{'valid': node.slug}">
+                    <label for="slug" v-bind:class="{'active': node.slug}">Alias</label>
+                </div>
+
+                <div class="input-field col s12">
                     <input id="title" name="title" v-model="node.title" type="text" class="validate" v-bind:class="{'valid': node.title}">
                     <label for="title" v-bind:class="{'active': node.title}">Title (META)</label>
                 </div>

@@ -183,6 +183,11 @@ new Vue({
             if (newNode){
                 $(that.treeId).jstree().delete_node(-1);
             }
+
+            var formStatus = $(that.nodeFormId).find('.form-status');
+            if (formStatus.length){
+                formStatus.html('');
+            }
         },
 
         nodeSaved: function(data){
@@ -235,7 +240,9 @@ new Vue({
 
             // Место для отображения ошибок в форме
             var formStatus = $(form).find('.form-status');
-            if (formStatus.length) formStatus.html('');
+            if (formStatus.length){
+                formStatus.html('');
+            }
 
             // Анимированная кнопка при отправки формы
             var formButton = $(form).find('.form-button').hide();
