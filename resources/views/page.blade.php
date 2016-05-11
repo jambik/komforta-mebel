@@ -29,7 +29,8 @@
                 <textarea class="form-control" name="message" placeholder="Сообщение" style="min-height: 150px;">{{ old('message') }}</textarea>
             </div>
             <div class="form-group">
-                <div class="g-recaptcha" data-sitekey="{{ env('GOOGLE_RECAPTCHA_KEY') }}"></div>
+                {{--<div class="g-recaptcha" data-sitekey="{{ env('GOOGLE_RECAPTCHA_KEY') }}"></div>--}}
+                <div id="recaptchaFeedback"></div>
             </div>
             <div class="form-group">
                 <button type="submit" class="btn btn-success btn-block">Отправить сообщение</button>
@@ -49,8 +50,4 @@
             </div>
         @endif
     @endif
-@endsection
-
-@section('header_scripts')
-    <script src='https://www.google.com/recaptcha/api.js?hl=ru'></script>
 @endsection

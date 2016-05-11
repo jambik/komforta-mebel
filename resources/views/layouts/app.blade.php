@@ -186,6 +186,28 @@
 @include('partials._request_design')
 @include('partials._callback')
 @include('partials._flash')
+
+<script src="https://www.google.com/recaptcha/api.js?hl=ru&onload=myCallBack&render=explicit" async defer></script>
+<script>
+    var recaptchaFeedback;
+    var recaptchaCallback;
+    var recaptchaRequestDesign;
+
+    var myCallBack = function() {
+        if (document.getElementById('recaptchaFeedback')){
+            recaptchaFeedback = grecaptcha.render('recaptchaFeedback', {'sitekey' : '{{ env('GOOGLE_RECAPTCHA_KEY') }}'});
+        }
+
+        if (document.getElementById('recaptchaCallback')){
+            recaptchaCallback = grecaptcha.render('recaptchaCallback', {'sitekey' : '{{ env('GOOGLE_RECAPTCHA_KEY') }}'});
+        }
+
+        if (document.getElementById('recaptchaRequestDesign')){
+            recaptchaRequestDesign = grecaptcha.render('recaptchaRequestDesign', {'sitekey' : '{{ env('GOOGLE_RECAPTCHA_KEY') }}'});
+        }
+    };
+</script>
+
 @yield('footer_scripts')
 @include('partials._yandex_metrika_counter')
 </body>
