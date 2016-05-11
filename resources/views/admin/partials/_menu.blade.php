@@ -10,7 +10,7 @@
     <a class="collection-item" href="{{ route('admin.slides.index') }}"><i class="material-icons left">photo_size_select_actual</i> Слайдер</a>
     <a class="collection-item" href="{{ route('admin.galleries.index') }}"><i class="material-icons left">photo_library</i> Фотогалереи</a>
     <div class="divider"></div>
-    <a class="collection-item" href="{{ route('admin.materials.index') }}"><i class="material-icons left">vertical_align_top</i> Материалы</a>
+    <a class="collection-item" href="{{ route('admin.materials.index') }}"><i class="material-icons left">styles</i> Материалы</a>
     <a class="collection-item" href="{{ route('admin.cupboard_heights.index') }}"><i class="material-icons left">vertical_align_top</i> Высота шкафов</a>
     <div class="divider"></div>
     <a class="collection-item" href="{{ route('admin.users.index') }}"><i class="material-icons left">account_box</i>Пользователи</a>
