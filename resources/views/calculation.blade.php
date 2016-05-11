@@ -31,11 +31,11 @@
 
         <div class="row">
             <div class="caption-block-grey">Материалы для фасада:</div>
-            @foreach (trans('vars.material') as $key => $val)
+            @foreach ($materials as $material)
                 <div class="col-lg-4">
                     <div class="checkbox">
                         <label>
-                            <input type="checkbox" name="material[]" value="{{ $key }}" id="material_{{ $key }}"{{ (is_array( old('material')) && in_array($key, old('material'))) ? ' checked' : '' }}> {{ $val }}
+                            <input type="checkbox" name="material[]" value="{{ $material->id }}" id="material_{{ $material->id }}"{{ (is_array( old('material')) && in_array($material->id, old('material'))) ? ' checked' : '' }}> {{ $material->name }}
                         </label>
                     </div>
                 </div>
@@ -93,7 +93,7 @@
         <div>&nbsp;</div>
 
         <div class="form-group">
-            <div class="g-recaptcha" data-sitekey="{{ env('GOOGLE_RECAPTCHA_KEY') }}"></div>
+            <div id="recaptchaCalculation"></div>
         </div>
         <hr>
 

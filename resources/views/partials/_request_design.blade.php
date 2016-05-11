@@ -26,7 +26,6 @@
                         <textarea class="form-control" rows="3" name="message" placeholder="Сообщение"></textarea>
                     </div>
                     <div class="form-group">
-                        {{--<div class="g-recaptcha" data-sitekey="{{ env('GOOGLE_RECAPTCHA_KEY') }}"></div>--}}
                         <div id="recaptchaRequestDesign"></div>
                     </div>
                 </div>

@@ -30,12 +30,17 @@
 </div>
 
 <div class="input-field col s12">
+    {!! Form::select('material_id', [0 => '- Выберите материал -'] + $materials, null, ['class' => 'validate'.($errors->has('material_id') ? ' invalid' : '')]) !!}
+    {!! Form::label('material_id', 'Материал') !!}
+</div>
+
+{{--<div class="input-field col s12">
     <select name="material" id="material">
         <option value="0">- Выберите материал -</option>
         @foreach (trans('vars.material') as $key => $val)<option value="{{ $key }}"{{ isset($item) && $item->material == $key ? ' selected' : '' }}>{{ $val }}</option>@endforeach
     </select>
     {!! Form::label('material', 'Материал') !!}
-</div>
+</div>--}}
 
 <div class="input-field col s12 input-checkbox">
     {!! Form::checkbox('available', 1, null, ['id' => 'available', 'class' => $errors->has('available') ? ' invalid' : '']) !!}

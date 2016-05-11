@@ -29,7 +29,6 @@
                 <textarea class="form-control" name="message" placeholder="Сообщение" style="min-height: 150px;">{{ old('message') }}</textarea>
             </div>
             <div class="form-group">
-                {{--<div class="g-recaptcha" data-sitekey="{{ env('GOOGLE_RECAPTCHA_KEY') }}"></div>--}}
                 <div id="recaptchaFeedback"></div>
             </div>
             <div class="form-group">

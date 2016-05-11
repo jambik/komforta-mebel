@@ -192,6 +192,7 @@
     var recaptchaFeedback;
     var recaptchaCallback;
     var recaptchaRequestDesign;
+    var recaptchaCalculation;
 
     var myCallBack = function() {
         if (document.getElementById('recaptchaFeedback')){
@@ -204,6 +205,10 @@
 
         if (document.getElementById('recaptchaRequestDesign')){
             recaptchaRequestDesign = grecaptcha.render('recaptchaRequestDesign', {'sitekey' : '{{ env('GOOGLE_RECAPTCHA_KEY') }}'});
+        }
+
+        if (document.getElementById('recaptchaCalculation')){
+            recaptchaCalculation = grecaptcha.render('recaptchaCalculation', {'sitekey' : '{{ env('GOOGLE_RECAPTCHA_KEY') }}'});
         }
     };
 </script>

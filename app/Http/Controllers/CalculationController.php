@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\CupboardHeight;
+use App\Material;
 use App\Settings;
 use Illuminate\Http\Request;
 use Mail;
@@ -18,9 +19,10 @@ class CalculationController extends FrontendController
      */
     public function calculate()
     {
+        $materials = Material::all();
         $cupboardHeights = CupboardHeight::lists('name', 'id')->all();
 
-        return view('calculation', compact('cupboardHeights'));
+        return view('calculation', compact('materials', 'cupboardHeights'));
     }
 
     /**
@@ -66,6 +68,7 @@ class CalculationController extends FrontendController
         $data = [
             'input' => $request->all(),
             'vars' => trans('vars'),
+            'materials' => Material::lists('name', 'id')->all(),
             'cupboardHeights' => CupboardHeight::lists('name', 'id')->all(),
         ];
 

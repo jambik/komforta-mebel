@@ -33,7 +33,7 @@
             <h1>{{ $product->name }}</h1>
 
             @if ($product->material)
-                <p class="material"><strong>Материал:</strong> {{ trans('vars.material')[$product->material] }}</p>
+                <p class="material"><strong>Материал:</strong> {{ $product->material->name }}</p>
             @endif
 
             <div class="price-calculate">

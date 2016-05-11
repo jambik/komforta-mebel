@@ -13,7 +13,7 @@
     Материалы для фасада:
     @if (isset($input['material']))
         @foreach ($input['material'] as $val)
-            {{ $vars['material'][$val] }},
+            {{ $materials[$val] }},
         @endforeach
     @endif
 </div>

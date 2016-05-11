@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Category;
 use App\Http\Controllers\BackendController;
+use App\Material;
 use App\Product;
 use Flash;
 use Illuminate\Http\Request;
@@ -60,7 +61,9 @@ class ProductsController extends BackendController
 
         $categoryId = $this->hasParamInPreviousUrl('category', $request);
 
-        return view('admin.'.$this->resourceName.'.create', compact('categories', 'categoryId'));
+        $materials = Material::lists('name', 'id')->all();
+
+        return view('admin.'.$this->resourceName.'.create', compact('categories', 'categoryId', 'materials'));
     }
 
     /**
@@ -111,7 +114,9 @@ class ProductsController extends BackendController
 
         $categories = $categories->lists('name', 'id');
 
-        return view('admin.'.$this->resourceName.'.edit', compact('item', 'categories'));
+        $materials = Material::lists('name', 'id')->all();
+
+        return view('admin.'.$this->resourceName.'.edit', compact('item', 'categories', 'materials'));
     }
 
     /**

@@ -16,7 +16,7 @@ class Product extends Model implements SluggableInterface
 
     protected $table = 'products';
 
-    protected $fillable = ['name', 'slug', 'category_id', 'price', 'price_type', 'material', 'brief', 'text', 'available', 'title', 'keywords', 'description', 'image'];
+    protected $fillable = ['name', 'slug', 'category_id', 'price', 'price_type', 'material_id', 'brief', 'text', 'available', 'title', 'keywords', 'description', 'image'];
 
     protected $casts = [
         'price' => 'integer',
@@ -45,5 +45,13 @@ class Product extends Model implements SluggableInterface
     public function category()
     {
         return $this->belongsTo('App\Category');
+    }
+
+    /**
+     * Get product category.
+     */
+    public function material()
+    {
+        return $this->belongsTo('App\Material');
     }
 }

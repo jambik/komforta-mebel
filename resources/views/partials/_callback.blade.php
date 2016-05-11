@@ -16,7 +16,6 @@
                         <input type="text" class="form-control" name="phone" placeholder="Телефон">
                     </div>
                     <div class="form-group">
-                        {{--<div class="g-recaptcha" data-sitekey="{{ env('GOOGLE_RECAPTCHA_KEY') }}"></div>--}}
                         <div id="recaptchaCallback"></div>
                     </div>
                 </div>

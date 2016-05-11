@@ -52,14 +52,17 @@ Route::group(['prefix' => 'admin', 'middleware' => 'web'], function()
         ## Slides
         Route::resource('slides', 'Admin\SlidesController');
 
+        ## Cupboard Heights
+        Route::resource('cupboard_heights', 'Admin\CupboardHeightsController');
+
+        ## Materials
+        Route::resource('materials', 'Admin\MaterialsController');
+
         ## Users
         Route::resource('users', 'Admin\UsersController');
 
         ## Administrators
         Route::resource('administrators', 'Admin\AdministratorsController');
-
-        ## Cupboard Heights
-        Route::resource('cupboard_heights', 'Admin\CupboardHeightsController');
 
         ## Sortable routes
         Route::post('sort', ['as' => 'sort', 'uses' => '\Rutorika\Sortable\SortableController@sort']);
