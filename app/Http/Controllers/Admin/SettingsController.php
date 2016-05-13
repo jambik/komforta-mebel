@@ -15,9 +15,10 @@ class SettingsController extends BackendController
 
         if( ! $settings->id)
         {
-            $settings->email = 'jambik@gmail.com';
+            $settings->email = 'admin@gmail.com';
             $settings->phone = '+71234567890';
             $settings->address = 'г. Москва, ул. Ленина, дом 1';
+            $settings->requisites = '';
             $settings->description = 'Описание сайта';
         }
 

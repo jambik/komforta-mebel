@@ -20,6 +20,11 @@
                     {!! Form::text('address', null, ['class' => 'validate']) !!}
                 </div>
 
+                <div class="input-field col s12">
+                    {!! Form::label('requisites', 'Реквизиты') !!}
+                    {!! Form::textarea('requisites', null, ['class' => 'materialize-textarea validate']) !!}
+                </div>
+
                 <div class="input-field col s12 input-html">
                     {!! Form::label('description', 'Описание сайта') !!}
                     {!! Form::textarea('description', null, ['class' => 'materialize-textarea validate']) !!}

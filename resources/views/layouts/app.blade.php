@@ -159,12 +159,18 @@
 <footer>
     <div class="container">
         <div class="row">
-            <div class="copyright"></div>
-            <div class="social-buttons">
-                <a href="https://www.facebook.com/profile.php?id=100012062166999" target="_blank"><img src="{{ asset('img/social-buttons/facebook.png') }}"></a>
-                <a href="#" target="_blank"><img src="{{ asset('img/social-buttons/vkontakte.png') }}"></a>
-                <a href="https://www.instagram.com/mebel_komforta/" target="_blank"><img src="{{ asset('img/social-buttons/instagram.png') }}"></a>
-                <a href="https://ok.ru/profile/585653115696" target="_blank"><img src="{{ asset('img/social-buttons/odnoklassniki.png') }}"></a>
+            <div class="col-sm-6">
+                <div class="social-buttons">
+                    <a href="https://www.facebook.com/profile.php?id=100012062166999" target="_blank"><img src="{{ asset('img/social-buttons/facebook.png') }}"></a>
+                    <a href="https://vk.com/club120280655" target="_blank"><img src="{{ asset('img/social-buttons/vkontakte.png') }}"></a>
+                    <a href="https://www.instagram.com/mebel_komforta/" target="_blank"><img src="{{ asset('img/social-buttons/instagram.png') }}"></a>
+                    <a href="https://ok.ru/profile/585653115696" target="_blank"><img src="{{ asset('img/social-buttons/odnoklassniki.png') }}"></a>
+                </div>
+            </div>
+            <div class="col-sm-6 text-right">
+                <div class="copyright">
+                    {!! nl2br($settings->requisites) !!}
+                </div>
             </div>
         </div>
         <div class="row">
