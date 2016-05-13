@@ -14,15 +14,15 @@ a:hover { color: #000; }
 
 .caption-1 { font-size: 24px; color: #68a834; }
 
-.logo {  }
+.logo { cursor: pointer; }
 .logo .logo-img { margin: 25px 0 0 0; display: inline-block; vertical-align: top; }
 .logo .logo-text { margin: 15px 0 0 15px; display: inline-block; }
 .logo .site-name { font-size: 40px; line-height:34px; color: #ff7920; font-weight: 700; }
 .logo .slogan { font-size: 18px; color: #666; }
 
 .phones { margin: 10px 0 0 0; padding-left: 20px; }
-.phones .phone { font-size: 18px; color: #999; }
-.phones .phone span { color: #333; }
+.phones .phone { font-size: 18px; color: #999;position: relative;top: 10px; }
+ .phones .phone span { color: #333; font-weight: bold; }
 .phones .phone-icons { margin: 10px 0 0 0; }
 
 .contacts { margin: 10px 0 0 0; }
@@ -40,8 +40,9 @@ nav a { padding: 15px 18px; display: inline-block; color: #000; }
 nav a:hover, nav a.active { color: #fff; background: #ff7920; }
 
 #slides { margin: 20px 0 0 0; }
-#slides .carousel-caption { padding-left: 30px; padding-right: 30px; padding-top: 0; background: rgba(0, 0, 0, 0.3); }
-
+#slides .carousel-caption { padding-left: 30px; padding-right: 30px; padding-top: 0; background: rgba(0, 0, 0, 0.64); }
+.carousel-caption h2{font-size: 52px;}
+.carousel-caption p{font-size: 25px;}
 #blocks { margin: 40px 0 0 0; }
 #blocks .block { text-align: right; font-size: 20px; font-weight: 700; border-bottom: 12px solid #ff7920; margin: 0 0 15px 0; }
 #blocks .block a { color: #000; }
@@ -192,3 +193,11 @@ footer .social-buttons a { padding: 15px 15px; display: inline-block; color: #00
     #blocks p { margin: 25px 0 10px 0; }
     footer a { padding: 15px 13px; }
 }
+
+.phone-icons img{
+	display: none;
+}
+
+
+
+
