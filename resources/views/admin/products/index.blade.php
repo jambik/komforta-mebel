@@ -59,18 +59,20 @@
                                     <td>{{ $item->price }}</td>
                                     <td>{{ $item->available ? 'есть' : 'нет' }}</td>
                                     <td>
-                                        <ul class="product-properties">
-                                            {!! $item->properties->style ? '<li><strong>Стиль:</strong> '.$item->properties->style.'</li>' : '' !!}
-                                            {!! $item->properties->material ? '<li><strong>Материал:</strong> '.$item->properties->material.'</li>' : '' !!}
-                                            {!! $item->properties->price ? '<li><strong>Стоимость:</strong> '.$item->properties->price.'</li>' : '' !!}
-                                            {!! $item->properties->equipment ? '<li><strong>Комплектация:</strong> '.$item->properties->equipment.'</li>' : '' !!}
-                                            {!! $item->properties->size ? '<li><strong>Размер:</strong> '.$item->properties->size.'</li>' : '' !!}
-                                            {!! $item->properties->color ? '<li><strong>Цвет:</strong> '.$item->properties->color.'</li>' : '' !!}
-                                            {!! $item->properties->purpose ? '<li><strong>Назначение:</strong> '.$item->properties->purpose.'</li>' : '' !!}
-                                            {!! $item->properties->type ? '<li><strong>Тип мебели:</strong> '.$item->properties->type.'</li>' : '' !!}
-                                            {!! $item->properties->kind ? '<li><strong>Вид мебели:</strong> '.$item->properties->kind.'</li>' : '' !!}
-                                            {!! $item->properties->doors ? '<li><strong>Кол-во дверей:</strong> '.$item->properties->doors.'</li>' : '' !!}
-                                        </ul>
+                                        @if ($item->properties)
+                                            <ul class="product-properties">
+                                                {!! $item->properties->style ? '<li><strong>Стиль:</strong> '.$item->properties->style.'</li>' : '' !!}
+                                                {!! $item->properties->material ? '<li><strong>Материал:</strong> '.$item->properties->material.'</li>' : '' !!}
+                                                {!! $item->properties->price ? '<li><strong>Стоимость:</strong> '.$item->properties->price.'</li>' : '' !!}
+                                                {!! $item->properties->equipment ? '<li><strong>Комплектация:</strong> '.$item->properties->equipment.'</li>' : '' !!}
+                                                {!! $item->properties->size ? '<li><strong>Размер:</strong> '.$item->properties->size.'</li>' : '' !!}
+                                                {!! $item->properties->color ? '<li><strong>Цвет:</strong> '.$item->properties->color.'</li>' : '' !!}
+                                                {!! $item->properties->purpose ? '<li><strong>Назначение:</strong> '.$item->properties->purpose.'</li>' : '' !!}
+                                                {!! $item->properties->type ? '<li><strong>Тип мебели:</strong> '.$item->properties->type.'</li>' : '' !!}
+                                                {!! $item->properties->kind ? '<li><strong>Вид мебели:</strong> '.$item->properties->kind.'</li>' : '' !!}
+                                                {!! $item->properties->doors ? '<li><strong>Кол-во дверей:</strong> '.$item->properties->doors.'</li>' : '' !!}
+                                            </ul>
+                                        @endif
                                     </td>
                                     <td><a href="{{ route('admin.products.edit', $item->id) }}" class="btn btn-small waves-effect waves-light"><i class="material-icons">edit</i></a></td>
                                     <td><button onclick="confirmDelete(this, '{{ $item->id }}', '{{ route('admin.products.destroy', $item->id) }}')" class="btn btn-small waves-effect waves-light red darken-2"><i class="material-icons">delete</i></button></td>
