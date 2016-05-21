@@ -17,7 +17,7 @@ class PagesController extends FrontendController
     {
         $page = Page::findBySlugOrFail($slug);
 
-        $gallery = $page->slug == 'materialy' ? Gallery::findBySlugOrFail('materialy') : null;
+        $gallery = $page->slug == 'materialy' ? Gallery::findBySlug('materialy') : null;
 
         return view('page', compact('page', 'gallery'));
     }

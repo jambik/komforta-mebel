@@ -41,7 +41,7 @@
         <div>&nbsp;</div>
         <hr>
         <div>&nbsp;</div>
-        @if ($gallery->photos->count())
+        @if (isset($gallery->photos) && $gallery->photos->count())
             <div class="gallery-photos">
                 @foreach ($gallery->photos as $val)
                     <a class="popup-gallery" title="{{ $val->name }}" href="/images/original/{{ $val->img_url . $val->image }}"><img src="/images/small/{{ $val->img_url . $val->image }}" class="img-thumbnail" alt="{{ $val->name }}"></a>
