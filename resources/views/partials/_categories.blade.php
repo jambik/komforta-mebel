@@ -8,12 +8,16 @@
                 <div class="properties">
                     @if ($category->properties)
                         @foreach ($category->properties as $key => $properties)
-                            <div class="property-block">
-                                <strong>{{ trans('vars.properties.' . $key) }}:</strong>
-                                @foreach ($properties as $property)
-                                    <div class="property-link">- <a href="{{ route('catalog.category', $category->slug) }}?property={{ $key }}&value={{ $property }}">{{ $property }}</a></div>
-                                @endforeach
-                            </div>
+                            @if ($properties[0])
+                                <div class="property-block">
+                                    <strong>{{ trans('vars.properties.' . $key) }}:</strong>
+                                    @foreach ($properties as $property)
+                                        @if ($property)
+                                            <div class="property-link">- <a href="{{ route('catalog.category', $category->slug) }}?property={{ $key }}&value={{ $property }}">{{ $property }}</a></div>
+                                        @endif
+                                    @endforeach
+                                </div>
+                            @endif
                         @endforeach
                     @endif
                 </div>
