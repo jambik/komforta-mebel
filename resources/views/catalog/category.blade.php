@@ -11,7 +11,7 @@
         <li class="active">{{ $category->name }}</li>
     </ol>
 
-    <h1>{{ $category->name }}</h1>
+    <h1>{{ $category->name }} {!! request('property') && request('value') ? '('.trans('vars.properties.'.request('property')).' - '.request('value').')' : '' !!}</h1>
     <hr>
     {!! $category->about ? nl2br($category->about) . '<hr>' : '' !!}
 

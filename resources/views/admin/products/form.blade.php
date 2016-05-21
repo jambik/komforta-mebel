@@ -34,14 +34,6 @@
     {!! Form::label('material_id', 'Материал') !!}
 </div>
 
-{{--<div class="input-field col s12">
-    <select name="material" id="material">
-        <option value="0">- Выберите материал -</option>
-        @foreach (trans('vars.material') as $key => $val)<option value="{{ $key }}"{{ isset($item) && $item->material == $key ? ' selected' : '' }}>{{ $val }}</option>@endforeach
-    </select>
-    {!! Form::label('material', 'Материал') !!}
-</div>--}}
-
 <div class="input-field col s12 input-checkbox">
     {!! Form::checkbox('available', 1, null, ['id' => 'available', 'class' => $errors->has('available') ? ' invalid' : '']) !!}
     {!! Form::label('available', 'Доступность') !!}
@@ -89,6 +81,75 @@
         <div class="preloader-wrapper small active preloader" style="display: none;"><div class="spinner-layer spinner-red-only"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>
     </div>
 @endif
+
+<div style="display:inline-block; background: #eee; margin: 50px 0 50px 0;" id="properties">
+    <h5 class="center">Дополнительные свойства</h5>
+    <div class="input-field col s4">
+        {!! Form::label('properties[style]', 'Стиль') !!}
+        {!! Form::text('properties[style]', null, ['class' => 'validate', 'id' => 'properties_style']) !!}
+    </div>
+    <div class="input-field col s4">
+        {!! Form::label('properties[material]', 'Материал') !!}
+        {!! Form::text('properties[material]', null, ['class' => 'validate', 'id' => 'properties_material']) !!}
+    </div>
+    <div class="input-field col s4">
+        {!! Form::label('properties[price]', 'Стоимость') !!}
+        {!! Form::text('properties[price]', null, ['class' => 'validate', 'id' => 'properties_price']) !!}
+    </div>
+    <div class="input-field col s4">
+        {!! Form::label('properties[equipment]', 'Комплектация') !!}
+        {!! Form::text('properties[equipment]', null, ['class' => 'validate', 'id' => 'properties_equipment']) !!}
+    </div>
+    <div class="input-field col s4">
+        {!! Form::label('properties[size]', 'Размер') !!}
+        {!! Form::text('properties[size]', null, ['class' => 'validate', 'id' => 'properties_size']) !!}
+    </div>
+    <div class="input-field col s4">
+        {!! Form::label('properties[color]', 'Цвет') !!}
+        {!! Form::text('properties[color]', null, ['class' => 'validate', 'id' => 'properties_color']) !!}
+    </div>
+    <div class="input-field col s4">
+        {!! Form::label('properties[purpose]', 'Назначение') !!}
+        {!! Form::text('properties[purpose]', null, ['class' => 'validate', 'id' => 'properties_purpose']) !!}
+    </div>
+    <div class="input-field col s4">
+        {!! Form::label('properties[type]', 'Тип') !!}
+        {!! Form::text('properties[type]', null, ['class' => 'validate', 'id' => 'properties_type']) !!}
+    </div>
+    <div class="input-field col s4">
+        {!! Form::label('properties[kind]', 'Вид') !!}
+        {!! Form::text('properties[kind]', null, ['class' => 'validate', 'id' => 'properties_kind']) !!}
+    </div>
+    <div class="input-field col s4">
+        {!! Form::label('properties[doors]', 'Кол-во дверей') !!}
+        {!! Form::text('properties[doors]', null, ['class' => 'validate', 'id' => 'properties_doors']) !!}
+    </div>
+    <div class="clearfix"></div>
+
+    <script>
+        var properties = {
+            'style': [{!! $properties['style'] !!}],
+            'material': [{!! $properties['material'] !!}],
+            'price': [{!! $properties['price'] !!}],
+            'equipment': [{!! $properties['equipment'] !!}],
+            'size': [{!! $properties['size'] !!}],
+            'color': [{!! $properties['color'] !!}],
+            'purpose': [{!! $properties['purpose'] !!}],
+            'type': [{!! $properties['type'] !!}],
+            'kind': [{!! $properties['kind'] !!}],
+            'doors': [{!! $properties['doors'] !!}],
+        };
+
+        $(document).ready(function() {
+            $('#properties input').each(function(index){
+                $(this).autocomplete({
+                    lookup: properties[ $(this).attr('id').substring( $(this).attr('id').indexOf('_') + 1 ) ],
+                    onSelect: function (suggestion) { return false; }
+                });
+            });
+        });
+    </script>
+</div>
 
 <div class="input-field col s12 center">
     <button type="submit" class="btn-large waves-effect waves-light"><i class="material-icons left">check_circle</i> {{ $submitButtonText }}</button>

@@ -88,7 +88,7 @@ $factory->define(App\Product::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->company,
         'price' => $faker->randomFloat(2, 99, 100000),
-        'material' => $faker->numberBetween(1, 7),
+        'material_id' => 0,
         'brief' => $faker->sentence(),
         'text' => $faker->paragraph(3),
         'available' => $faker->boolean(),
@@ -99,3 +99,104 @@ $factory->define(App\Product::class, function (Faker\Generator $faker) {
         'image' => $faker->image(storage_path('images').DIRECTORY_SEPARATOR.'products', 640, 480, null, false, false),
     ];
 });
+
+$factory->define(App\ProductProperties::class, function (Faker\Generator $faker) {
+    return [
+        'style' => $faker->randomElement([
+            'Классика',
+            'Современная',
+            'Эксклюзивная',
+            'Модерн',
+            'Под старину',
+            'Прованс',
+            'Хай тек',
+        ]),
+        'material' => $faker->randomElement([
+            'Массив',
+            'МДФ',
+            'Из пластика',
+            'ЛДСП',
+            'Эмаль',
+        ]),
+        'price' => $faker->randomElement([
+            'Недорогая',
+            'Элитная',
+        ]),
+        'equipment' => $faker->randomElement([
+            'С барной стойкой',
+            'С островом',
+        ]),
+        'size' => $faker->randomElement([
+            'Большие',
+            'Маленькие',
+        ]),
+        'color' => $faker->randomElement([
+            'Бежевые',
+            'Белые',
+            'Бирюзовые',
+            'Венге',
+            'Голубые',
+            'Желтые',
+            'Зеленые',
+            'Коричневые',
+            'Красные',
+            'Оранжевые',
+            'Салатовые',
+            'Серые',
+            'Синие',
+            'Фиолетовые',
+            'Фисташковые',
+            'Черно-белые',
+            'Черно-белые',
+            'Черные',
+            'Светлые с платиной',
+        ]),
+        'purpose' => $faker->randomElement([
+            'Мебель для двоих детей',
+            'Мебель для девочек',
+            'Мебель для мальчиков',
+            'В гостиную',
+            'В детскую',
+            'В прихожую',
+            'В спальню',
+        ]),
+        'type' => $faker->randomElement([
+            'П образные',
+            'Прямые',
+            'Угловые кухни',
+            'Прямые',
+            'Угловые',
+            'Прямые прихожие',
+            'Угловые прихожие',
+        ]),
+        'kind' => $faker->randomElement([
+            'Встроенные',
+            'Корпусные',
+            'Радиусные',
+            'Комоды для прихожей',
+            'Тумбы для обуви',
+            'Шкафы в коридор',
+            'Серванты и витрины',
+            'Стенки',
+            'Тумбы под тв',
+            'В кабинет руководителя',
+            'Домашний кабинет',
+            'Стенки для детской',
+            'Шкафы для детской',
+        ]),
+        'doors' => $faker->randomElement([
+            '2 створчатые',
+            '3 створчатые',
+            '4 створчатые',
+            'Шкафы-пеналы',
+            '1 дверные',
+            '2 дверные',
+            '3 дверные',
+            '4 дверные',
+        ]),
+    ];
+});
+
+/*factory(App\Product::class, 10)->create()->each(function($u) {
+    $u->properties()->save(factory(App\ProductProperties::class)->make());
+});*/

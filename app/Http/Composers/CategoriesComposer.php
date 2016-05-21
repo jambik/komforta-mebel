@@ -10,6 +10,7 @@ class CategoriesComposer
     public function compose(View $view)
     {
         $categories = Category::withDepth()->defaultOrder()->get()->toTree();
+
         $view->with('categories', $categories);
     }
 }

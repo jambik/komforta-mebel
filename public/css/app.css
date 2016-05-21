@@ -59,7 +59,7 @@ nav a:hover, nav a.active { color: #fff; background: #ff7920; }
 .categories .categories-middle { background: url("../img/categories-bg.png") center center repeat-y; width: 300px; }
 .categories .categories-bottom { margin-top: -80px; background: url("../img/categories-bg-bottom.png") left top no-repeat; width: 300px; height: 109px; }
 .categories ul { position: relative; top: -40px; margin: 0 0 0 50px; padding: 0; list-style: none; }
-.categories a { display: block; border-left: 10px solid #959595; padding-left: 10px; margin: 0 0 10px 0; color: #555; }
+.categories a.dropbtn { display: block; border-left: 10px solid #959595; padding-left: 10px; margin: 0 0 10px 0; color: #555; }
 .categories a:hover, .categories a.active { border-left-color: #c36000; color: #c36000; }
 
 .caption-block { background: #68a834; color: #fff; height: 30px; line-height: 30px; margin: 0 15px 15px 15px; transform: skewX(45deg); padding: 0 20px; }
@@ -137,6 +137,39 @@ footer ul a:hover, footer ul a.active { color: #fff; background: #ff7920; }
 footer .social-buttons a { padding: 15px 15px; display: inline-block; color: #000; }
 
 .icon-bar { border-color: #ff7920; border-width: 1px; border-style: solid; }
+
+/* Dropdown Button */
+.dropbtn {
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    width:210px;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 300px;
+    box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.2);
+    padding: 12px 16px;
+    margin: -10px 0 0 60px;
+    z-index: 1;
+    border: 1px solid #eee;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown .title { font-size: 18px; border-bottom: 1px solid #aaa; margin: 0 0 15px 0; }
+.properties { column-count: 3; column-gap: 15px; column-fill: auto; margin: 15px 0 0 0; }
+.property-block { display: inline-block; width: 170px; margin-bottom: 15px; font-size: 14px; }
+
 
 /* -------------------- Responsive classes ------------------- */
 

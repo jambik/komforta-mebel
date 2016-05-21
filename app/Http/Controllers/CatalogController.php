@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\Product;
+use Illuminate\Http\Request;
 
 class CatalogController extends FrontendController
 {
@@ -21,15 +22,28 @@ class CatalogController extends FrontendController
      * Display category page.
      *
      * @param $slug
+     * @param Request $request
      * @return Response
      */
-    public function category($slug)
+    public function category($slug, Request $request)
     {
         $category = Category::findBySlugOrFail($slug);
         $descendants = $category->descendants()->get();
+
         $children = $descendants->whereLoose('parent_id', $category->id);
 
-        $products = Product::whereIn('category_id', $descendants->pluck('id')->push($category->id)->toArray())->get();
+        $property      = $request->has('property') ? $request->get('property') : null;
+        $propertyValue = $request->has('value')    ? $request->get('value')    : null;
+
+        $products = null;
+        if ($property && $propertyValue) {
+            $products = Product::whereIn('category_id', $descendants->pluck('id')->push($category->id)->toArray())
+                ->leftJoin('product_properties', 'products.id', '=', 'product_properties.product_id')
+                ->where('product_properties.'.$property, $propertyValue)
+                ->get();
+        } else {
+            $products = Product::whereIn('category_id', $descendants->pluck('id')->push($category->id)->toArray())->get();
+        }
 
         return view('catalog.category', compact('category', 'children', 'products'));
     }

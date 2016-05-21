@@ -52,6 +52,7 @@ elixir(function(mix) {
         '../../../node_modules/tablesorter/dist/js/extras/jquery.tablesorter.pager.min.js',
         '../../../node_modules/jquery-datetimepicker/build/jquery.datetimepicker.full.min.js',
         '../../../bower_components/dropzone/dist/min/dropzone.min.js',
+        '../../../bower_components/devbridge-autocomplete/dist/jquery.autocomplete.min.js',
         '../../../bower_components/jquery-ui/ui/minified/core.min.js',
         '../../../bower_components/jquery-ui/ui/minified/widget.min.js',
         '../../../bower_components/jquery-ui/ui/minified/mouse.min.js',

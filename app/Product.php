@@ -54,4 +54,12 @@ class Product extends Model implements SluggableInterface
     {
         return $this->belongsTo('App\Material');
     }
+
+    /**
+     * Get product category.
+     */
+    public function properties()
+    {
+        return $this->hasOne('App\ProductProperties');
+    }
 }

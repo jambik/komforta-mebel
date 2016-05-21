@@ -6,6 +6,7 @@ use App\Category;
 use App\Http\Controllers\BackendController;
 use App\Material;
 use App\Product;
+use App\ProductProperties;
 use Flash;
 use Illuminate\Http\Request;
 
@@ -31,7 +32,7 @@ class ProductsController extends BackendController
     {
         $category = $request->has('category') && $request->has('category') ? $request->get('category') : null;
 
-        $items = $category ? $this->model->whereCategoryId($category)->get() : collect([]);
+        $items = $category ? $this->model->with('properties')->whereCategoryId($category)->get() : collect([]);
 
         $categories = Category::select("categories.*")
                               ->selectRaw('COUNT(products.id) as products_count')
@@ -63,7 +64,15 @@ class ProductsController extends BackendController
 
         $materials = Material::lists('name', 'id')->all();
 
-        return view('admin.'.$this->resourceName.'.create', compact('categories', 'categoryId', 'materials'));
+        $properties = [];
+        $propertiesNames = ['style', 'material', 'price', 'equipment', 'size', 'color', 'purpose', 'type', 'kind', 'doors'];
+
+        foreach($propertiesNames as $value) {
+            $currentProperties = ProductProperties::all()->unique($value)->sortBy($value)->pluck($value)->all();
+            $properties[$value] = empty($currentProperties) ? '' : "'".implode("','", $currentProperties)."'";
+        }
+
+        return view('admin.'.$this->resourceName.'.create', compact('categories', 'categoryId', 'materials', 'properties'));
     }
 
     /**
@@ -83,6 +92,10 @@ class ProductsController extends BackendController
         foreach (['available'] as $value) $input[$value] = $request->has($value) ? true : false;
 
         $item = $this->model->create($input);
+
+        $productProperties = new ProductProperties();
+        $productProperties->fill($request->get('properties'));
+        $item->properties()->save($productProperties);
 
         return redirect(route('admin.'.$this->resourceName.'.index') . '?category='.$item->category_id);
     }
@@ -106,7 +119,7 @@ class ProductsController extends BackendController
      */
     public function edit($id)
     {
-        $item = $this->model->findOrFail($id);
+        $item = $this->model->with('properties')->findOrFail($id);
 
         $categories = Category::withDepth()->get()->toFlatTree();
 
@@ -116,7 +129,15 @@ class ProductsController extends BackendController
 
         $materials = Material::lists('name', 'id')->all();
 
-        return view('admin.'.$this->resourceName.'.edit', compact('item', 'categories', 'materials'));
+        $properties = [];
+        $propertiesNames = ['style', 'material', 'price', 'equipment', 'size', 'color', 'purpose', 'type', 'kind', 'doors'];
+
+        foreach($propertiesNames as $value) {
+            $currentProperties = ProductProperties::all()->unique($value)->sortBy($value)->pluck($value)->all();
+            $properties[$value] = empty($currentProperties) ? '' : "'".implode("','", $currentProperties)."'";
+        }
+
+        return view('admin.'.$this->resourceName.'.edit', compact('item', 'categories', 'materials', 'properties'));
     }
 
     /**
@@ -140,6 +161,10 @@ class ProductsController extends BackendController
         foreach (['available'] as $value) $input[$value] = $request->has($value) ? true : false;
 
         $item->update($input);
+
+        $productProperties = ProductProperties::firstOrNew(['product_id' => $item->id]);
+        $productProperties->fill($request->get('properties'));
+        $item->properties()->save($productProperties);
 
         return redirect(route('admin.'.$this->resourceName.'.index') . '?category='.$item->category_id);
     }
