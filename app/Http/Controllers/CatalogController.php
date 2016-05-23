@@ -25,7 +25,7 @@ class CatalogController extends FrontendController
      * @param Request $request
      * @return Response
      */
-    public function category(Request $request, $slug, $property = null, $value = null)
+    public function category($slug, $property = null, $value = null)
     {
         $category = Category::findBySlugOrFail($slug);
         $descendants = $category->descendants()->get();
