@@ -25,21 +25,21 @@ class CatalogController extends FrontendController
      * @param Request $request
      * @return Response
      */
-    public function category($slug, Request $request)
+    public function category($slug, $property = null, $value = null)
     {
         $category = Category::findBySlugOrFail($slug);
         $descendants = $category->descendants()->get();
 
         $children = $descendants->whereLoose('parent_id', $category->id);
 
-        $property      = $request->has('property') ? $request->get('property') : null;
-        $propertyValue = $request->has('value')    ? $request->get('value')    : null;
+        $property      = $property ? $property : null;
+        $propertyValue = $value    ? $value    : null;
 
         $products = null;
         if ($property && $propertyValue) {
             $products = Product::whereIn('category_id', $descendants->pluck('id')->push($category->id)->toArray())
                 ->leftJoin('product_properties', 'products.id', '=', 'product_properties.product_id')
-                ->where('product_properties.'.$property, $propertyValue)
+                ->where('product_properties.'.$property.'_slug', $propertyValue)
                 ->get();
         } else {
             $products = Product::whereIn('category_id', $descendants->pluck('id')->push($category->id)->toArray())->get();

@@ -108,8 +108,10 @@ Route::group(['middleware' => 'web'], function ()
 
     ## Catalog - index page
     Route::get('catalog', ['as' => 'catalog', 'uses' => 'CatalogController@index']);
-    ## Catalog - category page
-    Route::get('catalog/{category}', ['as' => 'catalog.category', 'uses' => 'CatalogController@category']);
+    ## Catalog - category page (optional: with property)
+    Route::get('catalog/{category}/{property?}/{value?}', ['as' => 'catalog.category', 'uses' => 'CatalogController@category']);
+    /*## Catalog - category page
+    Route::get('catalog/{category}', ['as' => 'catalog.category', 'uses' => 'CatalogController@category']);*/
     ## Catalog - product page
     Route::get('product/{product}', ['as' => 'catalog.product', 'uses' => 'CatalogController@product']);
 

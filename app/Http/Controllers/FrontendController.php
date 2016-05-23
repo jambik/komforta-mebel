@@ -6,15 +6,18 @@ use App\Category;
 use App\Product;
 use App\ProductProperties;
 use App\Settings;
+use DB;
 
 class FrontendController extends Controller
 {
     public function __construct()
     {
-        ## Categories
+        /* ---------------------------------------------------------------------------------------------------------- */
+        /* Categories                                                                                                 */
+        /* ---------------------------------------------------------------------------------------------------------- */
         $categories = Category::withDepth()->defaultOrder()->get()->toTree();
 
-        $propertiesNames = ['style', 'material', 'price', 'equipment', 'size', 'color', 'purpose', 'type', 'kind', 'doors'];
+        $propertiesList = trans('vars.properties');
 
         foreach($categories as $category) {
             $properties = null;
@@ -26,9 +29,9 @@ class FrontendController extends Controller
             $productsProperties = ProductProperties::all()->whereInLoose('product_id', $productsId);
 
             // Get each property value array
-            foreach ($propertiesNames as $value) {
-                $currentProperties = $productsProperties->pluck($value)->unique()->sortBy($value);
-                $currentProperties->count() ? $properties[$value] = $currentProperties : null;
+            foreach ($propertiesList as $property => $propertyName) {
+                $currentProperties = $productsProperties->pluck($property, $property.'_slug')->unique()->sortBy($property);
+                $currentProperties->count() ? $properties[$property] = $currentProperties : null;
             }
 
             $category->properties = $properties;
@@ -37,7 +40,9 @@ class FrontendController extends Controller
         view()->share('categories', $categories);
 
 
-        ## Settings
+        /* ---------------------------------------------------------------------------------------------------------- */
+        /* Settings                                                                                                   */
+        /* ---------------------------------------------------------------------------------------------------------- */
         $settings= Settings::find(1);
         view()->share('settings', $settings);
     }
