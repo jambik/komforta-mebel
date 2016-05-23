@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\Product;
-use Illuminate\Http\Request;
 
 class CatalogController extends FrontendController
 {
@@ -22,8 +21,10 @@ class CatalogController extends FrontendController
      * Display category page.
      *
      * @param $slug
-     * @param Request $request
+     * @param null $property
+     * @param null $value
      * @return Response
+     * @internal param Request $request
      */
     public function category($slug, $property = null, $value = null)
     {
