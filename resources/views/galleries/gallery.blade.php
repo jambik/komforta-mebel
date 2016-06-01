@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
 @section('title', $gallery->name)
+@section('keywords', $gallery->keywords)
+@section('description', $gallery->description)
 
 @section('content')
     <div><a href="{{ route('galleries') }}"><i class="fa fa-chevron-left"></i> все альбомы</a></div>

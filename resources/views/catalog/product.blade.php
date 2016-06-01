@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
 @section('title', $product->title ?: $product->name)
+@section('keywords', $product->keywords)
+@section('description', $product->description)
 
 @section('content')
     <ol class="breadcrumb">

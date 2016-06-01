@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
-@section('title', 'Мебель комфорта')
+@section('title', $page->text)
+@section('keywords', $page->keywords)
+@section('description', $page->description)
 
 @section('slides')
     @include('partials._slides')

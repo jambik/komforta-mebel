@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
 @section('title', $page->title)
+@section('keywords', $page->keywords)
+@section('description', $page->description)
 
 @section('content')
     @include('partials._status')
