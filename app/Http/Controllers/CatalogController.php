@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\Product;
+use App\ProductPropertiesData;
 
 class CatalogController extends FrontendController
 {
@@ -37,16 +38,19 @@ class CatalogController extends FrontendController
         $propertyValue = $value    ? $value    : null;
 
         $products = null;
+        $productPropertiesData = null;
         if ($property && $propertyValue) {
             $products = Product::whereIn('category_id', $descendants->pluck('id')->push($category->id)->toArray())
                 ->leftJoin('product_properties', 'products.id', '=', 'product_properties.product_id')
                 ->where('product_properties.'.$property.'_slug', $propertyValue)
                 ->get();
+
+            $productPropertiesData = ProductPropertiesData::where('category_id', $category->id)->where('property', $property)->where('value', $value)->first();
         } else {
             $products = Product::whereIn('category_id', $descendants->pluck('id')->push($category->id)->toArray())->get();
         }
 
-        return view('catalog.category', compact('category', 'children', 'products'));
+        return view('catalog.category', compact('category', 'children', 'products', 'productPropertiesData'));
     }
 
     /**

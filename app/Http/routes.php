@@ -29,6 +29,14 @@ Route::group(['prefix' => 'admin', 'middleware' => 'web'], function()
         Route::post('products/{id}/photo', ['as' => 'admin.products.photo', 'uses' =>'Admin\ProductsController@photo'])->where('id', '[0-9]+');
         Route::delete('products/{id}/photo/{photoId}', ['as' => 'admin.products.photo.delete', 'uses' =>'Admin\ProductsController@photoDelete'])->where(['id' => '[0-9]+', 'photoId' => '[0-9]+']);
 
+        ## Product Properties
+        Route::get('product_properties', ['as' => 'admin.product_properties.index', 'uses' =>'Admin\ProductPropertiesController@index']);
+        Route::get('product_properties/{category}/{property}/{value}', ['as' => 'admin.product_properties.property', 'uses' => 'Admin\ProductPropertiesController@property']);
+        Route::post('product_properties/{category}/{property}/{value}', ['as' => 'admin.product_properties.property.save', 'uses' => 'Admin\ProductPropertiesController@propertySave']);
+
+//        Route::post('products/{id}/photo', ['as' => 'admin.products.photo', 'uses' =>'Admin\ProductsController@photo'])->where('id', '[0-9]+');
+//        Route::delete('products/{id}/photo/{photoId}', ['as' => 'admin.products.photo.delete', 'uses' =>'Admin\ProductsController@photoDelete'])->where(['id' => '[0-9]+', 'photoId' => '[0-9]+']);
+
         ## Galleries
         Route::resource('galleries', 'Admin\GalleriesController');
         Route::post('galleries/{id}/photo', ['as' => 'admin.galleries.photo', 'uses' =>'Admin\GalleriesController@photo'])->where('id', '[0-9]+');
@@ -110,8 +118,6 @@ Route::group(['middleware' => 'web'], function ()
     Route::get('catalog', ['as' => 'catalog', 'uses' => 'CatalogController@index']);
     ## Catalog - category page (optional: with property)
     Route::get('catalog/{category}/{property?}/{value?}', ['as' => 'catalog.category', 'uses' => 'CatalogController@category']);
-    /*## Catalog - category page
-    Route::get('catalog/{category}', ['as' => 'catalog.category', 'uses' => 'CatalogController@category']);*/
     ## Catalog - product page
     Route::get('product/{product}', ['as' => 'catalog.product', 'uses' => 'CatalogController@product']);
 

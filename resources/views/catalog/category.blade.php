@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
-@section('title', $category->title ?: $category->name)
+@section('title', $productPropertiesData && $productPropertiesData->title ? $productPropertiesData->title : ($category->title ?: $category->name))
+@section('keywords', $productPropertiesData && $productPropertiesData->keywords ? $productPropertiesData->keywords : ($category->keywords ?: ''))
+@section('description', $productPropertiesData && $productPropertiesData->description ? $productPropertiesData->description : ($category->description ?: ''))
 
 @section('content')
     <ol class="breadcrumb">
@@ -11,9 +13,9 @@
         <li class="active">{{ $category->name }}</li>
     </ol>
 
-    <h1>{{ $category->name }} {!! request('property') && request('value') ? '('.trans('vars.properties.'.request('property')).' - '.request('value').')' : '' !!}</h1>
+    <h1>{{ $productPropertiesData && $productPropertiesData->name ? $productPropertiesData->name : ($category->name) }}</h1>
     <hr>
-    {!! $category->about ? nl2br($category->about) . '<hr>' : '' !!}
+    {!! $productPropertiesData && $productPropertiesData->text ? $productPropertiesData->text . '<hr>' : ($category->about ? $category->about . '<hr>' : '') !!}
 
     @if ($children->count())
         <div class="row categories-list-line">

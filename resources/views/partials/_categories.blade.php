@@ -8,16 +8,14 @@
                 <div class="properties">
                     @if ($category->properties)
                         @foreach ($category->properties as $key => $properties)
-{{--                            @if ($properties[0])--}}
-                                <div class="property-block">
-                                    <strong>{{ trans('vars.properties.' . $key) }}:</strong>
-                                    @foreach ($properties as $propertySlug => $property)
-                                        @if ($property)
-                                            <div class="property-link">- <a href="{{ route('catalog.category', $category->slug) }}/{{ $key }}/{{ $propertySlug }}">{{ $property }}</a></div>
-                                        @endif
-                                    @endforeach
-                                </div>
-                            {{--@endif--}}
+                            <div class="property-block">
+                                <strong>{{ trans('vars.properties.' . $key) }}:</strong>
+                                @foreach ($properties as $propertySlug => $property)
+                                    @if ($property)
+                                        <div class="property-link">- <a href="{{ route('catalog.category', $category->slug) }}/{{ $key }}/{{ $propertySlug }}">{{ $property }}</a></div>
+                                    @endif
+                                @endforeach
+                            </div>
                         @endforeach
                     @endif
                 </div>

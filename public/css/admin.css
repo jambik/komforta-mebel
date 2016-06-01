@@ -106,18 +106,23 @@ main {
     content: "нет записей";
 }
 
-
-
 /* products */
 .products .collection span.badge {
     min-width: inherit;
     border-radius: 4px;
 }
 
-.product-properties { padding: 0; margin: 0; font-size: 13px; }
+/* product properties */
+.product_properties {  }
+.product_properties .category { padding: 15px; margin-bottom: 15px; border-radius: 15px; background: #eee; }
+.product_properties .title { font-size: 16pt; border-bottom: 1px solid #bbb; }
+.product_properties .property-block { margin: 10px 0; }
+.product_properties .property-block strong { display: inline-block; padding: 2px 5px; background: #555; color: #fff; }
+.product_properties .property-link { display: inline-block; padding: 2px 5px; margin: 0 2px; background: #fff; }
 
 
-/* -------------------------------------------------------------------------- */
+
+    /* -------------------------------------------------------------------------- */
 /* jquery.autocomplete.js                                                     */
 /* -------------------------------------------------------------------------- */
 .autocomplete-suggestions { border: 1px solid #999; background: #FFF; overflow: auto; }

@@ -1,16 +1,24 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Category;
+use App\Http\Controllers\BackendController;
 use App\Product;
 use App\ProductProperties;
-use App\Settings;
-use DB;
+use App\ProductPropertiesData;
+use Flash;
+use Illuminate\Http\Request;
 
-class FrontendController extends Controller
+class ProductPropertiesController extends BackendController
 {
-    public function __construct()
+    /**
+     * Display a listing of the resource.
+     *
+     * @param Request $request
+     * @return Response
+     */
+    public function index(Request $request)
     {
         /* ---------------------------------------------------------------------------------------------------------- */
         /* Categories                                                                                                 */
@@ -37,13 +45,33 @@ class FrontendController extends Controller
             $category->properties = $properties;
         }
 
-        view()->share('categories', $categories);
+//        dd($categories);
 
-
-        /* ---------------------------------------------------------------------------------------------------------- */
-        /* Settings                                                                                                   */
-        /* ---------------------------------------------------------------------------------------------------------- */
-        $settings= Settings::find(1);
-        view()->share('settings', $settings);
+        return view('admin.product_properties.index', compact('categories'));
     }
+
+    public function property($category, $property, $value)
+    {
+        $productPropertiesData = ProductPropertiesData::where('category_id', $category)->where('property', $property)->where('value', $value)->first();
+
+        return view('admin.product_properties.property', compact('productPropertiesData'));
+    }
+
+    public function propertySave($category, $property, $value, Request $request)
+    {
+        $productPropertiesData = ProductPropertiesData::firstOrCreate([
+            'category_id' => $category,
+            'property' => $property,
+            'value' => $value,
+        ]);
+
+        $productPropertiesData->update($request->all());
+
+//        dd($productPropertiesData->toArray());
+
+        Flash::success("Данные сохранены");
+
+        return redirect(route('admin.product_properties.index'));
+    }
+
 }
