@@ -1,7 +1,7 @@
 @extends('admin.page', ['title' => "Продукты"])
 
 @section('content')
-	<h4 class="center">Редактировать мета данные свойства продукта</h4>
+	<h4 class="center">Редактировать данные фильтра</h4>
 	<div class="row">
 		<div class="col l8 offset-l2 m12">
             {!! Form::model(isset($productPropertiesData) ? $productPropertiesData : null, ['url' => route('admin.product_properties.property.save', [request()->category, request()->property, request()->value]), 'method' => 'POST']) !!}

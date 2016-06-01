@@ -1,7 +1,7 @@
 @extends('admin.page', ['title' => "Продукты"])
 
 @section('content')
-    <h4 class="center">Свойства Продуктов</h4>
+    <h4 class="center">Фильтры Каталога</h4>
 
     <div class="product_properties">
         @foreach($categories as $category)
