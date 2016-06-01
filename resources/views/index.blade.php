@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', $page->text)
+@section('title', $page->title)
 @section('keywords', $page->keywords)
 @section('description', $page->description)
 
