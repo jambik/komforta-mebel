@@ -87,7 +87,6 @@
         <div class="row">
             <ul>
                 <li><a href="/">Главная</a></li>
-
                 <li><a href="{{ url('/page/o-kompanii') }}">О компании</a></li>
                 <li><a href="{{ url('/page/kak-sdelat-zakaz') }}">Как сделать заказ</a></li>
                 <li><a href="{{ route('catalog') }}">Каталог</a></li>
