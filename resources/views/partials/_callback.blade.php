@@ -16,6 +16,14 @@
                         <input type="text" class="form-control" name="phone" placeholder="Телефон">
                     </div>
                     <div class="form-group">
+                        <select name="time" class="form-control">
+                            <option value="">- Выберите удобное время звонка -</option>
+                            <option value="9:00 - 13:00">9:00 - 13:00</option>
+                            <option value="13:00 - 18:00">13:00 - 18:00</option>
+                            <option value="18:00 - 21:00">18:00 - 21:00</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
                         <div id="recaptchaCallback"></div>
                     </div>
                 </div>
