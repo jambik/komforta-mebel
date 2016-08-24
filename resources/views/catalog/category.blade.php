@@ -15,7 +15,6 @@
 
     <h1>{{ $productPropertiesData && $productPropertiesData->name ? $productPropertiesData->name : ($category->name) }}</h1>
     <hr>
-    {!! $productPropertiesData && $productPropertiesData->text ? $productPropertiesData->text . '<hr>' : ($category->about ? $category->about . '<hr>' : '') !!}
 
     @if ($children->count())
         <div class="row categories-list-line">
@@ -32,4 +31,6 @@
     @else
         <div>В этой категории нет товаров</div>
     @endif
+
+    {!! $productPropertiesData && $productPropertiesData->text ? '<hr>' . $productPropertiesData->text : ($category->about ? '<hr>' . $category->about : '') !!}
 @endsection
