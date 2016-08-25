@@ -73,4 +73,34 @@ class Category extends Model implements SluggableInterface
             $category->name = $prefix . $category->name;
         }
     }
+
+    /**
+     * Категории со свойствами
+     */
+    public static function categoriesWithProperties()
+    {
+        $categories = static::withDepth()->defaultOrder()->get()->toTree();
+
+        $propertiesList = trans('vars.properties');
+
+        foreach($categories as $category) {
+            $properties = null;
+
+            // Get category products
+            $productsId = Product::all()->where('category_id', $category->id)->pluck('id')->all();
+
+            // Get all products properties
+            $productsProperties = ProductProperties::all()->whereInLoose('product_id', $productsId);
+
+            // Get each property value array
+            foreach ($propertiesList as $property => $propertyName) {
+                $currentProperties = $productsProperties->pluck($property, $property.'_slug')->unique()->sortBy($property)->except('');
+                $currentProperties->count() ? $properties[$property] = $currentProperties : null;
+            }
+
+            $category->properties = $properties;
+        }
+
+        return $categories;
+    }
 }

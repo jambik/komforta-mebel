@@ -142,4 +142,6 @@ Route::group(['middleware' => 'web'], function ()
     Route::get('auth/mailru/callback', 'Auth\Social\MailRuAuthController@handleProviderCallback');
     Route::get('auth/google', 'Auth\Social\GoogleAuthController@redirectToProvider');
     Route::get('auth/google/callback', 'Auth\Social\GoogleAuthController@handleProviderCallback');
+
+    Route::get('sitemap.xml', 'SitemapController@index');
 });
